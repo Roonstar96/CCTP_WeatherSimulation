@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8280417}
   - component: {fileID: 8280418}
+  - component: {fileID: 8280419}
   m_Layer: 0
   m_Name: TestObject
   m_TagString: Untagged
@@ -175,6 +176,29 @@ MonoBehaviour:
   _timeDay: 0
   _sunRise: 6
   _sunSet: 18
+--- !u!114 &8280419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8280415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6618bb3a7d4acd489455da72676aea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cloudSize: 0
+  tinyMin: 1
+  tinyMax: 20
+  smallMin: 21
+  smallMax: 40
+  mediumMin: 41
+  mediumMax: 60
+  largeMin: 61
+  largeMax: 80
+  hugeMin: 81
+  hugeMax: 100
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

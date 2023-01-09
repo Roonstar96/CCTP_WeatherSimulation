@@ -5,6 +5,9 @@ using UnityEngine.Events;
 
 public class LocalClimateManager : MonoBehaviour
 {
+    //public enum Climates { Desert, Tundra, Rainforest, Grassland}
+    //public Climates _climates; 
+
     [SerializeField] private float _AmbientTemp;
     [SerializeField] private float _Humidity;
     [SerializeField] private float _EvaporationRate;
@@ -16,8 +19,7 @@ public class LocalClimateManager : MonoBehaviour
     [SerializeField] private float _sunRise;
     [SerializeField] private float _sunSet;
 
-    private float tempMin, tempMax;
-    private float vapeRateMin, vapeRateMax;
+    [SerializeField] private float tempMin, tempMax;
     private float humMin, humMax;
 
     UnityEvent hourChangeEvent;
@@ -29,41 +31,32 @@ public class LocalClimateManager : MonoBehaviour
         _timeHour = 0f;
         _timeDay = 0f;
 
+        _timeHour = Mathf.Round(_timeHour);
+        _timeDay = Mathf.Round(_timeDay);
+
         tempMin = 0f;
         tempMax = 40f;
 
         humMin = 30f;
-        humMax = 100f;
+        humMax = 90f;
 
-        _timeHour = Mathf.Round(_timeHour);
-        _timeDay = Mathf.Round(_timeDay);
+        _AmbientTemp = Mathf.Round( Random.Range( tempMin, (tempMax / 2) ) );
+        _Humidity = Mathf.Round( Random.Range( humMin, (humMax + _AmbientTemp / 10) ) );
 
-        _AmbientTemp = Random.Range(tempMin, (tempMax / 2));
-        _Humidity = (Random.Range(humMin, (humMax)) + (_AmbientTemp / 10) );
-        _EvaporationRate = ((_AmbientTemp * _Humidity) / 100);
+        if (_Humidity > humMax)
+        {
+            _Humidity = humMax;
+        }
 
+        _EvaporationRate = Mathf.Round( ( (_AmbientTemp * _Humidity) / 100 ) );
 
         if (hourChangeEvent == null)
         {
             hourChangeEvent = new UnityEvent();
         }
 
-        /*if (tempChangeEvent == null)
-        {
-            tempChangeEvent = new UnityEvent();
-        }*/
-
-        //hourChangeEvent.AddListener(AmbientChange);
-        //hourChangeEvent.AddListener(HumidChange);
         hourChangeEvent.AddListener(TempAndHumdityChange);
-
-
     }
-
-    /*private void Start()
-    {
-        _EvaporationRate = ((_AmbientTemp * _Humidity) / 100 );
-    }*/
 
     private void Update()
     {
