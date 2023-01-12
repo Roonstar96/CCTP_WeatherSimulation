@@ -41,7 +41,7 @@ public class LocalClimateManager : MonoBehaviour
         humMax = 90f;
 
         _AmbientTemp = Mathf.Round( Random.Range( tempMin, (tempMax / 2) ) );
-        _Humidity = Mathf.Round( Random.Range( humMin, (humMax + _AmbientTemp / 10) ) );
+        _Humidity = Mathf.Round( Random.Range( humMin, (humMax + (2 * _AmbientTemp) / 10) ) );
 
         if (_Humidity > humMax)
         {

@@ -8,7 +8,7 @@ public class test_CloudManager : MonoBehaviour
     //public CloudProperties _cloudProperties;
 
     //NOTE(Tane) variables for min & max size per catagory including thier unique down pour threshold
-    [SerializeField] private int tinyMin, tinyMax;
+    [SerializeField] public int tinyMin, tinyMax;
     [SerializeField] private int smallMin, smallMax;
     [SerializeField] private int mediumMin, mediumMax;
     [SerializeField] private int largeMin, largeMax;

@@ -6,7 +6,7 @@ using UnityEditor;
 public class Editor_CloudProperties : Editor
 {
     #region
-    SerializedProperty _cloudProperties;
+    //SerializedProperty _cloudProperties;
 
     SerializedProperty tinyMin, tinyMax;
     SerializedProperty smallMin, smallMax;
@@ -28,7 +28,7 @@ public class Editor_CloudProperties : Editor
     //NOTE (Tane) This function gets the variables from the chosen script 'RainManager' 
     private void OnEnable()
     {
-        _cloudProperties = serializedObject.FindProperty("_cloudProperties");
+        //_cloudProperties = serializedObject.FindProperty("_cloudProperties");
 
         tinyMin = serializedObject.FindProperty("tinyMin");
         tinyMax = serializedObject.FindProperty("tinyMax");

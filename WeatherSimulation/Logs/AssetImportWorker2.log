@@ -15,7 +15,7 @@ D:/DissertationGit/CCTP_WeatherSimulation/WeatherSimulation
 -logFile
 Logs/AssetImportWorker2.log
 -srvPort
-53131
+54045
 Successfully changed project path to: D:/DissertationGit/CCTP_WeatherSimulation/WeatherSimulation
 D:/DissertationGit/CCTP_WeatherSimulation/WeatherSimulation
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -47,7 +47,7 @@ D:/DissertationGit/CCTP_WeatherSimulation/WeatherSimulation
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Refreshing native plugins compatible for Editor in 5483.37 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 7421.75 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.1.16f1 (7321c9670bc2)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.1.16f1/Editor/Data/Resources/UnitySubsystems
