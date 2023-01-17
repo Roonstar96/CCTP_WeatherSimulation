@@ -8,9 +8,9 @@ public class LocalClimateManager : MonoBehaviour
     //public enum Climates { Desert, Tundra, Rainforest, Grassland}
     //public Climates _climates; 
 
-    [SerializeField] private float _AmbientTemp;
-    [SerializeField] private float _Humidity;
-    [SerializeField] private float _EvaporationRate;
+    [SerializeField] public float _AmbientTemp;
+    [SerializeField] public float _Humidity;
+    [SerializeField] public float _EvaporationRate;
 
     [SerializeField] private float _timeSeconds;
     [SerializeField] private float _timeHour;
@@ -48,7 +48,7 @@ public class LocalClimateManager : MonoBehaviour
             _Humidity = humMax;
         }
 
-        _EvaporationRate = Mathf.Round( ( (_AmbientTemp * _Humidity) / 100 ) );
+        _EvaporationRate = ((_AmbientTemp * _Humidity) / 100 );
 
         if (hourChangeEvent == null)
         {
@@ -114,8 +114,8 @@ public class LocalClimateManager : MonoBehaviour
                     //NOTE: randomly decrease AT by 0% - 20% & H by 0% - 10% of current value from sunset untill midnight
                     if (_timeHour >= _sunSet)
                     {
-                        _AmbientTemp = _AmbientTemp - Random.Range(0, (_AmbientTemp / 5));
-                        _Humidity = _Humidity - (Random.Range(0, (_Humidity / 10)) + (_AmbientTemp / 10));
+                        Mathf.Round(_AmbientTemp = _AmbientTemp - Random.Range(0, (_AmbientTemp / 5)));
+                        Mathf.Round(_Humidity = _Humidity - (Random.Range(0, (_Humidity / 10)) + (_AmbientTemp / 10)));
                     }
 
                     //NOTE: randomly increase/decrease AT by 0% - 20% & H by 0% - 10% of current value from midday untill sunset 
@@ -125,14 +125,14 @@ public class LocalClimateManager : MonoBehaviour
 
                         if (r1 != 0)
                         {
-                            _AmbientTemp = _AmbientTemp + Random.Range(0, (_AmbientTemp / 5));
-                            _Humidity = _Humidity + (Random.Range(0, (_Humidity / 10)) + (_AmbientTemp / 10));
+                            Mathf.Round(_AmbientTemp = _AmbientTemp + Random.Range(0, (_AmbientTemp / 5)));
+                            Mathf.Round(_Humidity = _Humidity + (Random.Range(0, (_Humidity / 10)) + (_AmbientTemp / 10)));
                         }
 
                         else
                         {
-                            _AmbientTemp = _AmbientTemp - Random.Range(0, (_AmbientTemp / 5));
-                            _Humidity = _Humidity - (Random.Range(0, (_Humidity / 10)) + (_AmbientTemp / 10));
+                            Mathf.Round(_AmbientTemp = _AmbientTemp - Random.Range(0, (_AmbientTemp / 5)));
+                            Mathf.Round(_Humidity = _Humidity - (Random.Range(0, (_Humidity / 10)) + (_AmbientTemp / 10)));
                         }
                     }
                 }
@@ -140,8 +140,8 @@ public class LocalClimateManager : MonoBehaviour
                 //NOTE: randomly increase AT by 0% - 20% & H by 0% - 10% of current value untill midday
                 else
                 {
-                    _AmbientTemp = _AmbientTemp + Random.Range(0, (_AmbientTemp / 5));
-                    _Humidity = _Humidity + (Random.Range(0, (_Humidity / 10)) + (_AmbientTemp / 10));
+                    Mathf.Round(_AmbientTemp = _AmbientTemp + Random.Range(0, (_AmbientTemp / 5)));
+                    Mathf.Round(_Humidity = _Humidity + (Random.Range(0, (_Humidity / 10)) + (_AmbientTemp / 10)));
                 }
             }
 
@@ -152,14 +152,14 @@ public class LocalClimateManager : MonoBehaviour
 
                 if (r2 != 0)
                 {
-                    _AmbientTemp = _AmbientTemp + Random.Range(0, (_AmbientTemp / 5));
-                    _Humidity = _Humidity + (Random.Range(0, (_Humidity / 10)) + (_AmbientTemp / 10));
+                    Mathf.Round(_AmbientTemp = _AmbientTemp + Random.Range(0, (_AmbientTemp / 5)));
+                    Mathf.Round(_Humidity = _Humidity + (Random.Range(0, (_Humidity / 10)) + (_AmbientTemp / 10)));
                 }
 
                 else
                 {
-                    _AmbientTemp = _AmbientTemp - Random.Range(0, (_AmbientTemp / 5));
-                    _Humidity = _Humidity - (Random.Range(0, (_Humidity / 10)) + (_AmbientTemp / 10));
+                    Mathf.Round(_AmbientTemp = _AmbientTemp - Random.Range(0, (_AmbientTemp / 5)));
+                    Mathf.Round(_Humidity = _Humidity - (Random.Range(0, (_Humidity / 10)) + (_AmbientTemp / 10)));
                 }
             }
 

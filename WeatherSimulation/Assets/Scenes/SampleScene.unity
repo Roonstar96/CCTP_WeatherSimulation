@@ -133,9 +133,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8280417}
   - component: {fileID: 8280418}
-  - component: {fileID: 8280419}
   m_Layer: 0
-  m_Name: TestObject
+  m_Name: TestObject(climate)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -176,29 +175,8 @@ MonoBehaviour:
   _timeDay: 0
   _sunRise: 6
   _sunSet: 18
---- !u!114 &8280419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8280415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6618bb3a7d4acd489455da72676aea9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _cloudSize: 0
-  tinyMin: 1
-  tinyMax: 20
-  smallMin: 21
-  smallMax: 40
-  mediumMin: 41
-  mediumMax: 60
-  largeMin: 61
-  largeMax: 80
-  hugeMin: 81
-  hugeMax: 100
+  tempMin: 0
+  tempMax: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,6 +271,68 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &798413980
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 798413982}
+  - component: {fileID: 798413981}
+  m_Layer: 0
+  m_Name: TestObject(cloud)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &798413981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798413980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6618bb3a7d4acd489455da72676aea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tinyMin: 1
+  tinyMax: 20
+  smallMin: 21
+  smallMax: 40
+  mediumMin: 41
+  mediumMax: 60
+  largeMin: 61
+  largeMax: 80
+  hugeMin: 81
+  hugeMax: 100
+  _cloudSize: 0
+  _waterStored: 0
+  _rainingThreshold: 0
+  _timeTillRain: 0
+  _duration: 0
+  _intensity: 0
+  _isRaining: 0
+  climate: {fileID: 8280418}
+--- !u!4 &798413982
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798413980}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

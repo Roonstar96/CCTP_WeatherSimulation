@@ -1,7 +1,7 @@
 using UnityEditor;
 
-//NOTE (Tane) This script allows the variables related to the clouds's size to be custom inspector elements for easy 
-// editing and reading
+//SUMMARY: This script allows the variables related to the clouds's size to be custom inspector elements for easy 
+// reading. The min & Max values of each catagory are put into tabs that can be hidden
 [CustomEditor(typeof(test_CloudManager))]
 public class Editor_CloudProperties : Editor
 {
@@ -21,15 +21,14 @@ public class Editor_CloudProperties : Editor
     SerializedProperty _duration;
     SerializedProperty _intensity;
     SerializedProperty _isRaining;
+    SerializedProperty _climate;
 
     bool cloudTinyGroup, cloudSmallGroup, cloudMediumGroup, cloudLargeGroup, cloudHugeGroup, cloudAddpropsGroup = false;
     #endregion
 
-    //NOTE (Tane) This function gets the variables from the chosen script 'RainManager' 
+    //NOTE: This function gets the variables from the chosen script 'RainManager' 
     private void OnEnable()
     {
-        //_cloudProperties = serializedObject.FindProperty("_cloudProperties");
-
         tinyMin = serializedObject.FindProperty("tinyMin");
         tinyMax = serializedObject.FindProperty("tinyMax");
 
@@ -52,9 +51,10 @@ public class Editor_CloudProperties : Editor
         _duration = serializedObject.FindProperty("_duration");
         _intensity = serializedObject.FindProperty("_intensity");
         _isRaining = serializedObject.FindProperty("_isRaining");
+        _climate = serializedObject.FindProperty("climate"); 
     }
 
-    //NOTE (Tane) This function puts the variabels on the UI in the new custom way 
+    //NOTE: This function puts the variabels on the UI in the new custom way 
     public override void OnInspectorGUI()
     {
         cloudTinyGroup = EditorGUILayout.BeginFoldoutHeaderGroup(cloudTinyGroup, "Tiny Cloud Properties");
@@ -107,6 +107,7 @@ public class Editor_CloudProperties : Editor
             EditorGUILayout.PropertyField(_duration);
             EditorGUILayout.PropertyField(_intensity);
             EditorGUILayout.PropertyField(_isRaining);
+            EditorGUILayout.PropertyField(_climate);
         }
         EditorGUILayout.EndFoldoutHeaderGroup();
     }
