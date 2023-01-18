@@ -48,7 +48,7 @@ public class test_CloudManager : MonoBehaviour
         _intensity = 0;
 
         _isRaining = false;
-        _isStoring = false; 
+        _isStoring = true; 
 
     }
 
