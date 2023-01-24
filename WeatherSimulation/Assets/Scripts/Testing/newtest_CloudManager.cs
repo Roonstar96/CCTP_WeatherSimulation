@@ -23,6 +23,7 @@ public class newtest_CloudManager : MonoBehaviour
     [SerializeField] private bool _isCounting;
 
     [SerializeField] public LocalClimateManager climate;
+    //[SerializeField] public ParticleSystem cloudPart;
     //[SerializeField] private ParticleSystem _cloud;
 
     // Start is called before the first frame update
@@ -48,7 +49,6 @@ public class newtest_CloudManager : MonoBehaviour
         _isRaining = false;
         _isStoring = true;
         _isCounting = false;
-
     }
 
     private void Start()
@@ -61,21 +61,18 @@ public class newtest_CloudManager : MonoBehaviour
                 _rainingThreshold = 92;
                 Debug.Log("Cloud size Small: " + _cloudSize + "Water stored: " + _waterStored);
             }
-
             else if (_cloudSize >= mediumMin && _cloudSize <= mediumMax)
             {
                 Mathf.Round(_waterStored = (_cloudSize / mediumMax) * 100);
                 _rainingThreshold = 94;
                 Debug.Log("Cloud size Medium: " + _cloudSize + "Water stored: " + _waterStored);
             }
-
             else if (_cloudSize >= largeMin && _cloudSize <= largeMax)
             {
                 Mathf.Round(_waterStored = (_cloudSize / largeMax) * 100);
                 _rainingThreshold = 96;
                 Debug.Log("Cloud size Large: " + _cloudSize + "Water stored: " + _waterStored);
             }
-
             else if (_cloudSize >= hugeMin && _cloudSize <= hugeMax)
             {
                 Mathf.Round(_waterStored = (_cloudSize / hugeMax) * 100);
@@ -83,7 +80,6 @@ public class newtest_CloudManager : MonoBehaviour
                 Debug.Log("Cloud size Huge: " + _cloudSize + "Water stored: " + _waterStored);
             }
         }
-
         else
         {
             Mathf.Round(_waterStored = (_cloudSize / tinyMax) * 100);
@@ -100,10 +96,8 @@ public class newtest_CloudManager : MonoBehaviour
         {
             RainCountDown();
         }
-
         if (_isRaining)
         {
-            //StartCoroutine(CloudIsRaining(_duration));
             CloudIsRaining();
         }
     }
@@ -119,7 +113,6 @@ public class newtest_CloudManager : MonoBehaviour
             {
                 CalculateRainVariables();
             }
-
             if (_waterStored >= 100)
             {
                 CloudSizeIncrease();
@@ -140,23 +133,21 @@ public class newtest_CloudManager : MonoBehaviour
 
     void CalculateRainVariables()
     {
-        /*if (_cloudSize == 100)
+        if (_cloudSize == 100)
         {
-            _intensity = ((_waterStored / _cloudSize) * (climate._AmbientTemp / 10));
-            _duration = ((_waterStored / climate._AmbientTemp) * _cloudSize);
+            Mathf.Round(_intensity = ((_waterStored / _cloudSize) * (climate._AmbientTemp / 10)));
+            Mathf.Round(_duration = ((_waterStored / climate._AmbientTemp) * _cloudSize));
             _isRaining = true;
             _isStoring = false;
-        }*/
-        
-        Debug.Log("Setting Variables & counting down");
-
-        _timeTillRain = (((_waterStored + _cloudSize) * climate._AmbientTemp) / 60);
-        _intensity = ((_waterStored / _cloudSize) * (climate._AmbientTemp / 10));
-        _duration = ((_waterStored / climate._AmbientTemp) * _cloudSize);
-
-        _isCounting = true;
-
-            //RainCountDown();
+        }
+        else
+        {
+            Debug.Log("Setting Variables & counting down");
+            Mathf.Round(_timeTillRain = (((_waterStored + _cloudSize) * climate._AmbientTemp) / 60));
+            Mathf.Round(_intensity = ((_waterStored / _cloudSize) * (climate._AmbientTemp / 10)));
+            Mathf.Round(_duration = ((_waterStored / climate._AmbientTemp) * _cloudSize));
+            _isCounting = true;
+        }
     }
 
     void RainCountDown()
@@ -187,24 +178,6 @@ public class newtest_CloudManager : MonoBehaviour
         }
     }
 
-    /*IEnumerator CloudIsRaining(float time)
-    {
-        //TODO: adjust particle system parameters using intesity
-        //
-        //_cloud = GetComponent<ParticleSystem>();
-
-        time -= 1 * Time.deltaTime;
-       
-        yield return new WaitForSeconds(time);
-
-        _duration = 0;
-        _intensity = 0;
-
-        _isStoring = true;
-        _isRaining = false;
-        _isCounting = false;
-    }*/
-
     void CloudSizeIncrease()
     {
         _cloudSize += 1;
@@ -212,7 +185,7 @@ public class newtest_CloudManager : MonoBehaviour
         if (_cloudSize <= hugeMax)
         {
             _cloudSize = hugeMax;
-            _waterStored = 0;
+            Mathf.Round(_waterStored = 0);
             _rainingThreshold = 98;
         }
 
@@ -221,37 +194,32 @@ public class newtest_CloudManager : MonoBehaviour
             if (_cloudSize >= smallMin && _cloudSize <= smallMax)
             {
                 Debug.Log("Cloud size Small: " + _cloudSize);
-                _waterStored = 0;
+                Mathf.Round(_waterStored = 0);
                 _rainingThreshold = 92;
             }
-
             else if (_cloudSize >= mediumMin && _cloudSize <= mediumMax)
             {
                 Debug.Log("Cloud size Medium: " + _cloudSize);
-                _waterStored = 0;
+                Mathf.Round(_waterStored = 0);
                 _rainingThreshold = 94;
             }
-
             else if (_cloudSize >= largeMin && _cloudSize <= largeMax)
             {
                 Debug.Log("Cloud size Large: " + _cloudSize);
-                _waterStored = 0;
+                Mathf.Round(_waterStored = 0);
                 _rainingThreshold = 96;
             }
-
             else if (_cloudSize >= hugeMin && _cloudSize <= hugeMax)
             {
                 Debug.Log("Cloud size Huge: " + _cloudSize);
-                _waterStored = 0;
+                Mathf.Round(_waterStored = 0);
                 _rainingThreshold = 98;
             }
-
         }
-
         else
         {
             Debug.Log("Cloud size Tiny: " + _cloudSize);
-            _waterStored = 0;
+            Mathf.Round(_waterStored = 0);
             _rainingThreshold = 90;
         }
     }
@@ -263,45 +231,40 @@ public class newtest_CloudManager : MonoBehaviour
         if (_cloudSize <= tinyMin)
         {
             _cloudSize = tinyMin;
-            _waterStored = 100;
+            Mathf.Round(_waterStored = 100);
             _rainingThreshold = 90;
         }
-
         else if (_cloudSize > tinyMax)
         {
             if (_cloudSize >= smallMin && _cloudSize <= smallMax)
             {
                 Debug.Log("Cloud size Small: " + _cloudSize);
-                _waterStored = 100;
+                Mathf.Round(_waterStored = 100);
                 _rainingThreshold = 92;
             }
-
             else if (_cloudSize >= mediumMin && _cloudSize <= mediumMax)
             {
                 Debug.Log("Cloud size Medium: " + _cloudSize);
-                _waterStored = 100;
+                Mathf.Round(_waterStored = 100);
                 _rainingThreshold = 94;
             }
-
             else if (_cloudSize >= largeMin && _cloudSize <= largeMax)
             {
                 Debug.Log("Cloud size Large: " + _cloudSize);
-                _waterStored = 100;
+                Mathf.Round(_waterStored = 100);
                 _rainingThreshold = 96;
             }
-
             else if (_cloudSize >= hugeMin && _cloudSize <= hugeMax)
             {
                 Debug.Log("Cloud size Huge: " + _cloudSize);
-                _waterStored = 100;
+                Mathf.Round(_waterStored = 100);
                 _rainingThreshold = 98;
             }
         }
-
         else
         {
             Debug.Log("Cloud size Tiny: " + _cloudSize);
-            _waterStored = 100;
+            Mathf.Round(_waterStored = 100);
             _rainingThreshold = 90;
         }
     }

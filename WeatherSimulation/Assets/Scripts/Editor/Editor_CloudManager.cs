@@ -24,6 +24,7 @@ public class Editor_CloudProperties : Editor
     SerializedProperty _isStoring;
     SerializedProperty _isCounting;
     SerializedProperty _climate;
+    SerializedProperty _cloud;
 
     bool cloudTinyGroup, cloudSmallGroup, cloudMediumGroup, cloudLargeGroup, cloudHugeGroup, cloudAddpropsGroup = false;
     #endregion
@@ -55,7 +56,9 @@ public class Editor_CloudProperties : Editor
         _isRaining = serializedObject.FindProperty("_isRaining");
         _isStoring = serializedObject.FindProperty("_isStoring");
         _isCounting = serializedObject.FindProperty("_isCounting");
-        _climate = serializedObject.FindProperty("climate"); 
+        _climate = serializedObject.FindProperty("_climate");
+        _cloud = serializedObject.FindProperty("_cloud");
+
     }
 
     //NOTE: This function puts the variabels on the UI in the new custom way 
@@ -114,6 +117,7 @@ public class Editor_CloudProperties : Editor
             EditorGUILayout.PropertyField(_isStoring);
             EditorGUILayout.PropertyField(_isCounting);
             EditorGUILayout.PropertyField(_climate);
+            EditorGUILayout.PropertyField(_cloud);
         }
         EditorGUILayout.EndFoldoutHeaderGroup();
     }
