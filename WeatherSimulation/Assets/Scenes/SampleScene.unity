@@ -287,7 +287,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &798413981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,11 +312,14 @@ MonoBehaviour:
   hugeMax: 100
   _cloudSize: 0
   _waterStored: 0
+  _waterIncrease: 0
   _rainingThreshold: 0
   _timeTillRain: 0
   _duration: 0
   _intensity: 0
   _isRaining: 0
+  _isStoring: 0
+  _isCounting: 0
   climate: {fileID: 8280418}
 --- !u!4 &798413982
 Transform:
@@ -416,4 +419,68 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1179496710
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1179496712}
+  - component: {fileID: 1179496711}
+  m_Layer: 0
+  m_Name: TestObject(cloud_2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1179496711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179496710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5dd2cfd58a5d5b48be89b262e2b52e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tinyMin: 1
+  tinyMax: 20
+  smallMin: 21
+  smallMax: 40
+  mediumMin: 41
+  mediumMax: 60
+  largeMin: 61
+  largeMax: 80
+  hugeMin: 81
+  hugeMax: 100
+  _cloudSize: 0
+  _waterStored: 0
+  _rainingThreshold: 0
+  _timeTillRain: 0
+  _duration: 0
+  _intensity: 0
+  _isRaining: 0
+  _isStoring: 0
+  _isCounting: 0
+  climate: {fileID: 8280418}
+--- !u!4 &1179496712
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179496710}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

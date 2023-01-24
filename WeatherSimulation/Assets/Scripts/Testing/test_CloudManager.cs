@@ -17,12 +17,15 @@ public class test_CloudManager : MonoBehaviour
     //NOTE(Tane) Variables that are based on the clouds current size
     [SerializeField] private float _cloudSize;
     [SerializeField] private float _waterStored;
+    [SerializeField] private float _waterIncrease;
     [SerializeField] private float _rainingThreshold;
     [SerializeField] private float _timeTillRain;
     [SerializeField] private float _duration;
     [SerializeField] private float _intensity;
+
     [SerializeField] private bool _isRaining;
     [SerializeField] private bool _isStoring;
+    [SerializeField] private bool _isCounting;
 
     [SerializeField] public LocalClimateManager climate;
     //[SerializeField] private ParticleSystem _cloud;
@@ -42,13 +45,15 @@ public class test_CloudManager : MonoBehaviour
         hugeMax = 100;
 
         Mathf.Round(_cloudSize = Random.Range(tinyMin, hugeMax));
+        Mathf.Round(_waterIncrease = (climate._EvaporationRate / 10));
         
         _timeTillRain = 0;
         _duration = 0;
         _intensity = 0;
-
+      
         _isRaining = false;
-        _isStoring = true; 
+        _isStoring = true;
+        _isCounting = false;
 
     }
 
@@ -58,172 +63,117 @@ public class test_CloudManager : MonoBehaviour
         {
             if (_cloudSize >= smallMin && _cloudSize <= smallMax)
             {
-                Debug.Log("Cloud size Small: " + _cloudSize +
-                    "Water stored: " + _waterStored);
                 Mathf.Round(_waterStored = (_cloudSize / smallMax) * 100);
                 _rainingThreshold = 92;
+                Debug.Log("Cloud size Small: " + _cloudSize + "Water stored: " + _waterStored);
             }
 
             else if (_cloudSize >= mediumMin && _cloudSize <= mediumMax)
             {
-                Debug.Log("Cloud size Medium: " + _cloudSize +
-                    "Water stored: " + _waterStored);
                 Mathf.Round(_waterStored = (_cloudSize / mediumMax) * 100);
                 _rainingThreshold = 94;
+                Debug.Log("Cloud size Medium: " + _cloudSize + "Water stored: " + _waterStored);
             }
 
             else if (_cloudSize >= largeMin && _cloudSize <= largeMax)
             {
-                Debug.Log("Cloud size Large: " + _cloudSize +
-                    "Water stored: " + _waterStored);
                 Mathf.Round(_waterStored = (_cloudSize / largeMax) * 100);
                 _rainingThreshold = 96;
+                Debug.Log("Cloud size Large: " + _cloudSize + "Water stored: " + _waterStored);
             }
 
             else if (_cloudSize >= hugeMin && _cloudSize <= hugeMax)
             {
-                Debug.Log("Cloud size Huge: " + _cloudSize +
-                    "Water stored: " + _waterStored);
                 Mathf.Round(_waterStored = (_cloudSize / hugeMax) * 100);
                 _rainingThreshold = 98;
+                Debug.Log("Cloud size Huge: " + _cloudSize + "Water stored: " + _waterStored);
             }
         }
 
         else
         {
-            Debug.Log("Cloud size Tiny: " + _cloudSize +
-                "Water stored: " + _waterStored);
             Mathf.Round(_waterStored = (_cloudSize / tinyMax) * 100);
             _rainingThreshold = 90;
+            Debug.Log("Cloud size Tiny: " + _cloudSize + "Water stored: " + _waterStored);
         }
 
     }
-
+    
     // Update is called once per frame
     void Update()
     {
+        Mathf.Round(_waterStored += _waterIncrease * Time.deltaTime);
+
+        CurrentWaterStored();
+
         if (_isStoring)
         {
-            Mathf.Round(_waterStored += (climate._EvaporationRate / 10) * Time.deltaTime);
+            Debug.Log("WaterStored: " + _waterStored);
+            /*if (_waterStored >= _rainingThreshold && !_isCounting)
+            {
+                CalculateRainVariables();
+            }
+
+            if (_waterStored >= 100)
+            {
+                CloudSizeIncrease();
+            }*/
         }
 
         if (_isRaining)
         {
-            CloudIsRaining(_duration);
+            Mathf.Round(_waterStored -= _intensity * Time.deltaTime);
+
+            if (_waterStored <= 0)
+            {
+                //CloudSizeDecrease();
+            }
         }
 
-        if (_waterStored >= 100 || _waterStored <= 0)
+        /*if (_timeTillRain > 0)
         {
-            CurrentWaterStored();
+            RainCountDown();
+        }
+
+        if (_isRaining)
+        {
+            StartCoroutine(CloudIsRaining(_duration));
         }
 
         if (_waterStored >= _rainingThreshold)
         {
             CalculateRainVariables();
-        }
-
-        if (_timeTillRain > 0)
-        {
-            while (_timeTillRain > 0)
-            {
-                _timeTillRain -= 1 * Time.deltaTime;
-            }
-            _isStoring = false;
-            _isRaining = true;
-        }
+        }*/
     }
 
     void CurrentWaterStored()
     {
         if (_isStoring)
         {
-            _cloudSize += 1;
-
-            if (_cloudSize > tinyMax)
+            Debug.Log("WaterStored: " + _waterStored);
+            /*if (_waterStored >= _rainingThreshold && !_isCounting)
             {
-                if (_cloudSize >= smallMin && _cloudSize <= smallMax)
-                {
-                    Debug.Log("Cloud size Small: " + _cloudSize);
-                    _waterStored = 0;
-                    _rainingThreshold = 92;
-                }
-
-                else if (_cloudSize >= mediumMin && _cloudSize <= mediumMax)
-                {
-                    Debug.Log("Cloud size Medium: " + _cloudSize);
-                    _waterStored = 0;
-                    _rainingThreshold = 94;
-                }
-
-                else if (_cloudSize >= largeMin && _cloudSize <= largeMax)
-                {
-                    Debug.Log("Cloud size Large: " + _cloudSize);
-                    _waterStored = 0;
-                    _rainingThreshold = 96;
-                }
-
-                else if (_cloudSize >= hugeMin && _cloudSize <= hugeMax)
-                {
-                    Debug.Log("Cloud size Huge: " + _cloudSize);
-                    _waterStored = 0;
-                    _rainingThreshold = 98;
-                }
+                CalculateRainVariables();
             }
 
-            else
+            if (_waterStored >= 100)
             {
-                Debug.Log("Cloud size Tiny: " + _cloudSize);
-                _waterStored = 0;
-                _rainingThreshold = 90;
-            }
+                CloudSizeIncrease();
+            }*/
         }
 
-        if (_isRaining)
+       /* while (!_isStoring && _isRaining)
         {
-            _cloudSize -= 1;
+            Mathf.Round(_waterStored -= _intensity * Time.deltaTime);
 
-            if (_cloudSize > tinyMax)
+            if (_waterStored <= 0)
             {
-                if (_cloudSize >= smallMin && _cloudSize <= smallMax)
-                {
-                    Debug.Log("Cloud size Small: " + _cloudSize);
-                    _waterStored = 100;
-                    _rainingThreshold = 92;
-                }
-
-                else if (_cloudSize >= mediumMin && _cloudSize <= mediumMax)
-                {
-                    Debug.Log("Cloud size Medium: " + _cloudSize);
-                    _waterStored = 100;
-                    _rainingThreshold = 94;
-                }
-
-                else if (_cloudSize >= largeMin && _cloudSize <= largeMax)
-                {
-                    Debug.Log("Cloud size Large: " + _cloudSize);
-                    _waterStored = 100;
-                    _rainingThreshold = 96;
-                }
-
-                else if (_cloudSize >= hugeMin && _cloudSize <= hugeMax)
-                {
-                    Debug.Log("Cloud size Huge: " + _cloudSize);
-                    _waterStored = 100;
-                    _rainingThreshold = 98;
-                }
+                CloudSizeDecrease();
             }
-
-            else
-            {
-                Debug.Log("Cloud size Tiny: " + _cloudSize);
-                _waterStored = 100;
-                _rainingThreshold = 90;
-            }
-        }
-
+        }*/
     }
 
-    void CalculateRainVariables()
+    /*void CalculateRainVariables()
     {
         if (_cloudSize == 100)
         {
@@ -235,24 +185,137 @@ public class test_CloudManager : MonoBehaviour
 
         else
         {
-            //_timeTillRain = ((_waterStored * climate._AmbientTemp) / 60);
-            _timeTillRain = (((_waterStored + _cloudSize )  * climate._AmbientTemp) / 60);
+            Debug.Log("Setting Variables & counting down");
+
+            _timeTillRain = (((_waterStored + _cloudSize) * climate._AmbientTemp) / 60);
             _intensity = ((_waterStored / _cloudSize) * (climate._AmbientTemp / 10));
             _duration = ((_waterStored / climate._AmbientTemp) * _cloudSize);
+
+            _isCounting = true;
+
+            //RainCountDown();
+        }
+    }
+    void RainCountDown()
+    {
+        while (_timeTillRain > 0)
+        {
+            _timeTillRain -= 1 * Time.deltaTime;
+        }
+
+        if (_timeTillRain <= 0)
+        {
+            _timeTillRain = 0;
+            _isRaining = true;
+            _isStoring = false;
+            _isCounting = false;
         }
     }
 
-    void CloudIsRaining(float time)
+    IEnumerator CloudIsRaining(float time)
     {
+        //TODO: adjust particle system parameters using intesity
+        //
         //_cloud = GetComponent<ParticleSystem>();
 
-        while (time > 0)
+        /*while (time > 0)
         {
-            _waterStored -= _intensity * Time.deltaTime;
+            time -= 1 * Time.deltaTime;
         }
 
+        yield return new WaitForSeconds(time);
+
         _duration = 0;
-        _isRaining = false;
+        _intensity = 0;
+
         _isStoring = true;
+        _isRaining = false;
+        _isCounting = false;
     }
+
+    void CloudSizeIncrease()
+    {
+        _cloudSize += 1;
+
+        if (_cloudSize > tinyMax)
+        {
+            if (_cloudSize >= smallMin && _cloudSize <= smallMax)
+            {
+                Debug.Log("Cloud size Small: " + _cloudSize);
+                _waterStored = 0;
+                _rainingThreshold = 92;
+            }
+
+            else if (_cloudSize >= mediumMin && _cloudSize <= mediumMax)
+            {
+                Debug.Log("Cloud size Medium: " + _cloudSize);
+                _waterStored = 0;
+                _rainingThreshold = 94;
+            }
+
+            else if (_cloudSize >= largeMin && _cloudSize <= largeMax)
+            {
+                Debug.Log("Cloud size Large: " + _cloudSize);
+                _waterStored = 0;
+                _rainingThreshold = 96;
+            }
+
+            else if (_cloudSize >= hugeMin && _cloudSize <= hugeMax)
+            {
+                Debug.Log("Cloud size Huge: " + _cloudSize);
+                _waterStored = 0;
+                _rainingThreshold = 98;
+            }
+        }
+
+        else
+        {
+            Debug.Log("Cloud size Tiny: " + _cloudSize);
+            _waterStored = 0;
+            _rainingThreshold = 90;
+        }
+    }
+
+    void CloudSizeDecrease()
+    {
+        _cloudSize -= 1;
+
+        if (_cloudSize > tinyMax)
+        {
+            if (_cloudSize >= smallMin && _cloudSize <= smallMax)
+            {
+                Debug.Log("Cloud size Small: " + _cloudSize);
+                _waterStored = 100;
+                _rainingThreshold = 92;
+            }
+
+            else if (_cloudSize >= mediumMin && _cloudSize <= mediumMax)
+            {
+                Debug.Log("Cloud size Medium: " + _cloudSize);
+                _waterStored = 100;
+                _rainingThreshold = 94;
+            }
+
+            else if (_cloudSize >= largeMin && _cloudSize <= largeMax)
+            {
+                Debug.Log("Cloud size Large: " + _cloudSize);
+                _waterStored = 100;
+                _rainingThreshold = 96;
+            }
+
+            else if (_cloudSize >= hugeMin && _cloudSize <= hugeMax)
+            {
+                Debug.Log("Cloud size Huge: " + _cloudSize);
+                _waterStored = 100;
+                _rainingThreshold = 98;
+            }
+        }
+
+        else
+        {
+            Debug.Log("Cloud size Tiny: " + _cloudSize);
+            _waterStored = 100;
+            _rainingThreshold = 90;
+        }
+    }*/
 }
