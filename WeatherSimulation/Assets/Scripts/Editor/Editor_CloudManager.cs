@@ -20,9 +20,12 @@ public class Editor_CloudProperties : Editor
     SerializedProperty _timeTillRain;
     SerializedProperty _duration;
     SerializedProperty _intensity;
+    SerializedProperty _rotSlider;
+
     SerializedProperty _isRaining;
     SerializedProperty _isStoring;
     SerializedProperty _isCounting;
+
     SerializedProperty _climate;
     SerializedProperty _cloud;
 
@@ -53,9 +56,12 @@ public class Editor_CloudProperties : Editor
         _timeTillRain = serializedObject.FindProperty("_timeTillRain");
         _duration = serializedObject.FindProperty("_duration");
         _intensity = serializedObject.FindProperty("_intensity");
+        _rotSlider = serializedObject.FindProperty("_rotSlider");
+
         _isRaining = serializedObject.FindProperty("_isRaining");
         _isStoring = serializedObject.FindProperty("_isStoring");
         _isCounting = serializedObject.FindProperty("_isCounting");
+
         _climate = serializedObject.FindProperty("_climate");
         _cloud = serializedObject.FindProperty("_cloud");
 
@@ -113,9 +119,12 @@ public class Editor_CloudProperties : Editor
             EditorGUILayout.PropertyField(_timeTillRain);
             EditorGUILayout.PropertyField(_duration);
             EditorGUILayout.PropertyField(_intensity);
+            EditorGUILayout.PropertyField(_rotSlider);
+
             EditorGUILayout.PropertyField(_isRaining);
             EditorGUILayout.PropertyField(_isStoring);
             EditorGUILayout.PropertyField(_isCounting);
+
             EditorGUILayout.PropertyField(_climate);
             EditorGUILayout.PropertyField(_cloud);
         }

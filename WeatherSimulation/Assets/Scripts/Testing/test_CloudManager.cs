@@ -17,6 +17,7 @@ public class test_CloudManager : MonoBehaviour
     [SerializeField] private float _timeTillRain;
     [SerializeField] private float _duration;
     [SerializeField] private float _intensity;
+    [SerializeField] private float _rotSlider = 100.0f;
 
     [SerializeField] private bool _isRaining;
     [SerializeField] private bool _isStoring;
@@ -24,6 +25,7 @@ public class test_CloudManager : MonoBehaviour
 
     [SerializeField] public LocalClimateManager _climate;
     [SerializeField] private ParticleSystem _cloud;
+    private ParticleSystem.EmissionModule eMod;
 
     // Start is called before the first frame update
     void Awake()
@@ -48,6 +50,8 @@ public class test_CloudManager : MonoBehaviour
         _isRaining = false;
         _isStoring = true;
         _isCounting = false;
+
+        
     }
 
     private void Start()
@@ -90,6 +94,7 @@ public class test_CloudManager : MonoBehaviour
     void Update()
     {
         CurrentWaterStored();
+        //Debug.Log("WaterStored: " + _waterStored);
 
         if (_isCounting)
         {
@@ -101,12 +106,17 @@ public class test_CloudManager : MonoBehaviour
         }
     }
 
+    /*private void OnGUI()
+    {
+        _rotSlider = GUI.HorizontalSlider(new Rect(25, 45, 100, 30), _rotSlider, 0.0f, 2000.0f);
+    }*/
+
     void CurrentWaterStored()
     {
         if (_isStoring)
         {
             Mathf.Round(_waterStored += (_climate._EvaporationRate / 10 * Time.deltaTime));
-            Debug.Log("WaterStored: " + _waterStored);
+            //Debug.Log("WaterStored: " + _waterStored);
 
             if (_waterStored >= _rainingThreshold && !_isCounting)
             {
@@ -121,7 +131,7 @@ public class test_CloudManager : MonoBehaviour
         if (_isRaining)
         {
             Mathf.Round(_waterStored -= _intensity * Time.deltaTime);
-            Debug.Log("WaterStored: " + _waterStored);
+            //Debug.Log("WaterStored: " + _waterStored);
 
             if (_waterStored <= 0)
             {
@@ -143,7 +153,7 @@ public class test_CloudManager : MonoBehaviour
         {
             Debug.Log("Setting Variables & counting down");
             Mathf.Round(_timeTillRain = (((_waterStored + _cloudSize) * _climate._AmbientTemp) / 60));
-            Mathf.Round(_intensity = ((_waterStored / _cloudSize) * (_climate._AmbientTemp / 10)));
+            Mathf.Round(_intensity = ((_waterStored / _cloudSize) / (_climate._AmbientTemp / 10)));
             Mathf.Round(_duration = ((_waterStored / _climate._AmbientTemp) * _cloudSize));
 
             _isCounting = true;
@@ -167,6 +177,11 @@ public class test_CloudManager : MonoBehaviour
     {
         _duration -= 1 * Time.deltaTime;
 
+        eMod = _cloud.emission;
+        eMod.rateOverTime = 10.0f * _intensity;
+
+        Debug.Log("Rate over item: " + eMod);
+
         _cloud.Play();
 
         if (_duration <= 0)
@@ -186,7 +201,7 @@ public class test_CloudManager : MonoBehaviour
     {
         _cloudSize += 1;
 
-        if (_cloudSize <= hugeMax)
+        if (_cloudSize >= hugeMax)
         {
             _cloudSize = hugeMax;
             Mathf.Round(_waterStored = 0);
@@ -272,5 +287,4 @@ public class test_CloudManager : MonoBehaviour
             _rainingThreshold = 90;
         }
     }
-
 }
