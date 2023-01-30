@@ -20,7 +20,7 @@ public class Editor_CloudProperties : Editor
     SerializedProperty _timeTillRain;
     SerializedProperty _duration;
     SerializedProperty _intensity;
-    SerializedProperty _rotSlider;
+    SerializedProperty _rotMulti;
 
     SerializedProperty _isRaining;
     SerializedProperty _isStoring;
@@ -29,7 +29,7 @@ public class Editor_CloudProperties : Editor
     SerializedProperty _climate;
     SerializedProperty _cloud;
 
-    bool cloudTinyGroup, cloudSmallGroup, cloudMediumGroup, cloudLargeGroup, cloudHugeGroup, cloudAddpropsGroup = false;
+    bool cloudSizeGroup, cloudAddpropsGroup, cloudStateGroup = false;
     #endregion
 
     //NOTE: This function gets the variables from the chosen script 'RainManager' 
@@ -56,13 +56,13 @@ public class Editor_CloudProperties : Editor
         _timeTillRain = serializedObject.FindProperty("_timeTillRain");
         _duration = serializedObject.FindProperty("_duration");
         _intensity = serializedObject.FindProperty("_intensity");
-        _rotSlider = serializedObject.FindProperty("_rotSlider");
+        _rotMulti = serializedObject.FindProperty("_rotMulti");
 
         _isRaining = serializedObject.FindProperty("_isRaining");
         _isStoring = serializedObject.FindProperty("_isStoring");
         _isCounting = serializedObject.FindProperty("_isCounting");
 
-        _climate = serializedObject.FindProperty("_climate");
+        _climate = serializedObject.FindProperty("climate");
         _cloud = serializedObject.FindProperty("_cloud");
 
     }
@@ -70,48 +70,32 @@ public class Editor_CloudProperties : Editor
     //NOTE: This function puts the variabels on the UI in the new custom way 
     public override void OnInspectorGUI()
     {
-        cloudTinyGroup = EditorGUILayout.BeginFoldoutHeaderGroup(cloudTinyGroup, "Tiny Cloud Properties");
-        if (cloudTinyGroup)
+        cloudSizeGroup = EditorGUILayout.BeginFoldoutHeaderGroup(cloudSizeGroup, "Cloud Size Catagory Values");
+        if (cloudSizeGroup)
         {
             EditorGUILayout.PropertyField(tinyMin);
             EditorGUILayout.PropertyField(tinyMax);
-        }
-        EditorGUILayout.EndFoldoutHeaderGroup();
+            EditorGUILayout.LabelField(" ");
 
-        cloudSmallGroup = EditorGUILayout.BeginFoldoutHeaderGroup(cloudSmallGroup, "Small Cloud Properties");
-        if (cloudSmallGroup)
-        {
             EditorGUILayout.PropertyField(smallMin);
             EditorGUILayout.PropertyField(smallMax);
-        }
-        EditorGUILayout.EndFoldoutHeaderGroup();
+            EditorGUILayout.LabelField(" ");
 
-        cloudMediumGroup = EditorGUILayout.BeginFoldoutHeaderGroup(cloudMediumGroup, "Medium Cloud Properties");
-        if (cloudMediumGroup)
-        {
             EditorGUILayout.PropertyField(mediumMin);
             EditorGUILayout.PropertyField(mediumMax);
-        }
-        EditorGUILayout.EndFoldoutHeaderGroup();
+            EditorGUILayout.LabelField(" ");
 
-        cloudLargeGroup = EditorGUILayout.BeginFoldoutHeaderGroup(cloudLargeGroup, "Large Cloud Properties");
-        if (cloudLargeGroup)
-        {
             EditorGUILayout.PropertyField(largeMin);
             EditorGUILayout.PropertyField(largeMax);
-        }
-        EditorGUILayout.EndFoldoutHeaderGroup();
+            EditorGUILayout.LabelField(" ");
 
-        cloudHugeGroup = EditorGUILayout.BeginFoldoutHeaderGroup(cloudHugeGroup, "Huge Cloud Properties");
-        if (cloudHugeGroup)
-        {
             EditorGUILayout.PropertyField(hugeMin);
             EditorGUILayout.PropertyField(hugeMax);
         }
         EditorGUILayout.EndFoldoutHeaderGroup();
 
-        cloudAddpropsGroup = EditorGUILayout.BeginFoldoutHeaderGroup(cloudAddpropsGroup, "Additional Cloud Properties");
-        if(cloudAddpropsGroup)
+        cloudAddpropsGroup = EditorGUILayout.BeginFoldoutHeaderGroup(cloudAddpropsGroup, "Cloud Behavior Variables");
+        if (cloudAddpropsGroup)
         {
             EditorGUILayout.PropertyField(_cloudSize);
             EditorGUILayout.PropertyField(_waterStored);
@@ -119,8 +103,13 @@ public class Editor_CloudProperties : Editor
             EditorGUILayout.PropertyField(_timeTillRain);
             EditorGUILayout.PropertyField(_duration);
             EditorGUILayout.PropertyField(_intensity);
-            EditorGUILayout.PropertyField(_rotSlider);
+            EditorGUILayout.PropertyField(_rotMulti);
+        }
+        EditorGUILayout.EndFoldoutHeaderGroup();
 
+        cloudStateGroup = EditorGUILayout.BeginFoldoutHeaderGroup(cloudStateGroup, "Current State & Additional Components");
+        if (cloudStateGroup)
+        {
             EditorGUILayout.PropertyField(_isRaining);
             EditorGUILayout.PropertyField(_isStoring);
             EditorGUILayout.PropertyField(_isCounting);
@@ -130,6 +119,4 @@ public class Editor_CloudProperties : Editor
         }
         EditorGUILayout.EndFoldoutHeaderGroup();
     }
-
 }
-
