@@ -17,17 +17,18 @@ public class test_CloudManager : MonoBehaviour
     [SerializeField] private float _timeTillRain;
     [SerializeField] private float _duration;
     [SerializeField] private float _intensity;
-    [SerializeField] private float _rotMulti;
+    [SerializeField] private float _rateMulti;
 
     [SerializeField] private bool _isRaining;
     [SerializeField] private bool _isStoring;
     [SerializeField] private bool _isCounting;
 
-    [SerializeField] public LocalClimateManager climate;
+    [SerializeField] public LocalWeatherManager climate;
     [SerializeField] private ParticleSystem _cloud;
 
     private ParticleSystem.EmissionModule _eMod;
     private ParticleSystem.ShapeModule _pShape;
+    private float _pScaler;
 
     // Start is called before the first frame update
     void Awake()
@@ -48,7 +49,10 @@ public class test_CloudManager : MonoBehaviour
         _timeTillRain = 0;
         _duration = 0;
         _intensity = 0;
-        _rotMulti = 100 * (1 + (_cloudSize / 100));
+
+        _rateMulti = 100 + _cloudSize;
+        _pScaler = 1 + (_cloudSize / 100);
+        _pScaler = 10 * _pScaler;
 
         _isRaining = false;
         _isStoring = true;
@@ -173,7 +177,7 @@ public class test_CloudManager : MonoBehaviour
     {
         _duration -= 1 * Time.deltaTime;
         _eMod = _cloud.emission;
-        _eMod.rateOverTime = _rotMulti * _intensity;
+        _eMod.rateOverTime = _rateMulti * _intensity;
         //Debug.Log("Rate over item: " + eMod);
         _cloud.Play();
 
@@ -193,7 +197,7 @@ public class test_CloudManager : MonoBehaviour
     void CloudSizeIncrease()
     {
         _cloudSize += 1;
-        _rotMulti = 100 * (1 + (_cloudSize / 100));
+        _rateMulti = 100 + _cloudSize;
 
         if (_cloudSize >= hugeMax)
         {
@@ -239,7 +243,7 @@ public class test_CloudManager : MonoBehaviour
     void CloudSizeDecrease()
     {
         _cloudSize -= 1;
-        _rotMulti = 100 * (1 + (_cloudSize / 100));
+        _rateMulti = 100 + _cloudSize;
 
         if (_cloudSize <= tinyMin)
         {

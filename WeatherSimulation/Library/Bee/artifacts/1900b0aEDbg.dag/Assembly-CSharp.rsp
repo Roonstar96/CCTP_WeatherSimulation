@@ -357,8 +357,8 @@
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/Unity.VSCode.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEngine.UI.ref.dll"
-"Assets/Scripts/Testing/Scripts/LocalClimateManager.cs"
-"Assets/Scripts/Testing/Scripts/newtest_CloudManager.cs"
+"Assets/Scripts/Testing/Scripts/ClimateManagerClass.cs"
+"Assets/Scripts/Testing/Scripts/LocalWeatherManager.cs"
 "Assets/Scripts/Testing/Scripts/test_CloudManager.cs"
 -langversion:9.0
 

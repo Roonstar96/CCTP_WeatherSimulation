@@ -20,7 +20,7 @@ public class Editor_CloudProperties : Editor
     SerializedProperty _timeTillRain;
     SerializedProperty _duration;
     SerializedProperty _intensity;
-    SerializedProperty _rotMulti;
+    SerializedProperty _rateMulti;
 
     SerializedProperty _isRaining;
     SerializedProperty _isStoring;
@@ -37,16 +37,12 @@ public class Editor_CloudProperties : Editor
     {
         tinyMin = serializedObject.FindProperty("tinyMin");
         tinyMax = serializedObject.FindProperty("tinyMax");
-
         smallMin = serializedObject.FindProperty("smallMin");
         smallMax = serializedObject.FindProperty("smallMax");
-
         mediumMin = serializedObject.FindProperty("mediumMin");
         mediumMax = serializedObject.FindProperty("mediumMax");
-
         largeMin = serializedObject.FindProperty("largeMin");
         largeMax = serializedObject.FindProperty("largeMax");
-
         hugeMin = serializedObject.FindProperty("hugeMin");
         hugeMax = serializedObject.FindProperty("hugeMax");
 
@@ -56,7 +52,7 @@ public class Editor_CloudProperties : Editor
         _timeTillRain = serializedObject.FindProperty("_timeTillRain");
         _duration = serializedObject.FindProperty("_duration");
         _intensity = serializedObject.FindProperty("_intensity");
-        _rotMulti = serializedObject.FindProperty("_rotMulti");
+        _rateMulti = serializedObject.FindProperty("_rateMulti");
 
         _isRaining = serializedObject.FindProperty("_isRaining");
         _isStoring = serializedObject.FindProperty("_isStoring");
@@ -76,19 +72,15 @@ public class Editor_CloudProperties : Editor
             EditorGUILayout.PropertyField(tinyMin);
             EditorGUILayout.PropertyField(tinyMax);
             EditorGUILayout.LabelField(" ");
-
             EditorGUILayout.PropertyField(smallMin);
             EditorGUILayout.PropertyField(smallMax);
             EditorGUILayout.LabelField(" ");
-
             EditorGUILayout.PropertyField(mediumMin);
             EditorGUILayout.PropertyField(mediumMax);
             EditorGUILayout.LabelField(" ");
-
             EditorGUILayout.PropertyField(largeMin);
             EditorGUILayout.PropertyField(largeMax);
             EditorGUILayout.LabelField(" ");
-
             EditorGUILayout.PropertyField(hugeMin);
             EditorGUILayout.PropertyField(hugeMax);
         }
@@ -103,7 +95,7 @@ public class Editor_CloudProperties : Editor
             EditorGUILayout.PropertyField(_timeTillRain);
             EditorGUILayout.PropertyField(_duration);
             EditorGUILayout.PropertyField(_intensity);
-            EditorGUILayout.PropertyField(_rotMulti);
+            EditorGUILayout.PropertyField(_rateMulti);
         }
         EditorGUILayout.EndFoldoutHeaderGroup();
 
@@ -113,7 +105,7 @@ public class Editor_CloudProperties : Editor
             EditorGUILayout.PropertyField(_isRaining);
             EditorGUILayout.PropertyField(_isStoring);
             EditorGUILayout.PropertyField(_isCounting);
-
+            EditorGUILayout.LabelField(" ");
             EditorGUILayout.PropertyField(_climate);
             EditorGUILayout.PropertyField(_cloud);
         }
