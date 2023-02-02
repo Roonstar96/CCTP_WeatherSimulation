@@ -6,11 +6,11 @@ using UnityEngine.Events;
 public class LocalWeatherManager : MonoBehaviour
 {
     [Header("Climate Variables")]
-    [SerializeField] public float _AmbientTemp;
-    [SerializeField] public float _Humidity;
-    [SerializeField] public float _EvaporationRate;
+    [SerializeField] private float _AmbientTemp;
+    [SerializeField] private float _Humidity;
+    [SerializeField] private float _EvaporationRate;
     [SerializeField] private float tempMin, tempMax;
-    private float humMin, humMax;
+    [SerializeField] private float humMin, humMax;
 
     [Header("Time values")]
     [SerializeField] private float _timeSeconds;
@@ -18,6 +18,10 @@ public class LocalWeatherManager : MonoBehaviour
     [SerializeField] private float _timeDay;
     [SerializeField] private float _sunRise;
     [SerializeField] private float _sunSet;
+
+    public float Tempurature { get => _AmbientTemp; set => _AmbientTemp = value; }
+    public float Humidity { get => _Humidity; set => _Humidity = value; }
+    public float Evaporation { get => +_EvaporationRate; set => _EvaporationRate = value; }
 
     void Awake()
     {

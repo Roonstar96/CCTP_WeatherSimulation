@@ -23,7 +23,7 @@ public class test_CloudManager : MonoBehaviour
     [SerializeField] private bool _isStoring;
     [SerializeField] private bool _isCounting;
 
-    [SerializeField] public LocalWeatherManager climate;
+    [SerializeField] private LocalWeatherManager climate;
     [SerializeField] private ParticleSystem _cloud;
 
     private ParticleSystem.EmissionModule _eMod;
@@ -49,11 +49,14 @@ public class test_CloudManager : MonoBehaviour
         _timeTillRain = 0;
         _duration = 0;
         _intensity = 0;
-
         _rateMulti = 100 + _cloudSize;
-        _pScaler = 1 + (_cloudSize / 100);
-        _pScaler = 10 * _pScaler;
 
+        _eMod = _cloud.emission;
+        _pShape = _cloud.shape;
+
+        _pScaler = 10 * (1 + (_cloudSize / 100));
+        _pShape.scale = new Vector3(_pScaler, _pScaler, 1);
+        
         _isRaining = false;
         _isStoring = true;
         _isCounting = false;
@@ -115,9 +118,9 @@ public class test_CloudManager : MonoBehaviour
     {
         if (_isStoring)
         {
-            Mathf.Round(_waterStored += (climate._EvaporationRate / 10 * Time.deltaTime));
+            Mathf.Round(_waterStored += (climate.Evaporation / 10 * Time.deltaTime));
             //Debug.Log("WaterStored: " + _waterStored);
-            if (climate._AmbientTemp <= 0)
+            if (climate.Tempurature <= 0)
             {
                 CalculateRainVariables();
             }
@@ -145,17 +148,17 @@ public class test_CloudManager : MonoBehaviour
     {
         if (_cloudSize == 100)
         {
-            Mathf.Round(_intensity = ((_waterStored / _cloudSize) / (climate._AmbientTemp / 10)));
-            Mathf.Round(_duration = ((_waterStored / climate._AmbientTemp) * _cloudSize));
+            Mathf.Round(_intensity = ((_waterStored / _cloudSize) / (climate.Tempurature / 10)));
+            Mathf.Round(_duration = ((_waterStored / climate.Tempurature) * _cloudSize));
             _isRaining = true;
             _isStoring = false;
         }
         else
         {
             //Debug.Log("Setting Variables & counting down");
-            Mathf.Round(_timeTillRain = (((_waterStored + _cloudSize) * climate._AmbientTemp) / 60));
-            Mathf.Round(_intensity = ((_waterStored / _cloudSize) / (climate._AmbientTemp / 10)));
-            Mathf.Round(_duration = ((_waterStored / climate._AmbientTemp) * _cloudSize));
+            Mathf.Round(_timeTillRain = (((_waterStored + _cloudSize) * climate.Tempurature) / 60));
+            Mathf.Round(_intensity = ((_waterStored / _cloudSize) / (climate.Tempurature / 10)));
+            Mathf.Round(_duration = ((_waterStored / climate.Tempurature) * _cloudSize));
             _isCounting = true;
         }
     }
@@ -176,7 +179,6 @@ public class test_CloudManager : MonoBehaviour
     void CloudIsRaining()
     {
         _duration -= 1 * Time.deltaTime;
-        _eMod = _cloud.emission;
         _eMod.rateOverTime = _rateMulti * _intensity;
         //Debug.Log("Rate over item: " + eMod);
         _cloud.Play();
@@ -198,6 +200,9 @@ public class test_CloudManager : MonoBehaviour
     {
         _cloudSize += 1;
         _rateMulti = 100 + _cloudSize;
+
+        _pScaler = 10 * (1 + (_cloudSize / 100));
+        _pShape.scale = new Vector3(_pScaler, _pScaler, 1);
 
         if (_cloudSize >= hugeMax)
         {
@@ -244,6 +249,9 @@ public class test_CloudManager : MonoBehaviour
     {
         _cloudSize -= 1;
         _rateMulti = 100 + _cloudSize;
+
+        _pScaler = 10 * (1 + (_cloudSize / 100));
+        _pShape.scale = new Vector3(_pScaler, _pScaler, 1);
 
         if (_cloudSize <= tinyMin)
         {

@@ -133,8 +133,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8280417}
   - component: {fileID: 8280418}
+  - component: {fileID: 8280419}
   m_Layer: 0
-  m_Name: TestObject(Atmosphere)
+  m_Name: TestObject(LocalClimate)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -172,11 +173,41 @@ MonoBehaviour:
   _EvaporationRate: 0
   tempMin: 0
   tempMax: 0
+  humMin: 0
+  humMax: 0
   _timeSeconds: 0
   _timeHour: 0
   _timeDay: 0
   _sunRise: 6
   _sunSet: 18
+--- !u!114 &8280419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8280415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0cd325813239224e8c2d67f2ba216a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _climate: 3
+  _freezing: -15
+  _cold: -5
+  _mild: 0
+  _warm: 15
+  _hot: 30
+  _boiling: 40
+  _veryLow: 40
+  _low: 55
+  _average: 70
+  _high: 85
+  _veryHigh: 100
+  _climateTempMin: 15
+  _climateTempMax: 30
+  _climateHumMin: 70
+  _climateHumMax: 100
 --- !u!1 &649014895
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,7 +600,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9033187583648051672, guid: 6349869254b4497438d2850c1989271d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.68
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 9033187583648051672, guid: 6349869254b4497438d2850c1989271d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -616,12 +647,40 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8280418}
     - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: ShapeModule.type
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: ShapeModule.m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: be340a165cb9c8d4cb50f1deeb51d4ea, type: 3}
+    - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: ShapeModule.m_Scale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
       propertyPath: ShapeModule.m_Scale.z
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: ShapeModule.m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: 75e7f98b5fb5efe4f88d08fa3e80deca, type: 3}
+    - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
       propertyPath: InitialModule.maxNumParticles
       value: 4000
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: ShapeModule.m_TextureBilinearFiltering
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
