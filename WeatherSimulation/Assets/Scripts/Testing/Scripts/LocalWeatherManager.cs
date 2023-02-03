@@ -11,6 +11,7 @@ public class LocalWeatherManager : MonoBehaviour
     [SerializeField] private float _EvaporationRate;
     [SerializeField] private float tempMin, tempMax;
     [SerializeField] private float humMin, humMax;
+    [SerializeField] private ClimateManagerClass climateMan;
 
     [Header("Time values")]
     [SerializeField] private float _timeSeconds;
@@ -20,7 +21,7 @@ public class LocalWeatherManager : MonoBehaviour
     [SerializeField] private float _sunSet;
 
     public float Tempurature { get => _AmbientTemp; set => _AmbientTemp = value; }
-    public float Humidity { get => _Humidity; set => _Humidity = value; }
+    //public float Humidity { get => _Humidity; set => _Humidity = value; }
     public float Evaporation { get => +_EvaporationRate; set => _EvaporationRate = value; }
 
     void Awake()
@@ -32,10 +33,10 @@ public class LocalWeatherManager : MonoBehaviour
         _timeHour = Mathf.Round(_timeHour);
         _timeDay = Mathf.Round(_timeDay);
 
-        tempMin = 0f;
-        tempMax = 40f;
-        humMin = 30f;
-        humMax = 90f;
+        tempMin = climateMan.TempMin;
+        tempMax = climateMan.TempMax;
+        humMin = climateMan.HumMin;
+        humMax = climateMan.HumMax;
 
         _AmbientTemp = Mathf.Round( Random.Range( tempMin, (tempMax / 2) ) );
         _Humidity = Mathf.Round( Random.Range( humMin, (humMax + (2 * _AmbientTemp) / 10) ) );
@@ -44,7 +45,8 @@ public class LocalWeatherManager : MonoBehaviour
         {
             _Humidity = humMax;
         }
-        _EvaporationRate = ((_AmbientTemp * _Humidity) / 100 );
+
+        //_EvaporationRate = ((_AmbientTemp * _Humidity) / 100 );
     }
 
     private void Update()
@@ -167,6 +169,33 @@ public class LocalWeatherManager : MonoBehaviour
 
     private void EvapChange()
     {
-        _EvaporationRate = ((_AmbientTemp * _Humidity) / 100);
+        float tempAvg = (tempMin + tempMax) / 2;
+        float humAvg = (humMin + humMax) / 2;
+
+        if(_AmbientTemp < 0)
+        {
+            _EvaporationRate = 0;
+        }
+
+        if (_AmbientTemp > tempAvg && _Humidity <= humAvg)
+        {
+            _EvaporationRate = ((_AmbientTemp * _Humidity) / 150);
+        }
+
+        else if (_AmbientTemp <= tempAvg && _Humidity > humAvg)
+        {
+            _EvaporationRate = ((_AmbientTemp * _Humidity) / 150);
+        }
+
+        else if (_AmbientTemp <= tempAvg && _Humidity <= humAvg)
+        {
+            _EvaporationRate = ((_AmbientTemp * _Humidity) / 200);
+        }
+
+        else if (_AmbientTemp > tempAvg && _Humidity > humAvg)
+        {
+            _EvaporationRate = ((_AmbientTemp * _Humidity) / 100);
+        }
+
     }
 }

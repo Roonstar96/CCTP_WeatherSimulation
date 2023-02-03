@@ -20,14 +20,17 @@ public class test_CloudManager : MonoBehaviour
     [SerializeField] private float _rateMulti;
 
     [SerializeField] private bool _isRaining;
+    [SerializeField] private bool _isSnowing;
     [SerializeField] private bool _isStoring;
     [SerializeField] private bool _isCounting;
 
-    [SerializeField] private LocalWeatherManager climate;
+    [SerializeField] private LocalWeatherManager _weather;
     [SerializeField] private ParticleSystem _cloud;
 
     private ParticleSystem.EmissionModule _eMod;
     private ParticleSystem.ShapeModule _pShape;
+    //private ParticleSystem.Particle _particle;
+    private ParticleSystem.NoiseModule _noise;
     private float _pScaler;
 
     // Start is called before the first frame update
@@ -58,6 +61,7 @@ public class test_CloudManager : MonoBehaviour
         _pShape.scale = new Vector3(_pScaler, _pScaler, 1);
         
         _isRaining = false;
+        _isSnowing = false;
         _isStoring = true;
         _isCounting = false;
     }
@@ -99,28 +103,32 @@ public class test_CloudManager : MonoBehaviour
         }
 
     }
-    void Update()
+    private void Update()
     {
         CurrentWaterStored();
         //Debug.Log("WaterStored: " + _waterStored);
 
         if (_isCounting)
         {
-            RainCountDown();
+            CountDown();
         }
         if (_isRaining)
         {
             CloudIsRaining();
         }
+        if (_isSnowing)
+        {
+            CloudIsSnowing();
+        }
     }
 
-    void CurrentWaterStored()
+    private void CurrentWaterStored()
     {
         if (_isStoring)
         {
-            Mathf.Round(_waterStored += (climate.Evaporation / 10 * Time.deltaTime));
+            Mathf.Round(_waterStored += (_weather.Evaporation / 10 * Time.deltaTime));
             //Debug.Log("WaterStored: " + _waterStored);
-            if (climate.Tempurature <= 0)
+            if (_weather.Tempurature <= 2)
             {
                 CalculateRainVariables();
             }
@@ -144,42 +152,76 @@ public class test_CloudManager : MonoBehaviour
         }
     }
 
-    void CalculateRainVariables()
+    private void CalculateRainVariables()
     {
-        if (_cloudSize == 100)
+        if (_weather.Tempurature < -5)
         {
-            Mathf.Round(_intensity = ((_waterStored / _cloudSize) / (climate.Tempurature / 10)));
-            Mathf.Round(_duration = ((_waterStored / climate.Tempurature) * _cloudSize));
-            _isRaining = true;
+            Mathf.Round(_intensity = 0);
+            Mathf.Round(_duration = 0);
+        }
+
+        else if (_weather.Tempurature > -5 || _weather.Tempurature <= 2 )
+        {
+            Mathf.Round(_intensity = ((_waterStored / _cloudSize) / Mathf.Abs(_weather.Tempurature) / 10));
+            Mathf.Round(_duration = ((_waterStored / _weather.Tempurature) * _cloudSize));
+            _isSnowing = true;
             _isStoring = false;
         }
         else
         {
-            //Debug.Log("Setting Variables & counting down");
-            Mathf.Round(_timeTillRain = (((_waterStored + _cloudSize) * climate.Tempurature) / 60));
-            Mathf.Round(_intensity = ((_waterStored / _cloudSize) / (climate.Tempurature / 10)));
-            Mathf.Round(_duration = ((_waterStored / climate.Tempurature) * _cloudSize));
-            _isCounting = true;
+            if (_cloudSize == 100)
+            {
+                Mathf.Round(_intensity = ((_waterStored / _cloudSize) / Mathf.Abs(_weather.Tempurature) / 10));
+                Mathf.Round(_duration = ((_waterStored / _weather.Tempurature) * _cloudSize));
+                _isRaining = true;
+                _isStoring = false;
+            }
+            else
+            {
+                //Debug.Log("Setting Variables & counting down");
+                Mathf.Round(_timeTillRain = (((_waterStored + _cloudSize) * _weather.Tempurature) / 60));
+                Mathf.Round(_intensity = ((_waterStored / _cloudSize) / (_weather.Tempurature / 10)));
+                Mathf.Round(_duration = ((_waterStored / _weather.Tempurature) * _cloudSize));
+                _isCounting = true;
+            }
         }
     }
 
-    void RainCountDown()
-    {
-        _timeTillRain -= 1 * Time.deltaTime;
-
-        if (_timeTillRain <= 0)
+    private void CountDown()
+    { 
+        if (_weather.Tempurature < 2 && _weather.Tempurature > -5)
         {
-            _timeTillRain = 0;
-            _isRaining = true;
-            _isStoring = false;
-            _isCounting = false;
+            _timeTillRain -= 0.5f * Time.deltaTime;
+
+            if (_timeTillRain <= 0)
+            {
+                _timeTillRain = 0;
+                _isSnowing = true;
+                _isStoring = false;
+                _isCounting = false;
+            }
+        }
+        else if (_weather.Tempurature > 2)
+        {
+            _timeTillRain -= 1 * Time.deltaTime;
+
+            if (_timeTillRain <= 0)
+            {
+                _timeTillRain = 0;
+                _isRaining = true;
+                _isStoring = false;
+                _isCounting = false;
+            }
         }
     }
 
-    void CloudIsRaining()
+    private void CloudIsRaining()
     {
         _duration -= 1 * Time.deltaTime;
-        _eMod.rateOverTime = _rateMulti * _intensity;
+        _eMod.rateOverTime = (_rateMulti * _intensity) / 10;
+        
+        //TODO: ADD ADJUSTMENTS TO PARTICEL SCALE HERE & SET MATERIAL
+
         //Debug.Log("Rate over item: " + eMod);
         _cloud.Play();
 
@@ -196,7 +238,30 @@ public class test_CloudManager : MonoBehaviour
         }
     }
 
-    void CloudSizeIncrease()
+    private void CloudIsSnowing()
+    {
+        _duration -= 1 * Time.deltaTime;
+        _eMod.rateOverTime = (_rateMulti * _intensity) / 10;
+
+        //TODO: ADD ADJUSTMENTS TO PARTICEL NOISE HERE & SET MATERIAL
+
+        //Debug.Log("Rate over item: " + eMod);
+        _cloud.Play();
+
+        if (_duration <= 0)
+        {
+            //Debug.Log("Rain has stopped");
+            _cloud.Stop();
+            _duration = 0;
+            _intensity = 0;
+
+            _isStoring = true;
+            _isRaining = false;
+            _isCounting = false;
+        }
+    }
+
+    private void CloudSizeIncrease()
     {
         _cloudSize += 1;
         _rateMulti = 100 + _cloudSize;
@@ -245,7 +310,7 @@ public class test_CloudManager : MonoBehaviour
         }
     }
 
-    void CloudSizeDecrease()
+    private void CloudSizeDecrease()
     {
         _cloudSize -= 1;
         _rateMulti = 100 + _cloudSize;

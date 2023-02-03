@@ -71,8 +71,8 @@ public class ClimateManagerClass : MonoBehaviour
         {
             _climateTempMin = _warm;
             _climateTempMax = _boiling;
-            _climateHumMin = _low;
-            _climateHumMax = _average;
+            _climateHumMin = _veryLow;
+            _climateHumMax = _low;
         }
 
         if (_climate == Climates.Tropical)

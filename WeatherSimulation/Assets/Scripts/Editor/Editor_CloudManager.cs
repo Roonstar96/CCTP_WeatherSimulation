@@ -26,7 +26,7 @@ public class Editor_CloudProperties : Editor
     SerializedProperty _isStoring;
     SerializedProperty _isCounting;
 
-    SerializedProperty _climate;
+    SerializedProperty _weather;
     SerializedProperty _cloud;
 
     bool cloudSizeGroup, cloudAddpropsGroup, cloudStateGroup = false;
@@ -58,7 +58,7 @@ public class Editor_CloudProperties : Editor
         _isStoring = serializedObject.FindProperty("_isStoring");
         _isCounting = serializedObject.FindProperty("_isCounting");
 
-        _climate = serializedObject.FindProperty("climate");
+        _weather = serializedObject.FindProperty("_weather");
         _cloud = serializedObject.FindProperty("_cloud");
 
     }
@@ -106,7 +106,7 @@ public class Editor_CloudProperties : Editor
             EditorGUILayout.PropertyField(_isStoring);
             EditorGUILayout.PropertyField(_isCounting);
             EditorGUILayout.LabelField(" ");
-            EditorGUILayout.PropertyField(_climate);
+            EditorGUILayout.PropertyField(_weather);
             EditorGUILayout.PropertyField(_cloud);
         }
         EditorGUILayout.EndFoldoutHeaderGroup();
