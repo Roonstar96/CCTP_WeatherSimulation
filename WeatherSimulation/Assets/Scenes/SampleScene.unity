@@ -175,6 +175,7 @@ MonoBehaviour:
   tempMax: 0
   humMin: 0
   humMax: 0
+  climateMan: {fileID: 8280419}
   _timeSeconds: 0
   _timeHour: 0
   _timeDay: 0
@@ -192,7 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0cd325813239224e8c2d67f2ba216a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _climate: 3
+  _climate: 4
   _freezing: -15
   _cold: -5
   _mild: 0
@@ -204,10 +205,10 @@ MonoBehaviour:
   _average: 70
   _high: 85
   _veryHigh: 100
-  _climateTempMin: 15
-  _climateTempMax: 30
-  _climateHumMin: 70
-  _climateHumMax: 100
+  _climateTempMin: -15
+  _climateTempMax: 0
+  _climateHumMin: 55
+  _climateHumMax: 85
 --- !u!1 &649014895
 GameObject:
   m_ObjectHideFlags: 0
@@ -634,6 +635,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051673, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051673, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: m_LengthScale
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051673, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: m_VelocityScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051673, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: m_NormalDirection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051673, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: m_FreeformStretching
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051673, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: m_CameraVelocityScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051673, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c5a189676dc9413449d8e967cb3dcc9b, type: 2}
+    - target: {fileID: 9033187583648051673, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: m_RotateWithStretchDirection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9033187583648051674, guid: 6349869254b4497438d2850c1989271d, type: 3}
       propertyPath: m_Name
       value: TestObject(cloud)
@@ -646,14 +679,34 @@ PrefabInstance:
       propertyPath: _climate
       value: 
       objectReference: {fileID: 8280418}
+    - target: {fileID: 9033187583648051675, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: _weather
+      value: 
+      objectReference: {fileID: 8280418}
     - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
       propertyPath: ShapeModule.type
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: NoiseModule.damping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: NoiseModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: CollisionModule.type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
       propertyPath: ShapeModule.m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: be340a165cb9c8d4cb50f1deeb51d4ea, type: 3}
+    - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: NoiseModule.frequency
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
       propertyPath: ShapeModule.m_Scale.x
       value: 10
@@ -671,13 +724,45 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2800000, guid: 75e7f98b5fb5efe4f88d08fa3e80deca, type: 3}
     - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: CollisionModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: NoiseModule.remapEnabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: NoiseModule.separateAxes
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: NoiseModule.strength.scalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
       propertyPath: ShapeModule.radiusThickness
-      value: 1.0000
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
       propertyPath: InitialModule.maxNumParticles
       value: 4000
       objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: NoiseModule.scrollSpeed.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: CollisionModule.collisionMessages
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: CollisionModule.m_Planes.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: CollisionModule.m_Planes.Array.data[0]
+      value: 
+      objectReference: {fileID: 1558331918}
     - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
       propertyPath: ShapeModule.m_TextureBilinearFiltering
       value: 0
