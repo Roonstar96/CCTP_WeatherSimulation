@@ -194,6 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _climate: 4
+  _seasons: 0
   _freezing: -15
   _cold: -5
   _mild: 0
@@ -637,7 +638,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9033187583648051673, guid: 6349869254b4497438d2850c1989271d, type: 3}
       propertyPath: m_RenderMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9033187583648051673, guid: 6349869254b4497438d2850c1989271d, type: 3}
       propertyPath: m_LengthScale
@@ -696,6 +697,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: NoiseModule.octaves
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
       propertyPath: CollisionModule.type
       value: 0
       objectReference: {fileID: 0}
@@ -723,6 +728,10 @@ PrefabInstance:
       propertyPath: ShapeModule.m_Texture
       value: 
       objectReference: {fileID: 2800000, guid: 75e7f98b5fb5efe4f88d08fa3e80deca, type: 3}
+    - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: VelocityModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
       propertyPath: CollisionModule.enabled
       value: 0
@@ -752,8 +761,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: VelocityModule.orbitalZ.scalar
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
       propertyPath: CollisionModule.collisionMessages
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
       propertyPath: CollisionModule.m_Planes.Array.size
