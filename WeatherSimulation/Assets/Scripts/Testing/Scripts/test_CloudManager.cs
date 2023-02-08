@@ -29,8 +29,8 @@ public class test_CloudManager : MonoBehaviour
 
     private ParticleSystem.EmissionModule _eMod;
     private ParticleSystem.ShapeModule _pShape;
-    //private ParticleSystem.Particle _particle;
     private ParticleSystem.NoiseModule _noise;
+    private ParticleSystem _particle;
     private float _pScaler;
 
     // Start is called before the first frame update
@@ -101,8 +101,8 @@ public class test_CloudManager : MonoBehaviour
             _rainingThreshold = 90;
             //Debug.Log("Cloud size Tiny: " + _cloudSize + "Water stored: " + _waterStored);
         }
-
     }
+
     private void Update()
     {
         CurrentWaterStored();
@@ -163,7 +163,7 @@ public class test_CloudManager : MonoBehaviour
         else if (_weather.Tempurature > -5 || _weather.Tempurature <= 2 )
         {
             Mathf.Round(_intensity = ((_waterStored / _cloudSize) / Mathf.Abs(_weather.Tempurature) / 10));
-            Mathf.Round(_duration = ((_waterStored / _weather.Tempurature) * _cloudSize));
+            Mathf.Round(_duration = ((_waterStored / Mathf.Abs(_weather.Tempurature)) * _cloudSize));
             _isSnowing = true;
             _isStoring = false;
         }
@@ -172,16 +172,16 @@ public class test_CloudManager : MonoBehaviour
             if (_cloudSize == 100)
             {
                 Mathf.Round(_intensity = ((_waterStored / _cloudSize) / Mathf.Abs(_weather.Tempurature) / 10));
-                Mathf.Round(_duration = ((_waterStored / _weather.Tempurature) * _cloudSize));
+                Mathf.Round(_duration = ((_waterStored / Mathf.Abs(_weather.Tempurature)) * _cloudSize));
                 _isRaining = true;
                 _isStoring = false;
             }
             else
             {
                 //Debug.Log("Setting Variables & counting down");
-                Mathf.Round(_timeTillRain = (((_waterStored + _cloudSize) * _weather.Tempurature) / 60));
-                Mathf.Round(_intensity = ((_waterStored / _cloudSize) / (_weather.Tempurature / 10)));
-                Mathf.Round(_duration = ((_waterStored / _weather.Tempurature) * _cloudSize));
+                Mathf.Round(_timeTillRain = (((_waterStored + _cloudSize) * Mathf.Abs(_weather.Tempurature)) / 60));
+                Mathf.Round(_intensity = ((_waterStored / _cloudSize) / (Mathf.Abs(_weather.Tempurature) / 10)));
+                Mathf.Round(_duration = ((_waterStored / Mathf.Abs(_weather.Tempurature)) * _cloudSize));
                 _isCounting = true;
             }
         }
@@ -219,8 +219,12 @@ public class test_CloudManager : MonoBehaviour
     {
         _duration -= 1 * Time.deltaTime;
         _eMod.rateOverTime = (_rateMulti * _intensity) / 10;
-        
-        //TODO: ADD ADJUSTMENTS TO PARTICEL SCALE HERE & SET MATERIAL
+
+        //TODO: SET MATERIAL
+        _noise.strength = 0;
+        _noise.frequency = 0;
+        _noise.scrollSpeed = 0;
+        _noise.octaveCount = 0;
 
         //Debug.Log("Rate over item: " + eMod);
         _cloud.Play();
@@ -243,7 +247,11 @@ public class test_CloudManager : MonoBehaviour
         _duration -= 1 * Time.deltaTime;
         _eMod.rateOverTime = (_rateMulti * _intensity) / 10;
 
-        //TODO: ADD ADJUSTMENTS TO PARTICEL NOISE HERE & SET MATERIAL
+        //TODO: SET MATERIAL
+        _noise.strength = 5;
+        _noise.frequency = 0.5f;
+        _noise.scrollSpeed = 1;
+        _noise.octaveCount = 10;
 
         //Debug.Log("Rate over item: " + eMod);
         _cloud.Play();

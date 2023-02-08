@@ -35,31 +35,31 @@ public class Editor_CloudProperties : Editor
     //NOTE: This function gets the variables from the chosen script 'RainManager' 
     private void OnEnable()
     {
-        tinyMin = serializedObject.FindProperty("tinyMin");
-        tinyMax = serializedObject.FindProperty("tinyMax");
-        smallMin = serializedObject.FindProperty("smallMin");
-        smallMax = serializedObject.FindProperty("smallMax");
+        tinyMin   = serializedObject.FindProperty("tinyMin");
+        tinyMax   = serializedObject.FindProperty("tinyMax");
+        smallMin  = serializedObject.FindProperty("smallMin");
+        smallMax  = serializedObject.FindProperty("smallMax");
         mediumMin = serializedObject.FindProperty("mediumMin");
         mediumMax = serializedObject.FindProperty("mediumMax");
-        largeMin = serializedObject.FindProperty("largeMin");
-        largeMax = serializedObject.FindProperty("largeMax");
-        hugeMin = serializedObject.FindProperty("hugeMin");
-        hugeMax = serializedObject.FindProperty("hugeMax");
+        largeMin  = serializedObject.FindProperty("largeMin");
+        largeMax  = serializedObject.FindProperty("largeMax");
+        hugeMin   = serializedObject.FindProperty("hugeMin");
+        hugeMax   = serializedObject.FindProperty("hugeMax");
 
-        _cloudSize = serializedObject.FindProperty("_cloudSize");
-        _waterStored = serializedObject.FindProperty("_waterStored");
+        _cloudSize        = serializedObject.FindProperty("_cloudSize");
+        _waterStored      = serializedObject.FindProperty("_waterStored");
         _rainingThreshold = serializedObject.FindProperty("_rainingThreshold");
-        _timeTillRain = serializedObject.FindProperty("_timeTillRain");
-        _duration = serializedObject.FindProperty("_duration");
-        _intensity = serializedObject.FindProperty("_intensity");
-        _rateMulti = serializedObject.FindProperty("_rateMulti");
+        _timeTillRain     = serializedObject.FindProperty("_timeTillRain");
+        _duration         = serializedObject.FindProperty("_duration");
+        _intensity        = serializedObject.FindProperty("_intensity");
+        _rateMulti        = serializedObject.FindProperty("_rateMulti");
 
-        _isRaining = serializedObject.FindProperty("_isRaining");
-        _isStoring = serializedObject.FindProperty("_isStoring");
+        _isRaining  = serializedObject.FindProperty("_isRaining");
+        _isStoring  = serializedObject.FindProperty("_isStoring");
         _isCounting = serializedObject.FindProperty("_isCounting");
 
         _weather = serializedObject.FindProperty("_weather");
-        _cloud = serializedObject.FindProperty("_cloud");
+        _cloud   = serializedObject.FindProperty("_cloud");
 
     }
 

@@ -10,9 +10,17 @@ public enum Climates
     Tropical,
     Tundra
 }
+public enum Seasons
+{
+    Spring,
+    Summer,
+    Autumn, 
+    Winter
+}
 public class ClimateManagerClass : MonoBehaviour
 {
     [SerializeField] private Climates _climate;
+    [SerializeField] private Seasons _seasons;
 
     [Header("Temperature Ranges")]
     [SerializeField] private float _freezing = -15.0f;
@@ -42,52 +50,120 @@ public class ClimateManagerClass : MonoBehaviour
 
     private void Awake()
     {
-
-    }
-
-    private void Start()
-    {
-       
+        switch (_climate)
+        {
+            case (Climates.Unspecified):
+                {
+                    _climateTempMin = _freezing;
+                    _climateTempMax = _boiling;
+                    _climateHumMin = _veryLow;
+                    _climateHumMax = _veryHigh;
+                    break;
+                }
+            case (Climates.Average):
+                {
+                    _climateTempMin = _cold;
+                    _climateTempMax = _hot;
+                    _climateHumMin = _low;
+                    _climateHumMax = _high;
+                    break;
+                }
+            case (Climates.Desert):
+                {
+                    _climateTempMin = _warm;
+                    _climateTempMax = _boiling;
+                    _climateHumMin = _veryLow;
+                    _climateHumMax = _low;
+                    break;
+                }
+            case (Climates.Tropical):
+                {
+                    _climateTempMin = _warm;
+                    _climateTempMax = _hot;
+                    _climateHumMin = _average;
+                    _climateHumMax = _veryHigh;
+                    break;
+                }
+            case (Climates.Tundra):
+                {
+                    _climateTempMin = _freezing;
+                    _climateTempMax = _mild;
+                    _climateHumMin = _low;
+                    _climateHumMax = _high;
+                    break;
+                }
+        }
     }
 
     private void OnValidate()
     {
-        if (_climate == Climates.Unspecified)
+        switch (_climate)
         {
-            _climateTempMin = _freezing;
-            _climateTempMax = _boiling;
-            _climateHumMin = _veryLow;
-            _climateHumMax = _veryHigh;
-        }
-        if (_climate == Climates.Average)
-        {
-            _climateTempMin = _cold;
-            _climateTempMax = _hot;
-            _climateHumMin = _low;
-            _climateHumMax = _high;
+            case (Climates.Unspecified):
+                {
+                    _climateTempMin = _freezing;
+                    _climateTempMax = _boiling;
+                    _climateHumMin = _veryLow;
+                    _climateHumMax = _veryHigh;
+                    break;
+                }
+            case (Climates.Average):
+                {
+                    _climateTempMin = _cold;
+                    _climateTempMax = _hot;
+                    _climateHumMin = _low;
+                    _climateHumMax = _high;
+                    break;
+                }
+            case (Climates.Desert):
+                {
+                    _climateTempMin = _warm;
+                    _climateTempMax = _boiling;
+                    _climateHumMin = _veryLow;
+                    _climateHumMax = _low;
+                    break;
+                }
+            case (Climates.Tropical):
+                {
+                    _climateTempMin = _warm;
+                    _climateTempMax = _hot;
+                    _climateHumMin = _average;
+                    _climateHumMax = _veryHigh;
+                    break;
+                }
+            case (Climates.Tundra):
+                {
+                    _climateTempMin = _freezing;
+                    _climateTempMax = _mild;
+                    _climateHumMin = _low;
+                    _climateHumMax = _high;
+                    break;
+                }
         }
 
-        if (_climate == Climates.Desert)
+        switch (_seasons)
         {
-            _climateTempMin = _warm;
-            _climateTempMax = _boiling;
-            _climateHumMin = _veryLow;
-            _climateHumMax = _low;
-        }
+            case (Seasons.Spring):
+                {
+                    //TEMP INCREASE
+                    break;
+                }
+            case (Seasons.Summer):
+                {
+                    //HUM & TEMP INCREASE
+                    break;
+                }
+            case (Seasons.Autumn):
+                {
+                    //TEMP DECREASE
+                    break;
+                }
+            case (Seasons.Winter):
+                {
+                    //HUM & TEMP DECREASE
+                    break;
+                }
 
-        if (_climate == Climates.Tropical)
-        {
-            _climateTempMin = _warm;
-            _climateTempMax = _hot;
-            _climateHumMin = _average;
-            _climateHumMax = _veryHigh;
-        }
-        if (_climate == Climates.Tundra)
-        {
-            _climateTempMin = _freezing;
-            _climateTempMax = _mild;
-            _climateHumMin = _low;
-            _climateHumMax = _high;
         }
     }
 }
