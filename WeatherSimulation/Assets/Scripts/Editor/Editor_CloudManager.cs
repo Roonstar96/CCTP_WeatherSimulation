@@ -1,4 +1,4 @@
-using UnityEditor;
+/*using UnityEditor;
 
 //SUMMARY: This script allows the variables related to the clouds's size to be custom inspector elements for easy 
 // reading. The min & Max values of each catagory are put into tabs that can be hidden
@@ -111,4 +111,4 @@ public class Editor_CloudProperties : Editor
         }
         EditorGUILayout.EndFoldoutHeaderGroup();
     }
-}
+}*/

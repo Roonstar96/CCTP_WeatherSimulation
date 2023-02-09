@@ -24,13 +24,13 @@ public class test_CloudManager : MonoBehaviour
     [SerializeField] private bool _isStoring;
     [SerializeField] private bool _isCounting;
 
-    [SerializeField] private LocalWeatherManager _weather;
-    [SerializeField] private ParticleSystem _cloud;
+    public LocalWeatherManager _weather;
+    public ParticleSystem _cloud;
 
     private ParticleSystem.EmissionModule _eMod;
     private ParticleSystem.ShapeModule _pShape;
     private ParticleSystem.NoiseModule _noise;
-    private ParticleSystem _particle;
+    //private ParticleSystem _particle;
     private float _pScaler;
 
     // Start is called before the first frame update
@@ -54,8 +54,10 @@ public class test_CloudManager : MonoBehaviour
         _intensity = 0;
         _rateMulti = 100 + _cloudSize;
 
+        _cloud = gameObject.GetComponent<ParticleSystem>();
         _eMod = _cloud.emission;
         _pShape = _cloud.shape;
+        _noise = _cloud.noise;
 
         _pScaler = 10 * (1 + (_cloudSize / 100));
         _pShape.scale = new Vector3(_pScaler, _pScaler, 1);
@@ -105,23 +107,38 @@ public class test_CloudManager : MonoBehaviour
 
     private void Update()
     {
-        CurrentWaterStored();
-        //Debug.Log("WaterStored: " + _waterStored);
+        if (_weather == null)
+        {
+            return;
+            //TODO: ADD SOMETHING HERE
+        }
+        else
+        {
+            CurrentWaterStored();
+            //Debug.Log("WaterStored: " + _waterStored);
 
-        if (_isCounting)
-        {
-            CountDown();
-        }
-        if (_isRaining)
-        {
-            CloudIsRaining();
-        }
-        if (_isSnowing)
-        {
-            CloudIsSnowing();
+            if (_isCounting)
+            {
+                CountDown();
+            }
+            if (_isRaining)
+            {
+                CloudIsRaining();
+            }
+            if (_isSnowing)
+            {
+                CloudIsSnowing();
+            }
         }
     }
-
+    /*private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Climate")
+        {
+            Debug.Log("New Climate");
+            _weather = collision.gameObject.GetComponent<LocalWeatherManager>();
+        }
+    }*/
     private void CurrentWaterStored()
     {
         if (_isStoring)

@@ -12,10 +12,10 @@ public enum Climates
 }
 public enum Seasons
 {
+    Winter,
     Spring,
     Summer,
     Autumn, 
-    Winter
 }
 public class ClimateManagerClass : MonoBehaviour
 {
@@ -50,49 +50,7 @@ public class ClimateManagerClass : MonoBehaviour
 
     private void Awake()
     {
-        switch (_climate)
-        {
-            case (Climates.Unspecified):
-                {
-                    _climateTempMin = _freezing;
-                    _climateTempMax = _boiling;
-                    _climateHumMin = _veryLow;
-                    _climateHumMax = _veryHigh;
-                    break;
-                }
-            case (Climates.Average):
-                {
-                    _climateTempMin = _cold;
-                    _climateTempMax = _hot;
-                    _climateHumMin = _low;
-                    _climateHumMax = _high;
-                    break;
-                }
-            case (Climates.Desert):
-                {
-                    _climateTempMin = _warm;
-                    _climateTempMax = _boiling;
-                    _climateHumMin = _veryLow;
-                    _climateHumMax = _low;
-                    break;
-                }
-            case (Climates.Tropical):
-                {
-                    _climateTempMin = _warm;
-                    _climateTempMax = _hot;
-                    _climateHumMin = _average;
-                    _climateHumMax = _veryHigh;
-                    break;
-                }
-            case (Climates.Tundra):
-                {
-                    _climateTempMin = _freezing;
-                    _climateTempMax = _mild;
-                    _climateHumMin = _low;
-                    _climateHumMax = _high;
-                    break;
-                }
-        }
+
     }
 
     private void OnValidate()
@@ -101,69 +59,203 @@ public class ClimateManagerClass : MonoBehaviour
         {
             case (Climates.Unspecified):
                 {
-                    _climateTempMin = _freezing;
-                    _climateTempMax = _boiling;
-                    _climateHumMin = _veryLow;
-                    _climateHumMax = _veryHigh;
+                    switch (_seasons)
+                    {
+                        case (Seasons.Winter):
+                            {
+                                _climateTempMin = _freezing;
+                                _climateTempMax = _mild;
+                                _climateHumMin = _veryLow;
+                                _climateHumMax = _average;
+                                break;
+                            }
+                        case (Seasons.Spring):
+                            {
+                                _climateTempMin = _mild;
+                                _climateTempMax = _hot;
+                                _climateHumMin = _low;
+                                _climateHumMax = _high;
+                                break;
+                            }
+                        case (Seasons.Summer):
+                            {
+                                _climateTempMin = _boiling;
+                                _climateTempMax = _hot;
+                                _climateHumMin = _average;
+                                _climateHumMax = _veryHigh;
+                                break;
+                            }
+                        case (Seasons.Autumn):
+                            {
+                                _climateTempMin = _cold;
+                                _climateTempMax = _warm;
+                                _climateHumMin = _low;
+                                _climateHumMax = _high;
+                                break;
+                            }
+                    }
                     break;
                 }
+
             case (Climates.Average):
                 {
-                    _climateTempMin = _cold;
-                    _climateTempMax = _hot;
-                    _climateHumMin = _low;
-                    _climateHumMax = _high;
+                    switch (_seasons)
+                    {
+                        case (Seasons.Winter):
+                            {
+                                _climateTempMin = _freezing;
+                                _climateTempMax = _mild;
+                                _climateHumMin = _veryLow;
+                                _climateHumMax = _average;
+                                break;
+                            }
+                        case (Seasons.Spring):
+                            {
+                                _climateTempMin = _cold;
+                                _climateTempMax = _hot;
+                                _climateHumMin = _low;
+                                _climateHumMax = _high;
+                                break;
+                            }
+                        case (Seasons.Summer):
+                            {
+                                _climateTempMin = _warm;
+                                _climateTempMax = _boiling;
+                                _climateHumMin = _average;
+                                _climateHumMax = _veryHigh;
+                                break;
+                            }
+                        case (Seasons.Autumn):
+                            {
+                                _climateTempMin = _cold;
+                                _climateTempMax = _hot;
+                                _climateHumMin = _low;
+                                _climateHumMax = _high;
+                                break;
+                            }
+                    }
                     break;
                 }
+
             case (Climates.Desert):
                 {
-                    _climateTempMin = _warm;
-                    _climateTempMax = _boiling;
-                    _climateHumMin = _veryLow;
-                    _climateHumMax = _low;
+                    switch (_seasons)
+                    {
+                        case (Seasons.Winter):
+                            {
+                                _climateTempMin = _warm;
+                                _climateTempMax = _hot;
+                                _climateHumMin = _veryLow;
+                                _climateHumMax = _low;
+                                break;
+                            }
+                        case (Seasons.Spring):
+                            {
+                                _climateTempMin = _warm * 1.1f;
+                                _climateTempMax = _boiling;
+                                _climateHumMin = _veryLow;
+                                _climateHumMax = _low;
+                                break;
+                            }
+                        case (Seasons.Summer):
+                            {
+                                _climateTempMin = _warm * 1.1f;
+                                _climateTempMax = _boiling * 1.1f;
+                                _climateHumMin = _veryLow;
+                                _climateHumMax = _low;
+                                break;
+                            }
+                        case (Seasons.Autumn):
+                            {
+                                _climateTempMin = _warm;
+                                _climateTempMax = _hot * 1.1f;
+                                _climateHumMin = _veryLow;
+                                _climateHumMax = _low;
+                                break;
+                            }
+                    }
                     break;
                 }
+
             case (Climates.Tropical):
                 {
-                    _climateTempMin = _warm;
-                    _climateTempMax = _hot;
-                    _climateHumMin = _average;
-                    _climateHumMax = _veryHigh;
+                    switch (_seasons)
+                    {
+                        case (Seasons.Winter):
+                            {
+                                _climateTempMin = _warm / 1.1f;
+                                _climateTempMax = _hot;
+                                _climateHumMin = _average * 1.1f;
+                                _climateHumMax = _veryHigh;
+                                break;
+                            }
+                        case (Seasons.Spring):
+                            {
+                                _climateTempMin = _warm;
+                                _climateTempMax = _hot * 1.1f;
+                                _climateHumMin = _average;
+                                _climateHumMax = _veryHigh;
+                                break;
+                            }
+                        case (Seasons.Summer):
+                            {
+                                _climateTempMin = _warm;
+                                _climateTempMax = _hot * 1.1f;
+                                _climateHumMin = _average;
+                                _climateHumMax = _veryHigh;
+                                break;
+                            }
+                        case (Seasons.Autumn): 
+                            {
+                                _climateTempMin = _warm / 1.1f;
+                                _climateTempMax = _hot;
+                                _climateHumMin = _average * 1.1f;
+                                _climateHumMax = _veryHigh;
+                                break;
+                            }
+                    }
                     break;
                 }
+
             case (Climates.Tundra):
                 {
-                    _climateTempMin = _freezing;
-                    _climateTempMax = _mild;
-                    _climateHumMin = _low;
-                    _climateHumMax = _high;
+                    switch (_seasons)
+                    {
+                        case (Seasons.Winter):
+                            {
+                                _climateTempMin = _freezing;
+                                _climateTempMax = _mild;
+                                _climateHumMin = _low;
+                                _climateHumMax = _high;
+                                break;
+                            }
+                        case (Seasons.Spring):
+                            {
+                                _climateTempMin = _freezing;
+                                _climateTempMax = _mild;
+                                _climateHumMin = _low / 1.1f;
+                                _climateHumMax = _high;
+                                break;
+                            }
+                        case (Seasons.Summer):
+                            {
+                                _climateTempMin = _freezing;
+                                _climateTempMax = _mild;
+                                _climateHumMin = _low / 1.1f;
+                                _climateHumMax = _high;
+                                break;
+                            }
+                        case (Seasons.Autumn):
+                            {
+                                _climateTempMin = _freezing;
+                                _climateTempMax = _mild;
+                                _climateHumMin = _low;
+                                _climateHumMax = _high;
+                                break;
+                            }
+                    }
                     break;
                 }
-        }
-
-        switch (_seasons)
-        {
-            case (Seasons.Spring):
-                {
-                    //TEMP INCREASE
-                    break;
-                }
-            case (Seasons.Summer):
-                {
-                    //HUM & TEMP INCREASE
-                    break;
-                }
-            case (Seasons.Autumn):
-                {
-                    //TEMP DECREASE
-                    break;
-                }
-            case (Seasons.Winter):
-                {
-                    //HUM & TEMP DECREASE
-                    break;
-                }
-
         }
     }
 }
