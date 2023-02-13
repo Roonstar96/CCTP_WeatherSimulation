@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0cd325813239224e8c2d67f2ba216a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _climate: 2
+  _climate: 4
   _seasons: 0
   _freezing: -15
   _cold: -5
@@ -210,10 +210,10 @@ MonoBehaviour:
   _average: 70
   _high: 85
   _veryHigh: 100
-  _climateTempMin: 15
-  _climateTempMax: 30
-  _climateHumMin: 40
-  _climateHumMax: 55
+  _climateTempMin: -15
+  _climateTempMax: 0
+  _climateHumMin: 55
+  _climateHumMax: 85
 --- !u!65 &8280420
 BoxCollider:
   m_ObjectHideFlags: 0

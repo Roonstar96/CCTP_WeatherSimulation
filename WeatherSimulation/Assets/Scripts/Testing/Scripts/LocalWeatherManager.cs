@@ -190,34 +190,34 @@ public class LocalWeatherManager : MonoBehaviour
         float tempAvg = (tempMin + tempMax) / 2;
         float humAvg = (humMin + humMax) / 2;
 
-        if(_AmbientTemp < 0)
+        if (_AmbientTemp <= 0 || _EvaporationRate <= 0)
         {
-            Mathf.Abs(_EvaporationRate = 0);
+            _EvaporationRate = 0;
+            return;
         }
 
         if (_AmbientTemp > tempAvg && _Humidity <= humAvg)
         {
-            Mathf.Abs(_EvaporationRate = ((_AmbientTemp * _Humidity) / 150));
-            //Mathf.Abs(_EvaporationRate);
+            _EvaporationRate = ((_AmbientTemp * _Humidity) / 150);
+            return;
         }
 
         else if (_AmbientTemp <= tempAvg && _Humidity > humAvg)
         {
-            Mathf.Abs(_EvaporationRate = ((_AmbientTemp * _Humidity) / 150));
-            //Mathf.Abs(_EvaporationRate);
+            _EvaporationRate = ((_AmbientTemp * _Humidity) / 150);
+            return;
         }
 
         else if (_AmbientTemp <= tempAvg && _Humidity <= humAvg)
         {
-            Mathf.Abs(_EvaporationRate = ((_AmbientTemp * _Humidity) / 200));
-            //Mathf.Abs(_EvaporationRate);
+            _EvaporationRate = ((Mathf.Abs(_AmbientTemp) * _Humidity) / 200);
+            return;
         }
 
         else if (_AmbientTemp > tempAvg && _Humidity > humAvg)
         {
-            Mathf.Abs(_EvaporationRate = ((_AmbientTemp * _Humidity) / 100));
-            //Mathf.Abs(_EvaporationRate);
+            _EvaporationRate = ((_AmbientTemp * _Humidity) / 100);
+            return;
         }
-
     }
 }
