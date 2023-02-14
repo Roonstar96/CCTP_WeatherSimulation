@@ -197,8 +197,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0cd325813239224e8c2d67f2ba216a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _climate: 4
-  _seasons: 0
+  _climate: 2
+  _seasons: 2
   _freezing: -15
   _cold: -5
   _mild: 0
@@ -210,10 +210,10 @@ MonoBehaviour:
   _average: 70
   _high: 85
   _veryHigh: 100
-  _climateTempMin: -15
-  _climateTempMax: 0
-  _climateHumMin: 55
-  _climateHumMax: 85
+  _climateTempMin: 16.5
+  _climateTempMax: 44
+  _climateHumMin: 40
+  _climateHumMax: 55
 --- !u!65 &8280420
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -372,6 +372,26 @@ PrefabInstance:
     - target: {fileID: 9033187583648051674, guid: 6349869254b4497438d2850c1989271d, type: 3}
       propertyPath: m_TagString
       value: Cloud
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: lengthInSec
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: CollisionModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 4000
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

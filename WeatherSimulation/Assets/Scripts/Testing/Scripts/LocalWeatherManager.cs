@@ -190,7 +190,7 @@ public class LocalWeatherManager : MonoBehaviour
         float tempAvg = (tempMin + tempMax) / 2;
         float humAvg = (humMin + humMax) / 2;
 
-        if (_AmbientTemp <= 0 || _EvaporationRate <= 0)
+        if (_AmbientTemp <= 0)
         {
             _EvaporationRate = 0;
             return;
