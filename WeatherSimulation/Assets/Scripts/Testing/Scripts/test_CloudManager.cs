@@ -65,7 +65,7 @@ public class test_CloudManager : MonoBehaviour
         
         _isRaining = false;
         _isSnowing = false;
-        _isStoring = false;
+        _isStoring = true;
         _isCounting = false;
     }
 
@@ -110,12 +110,12 @@ public class test_CloudManager : MonoBehaviour
     {
         if (_weather == null)
         {
+            Debug.Log("No climate");
             _duration = 0;
             _intensity = 0;
 
             _isRaining = false;
             _isSnowing = false;
-            _isStoring = false;
             _isCounting = false;
 
             _cloud.Stop();
@@ -123,41 +123,42 @@ public class test_CloudManager : MonoBehaviour
         }
         else
         {
-            _isStoring = true;
-
-            if (_cloudSize == 1 && _waterStored == 0)
+            if (_cloudSize == 1 && _waterStored <= 0)
             {
+                Debug.Log("No more water, no more cloud!");
                 Destroy(gameObject);
             }
 
-            else
+            if (_isStoring)
             {
                 CurrentWaterStored();
             }
-
             if (_isCounting)
             {
+                Debug.Log("Coiunting down!");
                 CountDown();
             }
             if (_isRaining)
             {
+                Debug.Log("It's Raining!");
                 CloudIsRaining();
             }
             if (_isSnowing)
             {
+                Debug.Log("It's Snowing!");
                 CloudIsSnowing();
             }
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    /*private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Climate")
         {
             Debug.Log("New Climate");
             _weather = collision.gameObject.GetComponent<LocalWeatherManager>();
         }
-    }
+    }*/
 
     private void CurrentWaterStored()
     {
@@ -170,9 +171,9 @@ public class test_CloudManager : MonoBehaviour
                 CloudSizeDecrease();
             }
         }
-
         if (_isSnowing)
         {
+            Mathf.Round(_waterStored -= _intensity * Time.deltaTime);
             if (_waterStored <= 0)
             {
                 CloudSizeDecrease();
@@ -180,7 +181,7 @@ public class test_CloudManager : MonoBehaviour
         }
         if (_isStoring)
         {
-            Mathf.Round(_waterStored += (_weather.Evaporation / 10 * Time.deltaTime));
+            Mathf.Round(_waterStored += (_weather.Evaporation / 10) * Time.deltaTime);
             //Debug.Log("WaterStored: " + _waterStored);
             if (_weather.Tempurature <= 2)
             {
@@ -194,6 +195,7 @@ public class test_CloudManager : MonoBehaviour
             {
                 CloudSizeIncrease();
             }
+
         }
     }
 
@@ -205,10 +207,11 @@ public class test_CloudManager : MonoBehaviour
             Mathf.Round(_intensity = 0);
             Mathf.Round(_duration = 0);
             _isCounting = false;
+
             return;
         }
 
-        else if (_weather.Tempurature > -5 || _weather.Tempurature <= 2 )
+        else if (_weather.Tempurature > -5 && _weather.Tempurature <= 2 )
         {
             float snowMultiplier = (Mathf.Abs(_weather.Tempurature) / 100) + 1;
 
@@ -229,7 +232,7 @@ public class test_CloudManager : MonoBehaviour
             }
             else
             {
-                //Debug.Log("Setting Variables & counting down");
+                Debug.Log("Setting Variables & counting down");
                 Mathf.Round(_timeTillRain = (((_waterStored + _cloudSize) * Mathf.Abs(_weather.Tempurature)) / 60));
                 Mathf.Round(_intensity = ((_waterStored / _cloudSize) / (Mathf.Abs(_weather.Tempurature) / 10)));
                 Mathf.Round(_duration = ((_waterStored / Mathf.Abs(_weather.Tempurature)) * _cloudSize));
@@ -301,7 +304,6 @@ public class test_CloudManager : MonoBehaviour
     {
         _duration -= 1 * Time.deltaTime;
         _eMod.rateOverTime = (_rateMulti * _intensity) / 10;
-
         //TODO: SET MATERIAL
         _noise.strength = 5;
         _noise.frequency = 0.5f;

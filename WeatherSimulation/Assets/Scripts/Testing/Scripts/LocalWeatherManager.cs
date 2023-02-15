@@ -90,7 +90,7 @@ public class LocalWeatherManager : MonoBehaviour
         if (other.tag == "Cloud")
         {
             Debug.Log("New Cloud");
-            other.gameObject.GetComponent<test_CloudManager>()._weather = gameObject.GetComponent<LocalWeatherManager>();
+            other.GetComponent<test_CloudManager>()._weather = gameObject.GetComponent<LocalWeatherManager>();
         }
     }
     private void OnTriggerExit(Collider other)
@@ -98,7 +98,7 @@ public class LocalWeatherManager : MonoBehaviour
         if (other.tag == "Cloud")
         {
             Debug.Log("New Cloud");
-            other.gameObject.GetComponent<test_CloudManager>()._weather = null;
+            other.GetComponent<test_CloudManager>()._weather = null;
         }
     }
 
