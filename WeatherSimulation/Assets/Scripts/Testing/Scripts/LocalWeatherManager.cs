@@ -19,10 +19,7 @@ public class LocalWeatherManager : MonoBehaviour
     [SerializeField] private float _sunRise;
     [SerializeField] private float _sunSet;
 
-    //public test_CloudManager _cloud;
-
     public float Tempurature { get => _AmbientTemp; set => _AmbientTemp = value; }
-    //public float Humidity { get => _Humidity; set => _Humidity = value; }
     public float Evaporation { get => +_EvaporationRate; set => _EvaporationRate = value; }
 
     void Awake()
@@ -46,8 +43,6 @@ public class LocalWeatherManager : MonoBehaviour
         {
             _Humidity = humMax;
         }
-
-        //_EvaporationRate = ((_AmbientTemp * _Humidity) / 100 );
     }
 
     private void Update()
@@ -82,23 +77,6 @@ public class LocalWeatherManager : MonoBehaviour
             _timeSeconds = 0f;
             _timeHour = 0f;
             _timeDay = 0f;
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Cloud")
-        {
-            Debug.Log("New Cloud");
-            other.GetComponent<test_CloudManager>()._weather = gameObject.GetComponent<LocalWeatherManager>();
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Cloud")
-        {
-            Debug.Log("New Cloud");
-            other.GetComponent<test_CloudManager>()._weather = null;
         }
     }
 
@@ -138,7 +116,6 @@ public class LocalWeatherManager : MonoBehaviour
                     Mathf.Round(_Humidity = _Humidity - (Random.Range(0, (_Humidity / 10)) + (_AmbientTemp / 10)));
                 }
             }
-
             //NOTE: Makes sure AT & H never goes outside the min/max values
             if (_AmbientTemp < tempMin)
             {
@@ -195,25 +172,21 @@ public class LocalWeatherManager : MonoBehaviour
             _EvaporationRate = 0;
             return;
         }
-
         if (_AmbientTemp > tempAvg && _Humidity <= humAvg)
         {
             _EvaporationRate = ((_AmbientTemp * _Humidity) / 150);
             return;
         }
-
         else if (_AmbientTemp <= tempAvg && _Humidity > humAvg)
         {
             _EvaporationRate = ((_AmbientTemp * _Humidity) / 150);
             return;
         }
-
         else if (_AmbientTemp <= tempAvg && _Humidity <= humAvg)
         {
             _EvaporationRate = ((Mathf.Abs(_AmbientTemp) * _Humidity) / 200);
             return;
         }
-
         else if (_AmbientTemp > tempAvg && _Humidity > humAvg)
         {
             _EvaporationRate = ((_AmbientTemp * _Humidity) / 100);

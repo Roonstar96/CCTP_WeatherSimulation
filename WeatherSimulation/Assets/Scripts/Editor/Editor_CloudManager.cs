@@ -2,7 +2,7 @@
 
 //SUMMARY: This script allows the variables related to the clouds's size to be custom inspector elements for easy 
 // reading. The min & Max values of each catagory are put into tabs that can be hidden
-[CustomEditor(typeof(test_CloudManager))]
+[CustomEditor(typeof(CloudManager))]
 public class Editor_CloudProperties : Editor
 {
     #region
