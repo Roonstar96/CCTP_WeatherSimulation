@@ -99,7 +99,8 @@ MonoBehaviour:
   _isStoring: 0
   _isCounting: 0
   _weather: {fileID: 0}
-  _cloud: {fileID: 9033187583648051686}
+  _wind: {fileID: 0}
+  _cloud: {fileID: 0}
 --- !u!199 &9033187583648051673
 ParticleSystemRenderer:
   serializedVersion: 6

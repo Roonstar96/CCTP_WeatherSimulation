@@ -1,4 +1,4 @@
-/*using UnityEditor;
+using UnityEditor;
 
 //SUMMARY: This script allows the variables related to the clouds's size to be custom inspector elements for easy 
 // reading. The min & Max values of each catagory are put into tabs that can be hidden
@@ -23,10 +23,12 @@ public class Editor_CloudProperties : Editor
     SerializedProperty _rateMulti;
 
     SerializedProperty _isRaining;
+    SerializedProperty _isSnowing;
     SerializedProperty _isStoring;
     SerializedProperty _isCounting;
 
     SerializedProperty _weather;
+    SerializedProperty _wind;
     SerializedProperty _cloud;
 
     bool cloudSizeGroup, cloudAddpropsGroup, cloudStateGroup = false;
@@ -55,10 +57,12 @@ public class Editor_CloudProperties : Editor
         _rateMulti        = serializedObject.FindProperty("_rateMulti");
 
         _isRaining  = serializedObject.FindProperty("_isRaining");
+        _isSnowing = serializedObject.FindProperty("_isSnowing");
         _isStoring  = serializedObject.FindProperty("_isStoring");
         _isCounting = serializedObject.FindProperty("_isCounting");
 
         _weather = serializedObject.FindProperty("_weather");
+        _wind    = serializedObject.FindProperty("_wind");
         _cloud   = serializedObject.FindProperty("_cloud");
 
     }
@@ -92,6 +96,7 @@ public class Editor_CloudProperties : Editor
             EditorGUILayout.PropertyField(_cloudSize);
             EditorGUILayout.PropertyField(_waterStored);
             EditorGUILayout.PropertyField(_rainingThreshold);
+            EditorGUILayout.LabelField(" ");
             EditorGUILayout.PropertyField(_timeTillRain);
             EditorGUILayout.PropertyField(_duration);
             EditorGUILayout.PropertyField(_intensity);
@@ -103,12 +108,14 @@ public class Editor_CloudProperties : Editor
         if (cloudStateGroup)
         {
             EditorGUILayout.PropertyField(_isRaining);
+            EditorGUILayout.PropertyField(_isSnowing);
             EditorGUILayout.PropertyField(_isStoring);
             EditorGUILayout.PropertyField(_isCounting);
             EditorGUILayout.LabelField(" ");
             EditorGUILayout.PropertyField(_weather);
+            EditorGUILayout.PropertyField(_wind);
             EditorGUILayout.PropertyField(_cloud);
         }
         EditorGUILayout.EndFoldoutHeaderGroup();
     }
-}*/
+}
