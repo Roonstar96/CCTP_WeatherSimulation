@@ -1,9 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class LocalWeatherManager : MonoBehaviour
 {
+    [Header("Time values")]
+    [SerializeField] private float _timeSeconds;
+    [SerializeField] private float _timeHour;
+    [SerializeField] private float _timeDay;
+    [SerializeField] private float _sunRise;
+    [SerializeField] private float _sunSet;
+
     [Header("Climate Variables")]
     [SerializeField] private float _AmbientTemp;
     [SerializeField] private float _Humidity;
@@ -12,15 +20,34 @@ public class LocalWeatherManager : MonoBehaviour
     [SerializeField] private float humMin, humMax;
     [SerializeField] private ClimateManagerClass climateMan;
 
-    [Header("Time values")]
-    [SerializeField] private float _timeSeconds;
-    [SerializeField] private float _timeHour;
-    [SerializeField] private float _timeDay;
-    [SerializeField] private float _sunRise;
-    [SerializeField] private float _sunSet;
+    [Header("Fog Variables")]
+    [SerializeField] private float _fogDesinity;
+    [SerializeField] private float _fogDispersal;
+    [SerializeField] private float _fogDuration;
+    [SerializeField] private static float _fogMultiplier;
+    [SerializeField] ParticleSystem _fogSystem;
+
+    private ParticleSystem.EmissionModule _eMod;
+    private ParticleSystem.ShapeModule _pShape;
+    private ParticleSystem.NoiseModule _pNoise;
+    private ParticleSystem.MainModule _main;
 
     public float Tempurature { get => _AmbientTemp; set => _AmbientTemp = value; }
-    public float Evaporation { get => +_EvaporationRate; set => _EvaporationRate = value; }
+    public float Evaporation { get => _EvaporationRate; set => _EvaporationRate = value; }
+    public static float FogMultiplier { get => _fogMultiplier; set => _fogMultiplier = value; }
+
+    //Add events here for hour change
+    public delegate void TimeChanged();
+    public static event TimeChanged TimeChangedEvent;
+
+    private void OnEnable()
+    {
+        //Event.TimeChangeEvent += TempAndHumdityChange;
+    }
+    private void OnDisable()
+    {
+        
+    }
 
     void Awake()
     {
@@ -49,6 +76,14 @@ public class LocalWeatherManager : MonoBehaviour
     {
         TimeChange();
         EvapChange();
+
+        if (climateMan.Winter || climateMan.Autumn)
+        {
+            if (!CloudCollisionManager.HasCloud)
+            {
+                FogManager();
+            }
+        }
     }
 
     //NOTE: This fucniton is resopnsible for keeping track of in games time. minutes are represented by seconds for testing purposes
@@ -58,13 +93,13 @@ public class LocalWeatherManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            Time.timeScale += 6;
+            Time.timeScale += 60;
         }
         if (_timeSeconds >= 60.0)
         {
             _timeHour += 1;
             _timeSeconds = 0f;
-            TempAndHumdityChange();
+            //TempAndHumdityChange();
         }
         else if (_timeHour >= 23.0)
         {
@@ -192,5 +227,31 @@ public class LocalWeatherManager : MonoBehaviour
             _EvaporationRate = ((_AmbientTemp * _Humidity) / 100);
             return;
         }
+    }
+
+    private void FogManager()
+    {
+
+        if (_timeHour >= _sunSet || _timeHour <= _sunRise)
+        {
+            //add static variable that changes density based on location & region
+            _fogDesinity = 100 + _AmbientTemp; // add humidity to this
+            _fogDispersal = 0.2f + (_AmbientTemp / 100);
+        }
+        else
+        {
+            //make a countdown till it gets below a value then stop
+            _fogSystem.Stop();
+        }
+        
+
+        //if between sunset & sunt rise, make sure this also no cloud(can have a min amount of clouds if climate is big enough but will be stretch goal)
+        //check the season, then temperature
+        //if cold enough, create fog
+        //fog density depends of how close to freezing, size of fog depends on location 
+        //fog diserpation depends on wind speed, temperate and time
+
+        //link density to rate over time
+        //link fog dispersal to shape module scale 
     }
 }
