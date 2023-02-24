@@ -1,3 +1,11 @@
+//AUTHOR: Tane Cotterell-East (Roonstar96)
+
+//SUMMARY: This script is responsible all functions of a single cloud. The cloud will store water over
+//time, with the amount being determined by an Evaporation (calulated using the current tempurature
+//and humidity). When the clouds water capacity reaches a certain amount (dependant on cloud size),
+//a countdown will initate, at the end of which it will begin to either rain or snow, depending
+//on the tempurature. How long it rains/snows for will also depend on the clouds size and the current tempurature
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,6 +44,7 @@ public class CloudManager : MonoBehaviour
 
     public LocalWeatherManager WeatherMan { get => _weather; set => _weather = value; }
     public WindManager WindMan { get => _wind; set => _wind = value; }
+    public bool Storing { get => _isStoring; set => _isStoring = value; }
 
     void Awake()
     {
@@ -126,12 +135,12 @@ public class CloudManager : MonoBehaviour
         }
         else
         {
+
             if (_cloudSize == 1 && _waterStored <= 0)
             {
                 Debug.Log("No more water, no more cloud!");
                 Destroy(gameObject);
             }
-
             if (_isStoring)
             {
                 CurrentWaterStored();
@@ -198,7 +207,6 @@ public class CloudManager : MonoBehaviour
             {
                 CloudSizeIncrease();
             }
-
         }
     }
 
@@ -213,7 +221,6 @@ public class CloudManager : MonoBehaviour
 
             return;
         }
-
         else if (_weather.Tempurature > -5 && _weather.Tempurature <= 2 )
         {
             float snowMultiplier = (Mathf.Abs(_weather.Tempurature) / 100) + 1;

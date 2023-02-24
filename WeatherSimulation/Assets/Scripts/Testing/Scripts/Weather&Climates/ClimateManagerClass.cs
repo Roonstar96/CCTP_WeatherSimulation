@@ -1,3 +1,10 @@
+//AUTHOR: Tane Cotterell-East (Roonstar96)
+
+//SUMMARY: This script is responsible for adjusting the Min/Max variables for Ambient Temperature,
+//Humidity, wind speed and for setting the value of a Fog Multiplier all for the LocalWeatherManager script.
+//These values are all based on the Climate, Region, and Season to try and replicate behaviour of
+//weather in the real world as accurately as possible
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -58,6 +65,7 @@ public class ClimateManagerClass : MonoBehaviour
     [SerializeField] private float _climateHumMax;
 
     [SerializeField] private WindManager _windMan;
+    [SerializeField] private LocalWeatherManager _localWeather;
 
     public float TempMin { get => _climateTempMin; set => _climateHumMin = value; }
     public float TempMax { get => _climateTempMax; set => _climateTempMax = value; }
@@ -95,6 +103,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 1.5f; 
                                             //Add fog multiplier adjustments here, but only for costal, island, Average & tropica.
                                             //They can only be in winter & autumn
                                             break;

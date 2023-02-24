@@ -1,12 +1,18 @@
+//AUTHOR: Tane Cotterell-East (Roonstar96)
+
+//SUMMARY: This script is responsible for assignining & setting variables in the cloud object
+//when it enters/leaves the Local climates volume, allow the cloud to absorb water or start
+//raining/snowing
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CloudCollisionManager : MonoBehaviour
 {
-    [SerializeField] private static bool _hasCloud;
+    [SerializeField] private bool _hasCloud;
 
-    public static bool HasCloud { get => _hasCloud; set => _hasCloud = value; }
+    public bool HasCloud { get => _hasCloud; set => _hasCloud = value; }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,8 +20,10 @@ public class CloudCollisionManager : MonoBehaviour
         {
             _hasCloud = true;
             Debug.Log("New Cloud");
-            other.GetComponent<CloudManager>().WeatherMan = gameObject.GetComponent<LocalWeatherManager>();
-            other.GetComponent<CloudManager>().WindMan = gameObject.GetComponent<WindManager>();
+            var cloud = other.GetComponent<CloudManager>();
+            cloud.WeatherMan = gameObject.GetComponent<LocalWeatherManager>();
+            cloud.WindMan = gameObject.GetComponent<WindManager>();
+            cloud.Storing = true;
         }
     }
     private void OnTriggerExit(Collider other)
@@ -24,8 +32,10 @@ public class CloudCollisionManager : MonoBehaviour
         {
             _hasCloud = false;
             Debug.Log("New Cloud");
-            other.GetComponent<CloudManager>().WeatherMan = null;
-            other.GetComponent<CloudManager>().WindMan = null;
+            var cloud = other.GetComponent<CloudManager>();
+            cloud.WeatherMan = null;
+            cloud.WindMan = null;
+            cloud.Storing = false;
         }
     }
 }
