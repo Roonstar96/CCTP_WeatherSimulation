@@ -89,32 +89,27 @@ public class CloudManager : MonoBehaviour
             {
                 Mathf.Round(_waterStored = (_cloudSize / smallMax) * 100);
                 _rainingThreshold = 92;
-                //Debug.Log("Cloud size Small: " + _cloudSize + "Water stored: " + _waterStored);
             }
             else if (_cloudSize >= mediumMin && _cloudSize <= mediumMax)
             {
                 Mathf.Round(_waterStored = (_cloudSize / mediumMax) * 100);
                 _rainingThreshold = 94;
-                //Debug.Log("Cloud size Medium: " + _cloudSize + "Water stored: " + _waterStored);
             }
             else if (_cloudSize >= largeMin && _cloudSize <= largeMax)
             {
                 Mathf.Round(_waterStored = (_cloudSize / largeMax) * 100);
                 _rainingThreshold = 96;
-                //Debug.Log("Cloud size Large: " + _cloudSize + "Water stored: " + _waterStored);
             }
             else if (_cloudSize >= hugeMin && _cloudSize <= hugeMax)
             {
                 Mathf.Round(_waterStored = (_cloudSize / hugeMax) * 100);
                 _rainingThreshold = 98;
-                //Debug.Log("Cloud size Huge: " + _cloudSize + "Water stored: " + _waterStored);
             }
         }
         else
         {
             Mathf.Round(_waterStored = (_cloudSize / tinyMax) * 100);
             _rainingThreshold = 90;
-            //Debug.Log("Cloud size Tiny: " + _cloudSize + "Water stored: " + _waterStored);
         }
     }
 
@@ -122,7 +117,6 @@ public class CloudManager : MonoBehaviour
     {
         if (_weather == null)
         {
-            Debug.Log("No climate");
             _duration = 0;
             _intensity = 0;
 
@@ -163,21 +157,11 @@ public class CloudManager : MonoBehaviour
         }
     }
 
-    /*private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Climate")
-        {
-            Debug.Log("New Climate");
-            _weather = collision.gameObject.GetComponent<LocalWeatherManager>();
-        }
-    }*/
-
-    private void CurrentWaterStored()
+    public void CurrentWaterStored()
     {
         if (_isRaining)
         {
             Mathf.Round(_waterStored -= _intensity * Time.deltaTime);
-            //Debug.Log("WaterStored: " + _waterStored);
             if (_waterStored <= 0)
             {
                 CloudSizeDecrease();
@@ -194,7 +178,6 @@ public class CloudManager : MonoBehaviour
         if (_isStoring)
         {
             Mathf.Round(_waterStored += (_weather.Evaporation / 10) * Time.deltaTime);
-            //Debug.Log("WaterStored: " + _waterStored);
             if (_weather.Tempurature <= 2)
             {
                 CalculateRainVariables();
@@ -281,9 +264,20 @@ public class CloudManager : MonoBehaviour
         }
     }
 
+    public void DurationCountdown()
+    {
+        if (_isRaining || _isSnowing)
+        {
+            _duration -= 1;
+        }
+        else
+        {
+            return;
+        }
+    }
+
     private void CloudIsRaining()
     {
-        _duration -= 1 * Time.deltaTime;
         _eMod.rateOverTime = (_rateMulti * _intensity) / 10;
 
         //TODO: SET MATERIAL
@@ -291,15 +285,13 @@ public class CloudManager : MonoBehaviour
         _noise.frequency = 0;
         _noise.scrollSpeed = 0;
         _noise.octaveCount = 0;
-        _main.startSpeed = 20;
+        _main.startSpeed = 25;
         _main.startLifetime = 5;
 
-        //Debug.Log("Rate over item: " + eMod);
         _cloud.Play();
 
         if (_duration <= 0)
         {
-            //Debug.Log("Rain has stopped");
             _cloud.Stop();
             _duration = 0;
             _intensity = 0;
@@ -312,7 +304,6 @@ public class CloudManager : MonoBehaviour
 
     private void CloudIsSnowing()
     {
-        _duration -= 1 * Time.deltaTime;
         _eMod.rateOverTime = (_rateMulti * _intensity) / 10;
         //TODO: SET MATERIAL
         _noise.strength = 5;
@@ -323,7 +314,7 @@ public class CloudManager : MonoBehaviour
         if(_weather.Tempurature <= 2 && _weather.Tempurature >= 0)
         {
             _main.startSpeed = 1;
-            _main.startLifetime = 20;
+            _main.startLifetime = 25;
         }
         else
         {
@@ -331,12 +322,10 @@ public class CloudManager : MonoBehaviour
             _main.startLifetime = 20 - Mathf.Abs(_weather.Tempurature);
         }
 
-        //Debug.Log("Rate over item: " + eMod);
         _cloud.Play();
 
         if (_duration <= 0)
         {
-            //Debug.Log("Rain has stopped");
             _cloud.Stop();
             _duration = 0;
             _intensity = 0;
@@ -365,32 +354,27 @@ public class CloudManager : MonoBehaviour
         {
             if (_cloudSize >= smallMin && _cloudSize <= smallMax)
             {
-                //Debug.Log("Cloud size Small: " + _cloudSize);
                 Mathf.Round(_waterStored = 0);
                 _rainingThreshold = 92;
             }
             else if (_cloudSize >= mediumMin && _cloudSize <= mediumMax)
             {
-                //Debug.Log("Cloud size Medium: " + _cloudSize);
                 Mathf.Round(_waterStored = 0);
                 _rainingThreshold = 94;
             }
             else if (_cloudSize >= largeMin && _cloudSize <= largeMax)
             {
-                //Debug.Log("Cloud size Large: " + _cloudSize);
                 Mathf.Round(_waterStored = 0);
                 _rainingThreshold = 96;
             }
             else if (_cloudSize >= hugeMin && _cloudSize <= hugeMax)
             {
-                //Debug.Log("Cloud size Huge: " + _cloudSize);
                 Mathf.Round(_waterStored = 0);
                 _rainingThreshold = 98;
             }
         }
         else
         {
-            //Debug.Log("Cloud size Tiny: " + _cloudSize);
             Mathf.Round(_waterStored = 0);
             _rainingThreshold = 90;
         }
@@ -414,32 +398,27 @@ public class CloudManager : MonoBehaviour
         {
             if (_cloudSize >= smallMin && _cloudSize <= smallMax)
             {
-                //Debug.Log("Cloud size Small: " + _cloudSize);
                 Mathf.Round(_waterStored = 100);
                 _rainingThreshold = 92;
             }
             else if (_cloudSize >= mediumMin && _cloudSize <= mediumMax)
             {
-                //Debug.Log("Cloud size Medium: " + _cloudSize);
                 Mathf.Round(_waterStored = 100);
                 _rainingThreshold = 94;
             }
             else if (_cloudSize >= largeMin && _cloudSize <= largeMax)
             {
-                //Debug.Log("Cloud size Large: " + _cloudSize);
                 Mathf.Round(_waterStored = 100);
                 _rainingThreshold = 96;
             }
             else if (_cloudSize >= hugeMin && _cloudSize <= hugeMax)
             {
-                //Debug.Log("Cloud size Huge: " + _cloudSize);
                 Mathf.Round(_waterStored = 100);
                 _rainingThreshold = 98;
             }
         }
         else
         {
-            //Debug.Log("Cloud size Tiny: " + _cloudSize);
             Mathf.Round(_waterStored = 100);
             _rainingThreshold = 90;
         }
