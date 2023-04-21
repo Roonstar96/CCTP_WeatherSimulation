@@ -1,4 +1,4 @@
-using UnityEditor;
+/*using UnityEditor;
 
 //SUMMARY: This script allows the variables related to the clouds's size to be custom inspector elements for easy 
 // reading. The min & Max values of each catagory are put into tabs that can be hidden
@@ -30,6 +30,8 @@ public class Editor_CloudProperties : Editor
     SerializedProperty _weather;
     SerializedProperty _wind;
     SerializedProperty _cloud;
+    SerializedProperty _rainMat;
+    SerializedProperty _snowMat;
 
     bool cloudSizeGroup, cloudAddpropsGroup, cloudStateGroup = false;
     #endregion
@@ -64,7 +66,8 @@ public class Editor_CloudProperties : Editor
         _weather = serializedObject.FindProperty("_weather");
         _wind    = serializedObject.FindProperty("_wind");
         _cloud   = serializedObject.FindProperty("_cloud");
-
+        _rainMat = serializedObject.FindProperty("_rainMat");
+        _snowMat = serializedObject.FindProperty("_snowNat");
     }
 
     //NOTE: This function puts the variabels on the UI in the new custom way 
@@ -115,7 +118,9 @@ public class Editor_CloudProperties : Editor
             EditorGUILayout.PropertyField(_weather);
             EditorGUILayout.PropertyField(_wind);
             EditorGUILayout.PropertyField(_cloud);
+            EditorGUILayout.PropertyField(_rainMat);
+            EditorGUILayout.PropertyField(_snowMat);
         }
         EditorGUILayout.EndFoldoutHeaderGroup();
     }
-}
+}*/

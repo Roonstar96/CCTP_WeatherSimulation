@@ -12,13 +12,14 @@ using UnityEngine;
 
 public class CloudManager : MonoBehaviour
 {
-    //[Header("Cloud Size Catagories")]
+    [Header("Cloud Size Catagories")]
     [SerializeField] private int tinyMin, tinyMax;
     [SerializeField] private int smallMin, smallMax;
     [SerializeField] private int mediumMin, mediumMax;
     [SerializeField] private int largeMin, largeMax;
     [SerializeField] private int hugeMin, hugeMax;
 
+    [Header("Current Cloud status")]
     [SerializeField] private float _cloudSize;
     [SerializeField] private float _waterStored;
     [SerializeField] private float _rainingThreshold;
@@ -27,19 +28,25 @@ public class CloudManager : MonoBehaviour
     [SerializeField] private float _intensity;
     [SerializeField] private float _rateMulti;
 
+    [Header("Cloud status booleans")]
     [SerializeField] private bool _isRaining;
     [SerializeField] private bool _isSnowing;
     [SerializeField] private bool _isStoring;
     [SerializeField] private bool _isCounting;
 
+    [Header("Manager and System references")]
     [SerializeField] private LocalWeatherManager _weather;
     [SerializeField] private WindManager _wind;
     [SerializeField] private ParticleSystem _cloud;
+    [SerializeField] private ParticleSystem _lightning;
+    [SerializeField] private ParticleSystemRenderer _render;
+    [SerializeField] private Material _rainMat;
+    [SerializeField] private Material _snowMat;
 
+    private ParticleSystem.MainModule _main;
     private ParticleSystem.EmissionModule _eMod;
     private ParticleSystem.ShapeModule _pShape;
     private ParticleSystem.NoiseModule _noise;
-    private ParticleSystem.MainModule _main;
     private float _pScaler;
 
     public LocalWeatherManager WeatherMan { get => _weather; set => _weather = value; }
@@ -67,10 +74,10 @@ public class CloudManager : MonoBehaviour
         _rateMulti = 100 + _cloudSize;
 
         _cloud = gameObject.GetComponent<ParticleSystem>();
+        _main = _cloud.main;
         _eMod = _cloud.emission;
         _pShape = _cloud.shape;
         _noise = _cloud.noise;
-        _main = _cloud.main;
 
         _pScaler = 10 * (1 + (_cloudSize / 100));
         _pShape.scale = new Vector3(_pScaler, _pScaler, 1);
@@ -161,7 +168,7 @@ public class CloudManager : MonoBehaviour
     {
         if (_isRaining)
         {
-            Mathf.Round(_waterStored -= _intensity * Time.deltaTime);
+            Mathf.Round(_waterStored -= _intensity);
             if (_waterStored <= 0)
             {
                 CloudSizeDecrease();
@@ -169,7 +176,7 @@ public class CloudManager : MonoBehaviour
         }
         if (_isSnowing)
         {
-            Mathf.Round(_waterStored -= _intensity * Time.deltaTime);
+            Mathf.Round(_waterStored -= _intensity);
             if (_waterStored <= 0)
             {
                 CloudSizeDecrease();
@@ -177,7 +184,7 @@ public class CloudManager : MonoBehaviour
         }
         if (_isStoring)
         {
-            Mathf.Round(_waterStored += (_weather.Evaporation / 10) * Time.deltaTime);
+            Mathf.Round(_waterStored += (_weather.Evaporation / 10));
             if (_weather.Tempurature <= 2)
             {
                 CalculateRainVariables();
@@ -204,7 +211,7 @@ public class CloudManager : MonoBehaviour
 
             return;
         }
-        else if (_weather.Tempurature > -5 && _weather.Tempurature <= 2 )
+        else if (_weather.Tempurature <= 2 || _weather.Tempurature >= -5)
         {
             float snowMultiplier = (Mathf.Abs(_weather.Tempurature) / 100) + 1;
 
@@ -234,11 +241,11 @@ public class CloudManager : MonoBehaviour
         }
     }
 
-    private void CountDown()
+    public void CountDown()
     { 
         if (_weather.Tempurature < 2 && _weather.Tempurature > -5)
         {
-            _timeTillRain -= 0.5f * Time.deltaTime;
+            _timeTillRain -= 0.5F;
 
             if (_timeTillRain <= 0)
             {
@@ -251,7 +258,7 @@ public class CloudManager : MonoBehaviour
         }
         else if (_weather.Tempurature > 2)
         {
-            _timeTillRain -= 1 * Time.deltaTime;
+            _timeTillRain -= 1;
 
             if (_timeTillRain <= 0)
             {
@@ -280,7 +287,7 @@ public class CloudManager : MonoBehaviour
     {
         _eMod.rateOverTime = (_rateMulti * _intensity) / 10;
 
-        //TODO: SET MATERIAL
+        _render.material = _rainMat;
         _noise.strength = 0;
         _noise.frequency = 0;
         _noise.scrollSpeed = 0;
@@ -305,7 +312,8 @@ public class CloudManager : MonoBehaviour
     private void CloudIsSnowing()
     {
         _eMod.rateOverTime = (_rateMulti * _intensity) / 10;
-        //TODO: SET MATERIAL
+
+        _render.material = _snowMat;
         _noise.strength = 5;
         _noise.frequency = 0.5f;
         _noise.scrollSpeed = 1;
@@ -318,7 +326,6 @@ public class CloudManager : MonoBehaviour
         }
         else
         {
-            _main.startSpeed = Mathf.Abs(_weather.Tempurature);
             _main.startLifetime = 20 - Mathf.Abs(_weather.Tempurature);
         }
 

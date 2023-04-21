@@ -77,7 +77,6 @@ public class LocalWeatherManager : MonoBehaviour
         {
             _Humidity = humMax;
         }
-
         if (HourChangedEvent != null)
         {
             HourChangedEvent();
@@ -87,10 +86,21 @@ public class LocalWeatherManager : MonoBehaviour
             MinuteChangedEvent();
         }
 
-        //Causeing issues if there isn't a cloud within the local weather object to start
-        //MinuteChangedEvent += _cloudMan.DurationCountdown;
-        //MinuteChangedEvent += _cloudMan.CurrentWaterStored;
-        //HourChangedEvent += TempAndHumdityChange;
+        _main = _fogSystem.main;
+        _eMod = _fogSystem.emission;
+        _pShape = _fogSystem.shape;
+        _pNoise = _fogSystem.noise;
+
+        if (_cloudColl.HasCloud)
+        {
+            MinuteChangedEvent += _cloudMan.CurrentWaterStored;
+            MinuteChangedEvent += _cloudMan.CountDown;
+            MinuteChangedEvent += _cloudMan.DurationCountdown;
+        }
+
+        MinuteChangedEvent += FogManager;
+        HourChangedEvent += TempAndHumdityChange;
+        HourChangedEvent += _windMan.CheckTemperature;
 
         _isFoggy = false;
     }
@@ -111,6 +121,22 @@ public class LocalWeatherManager : MonoBehaviour
             {
                 return;
             }
+        }
+    }
+
+    public void SubscribeToEvents()
+    {
+        if (_cloudColl.HasCloud)
+        {
+            MinuteChangedEvent += _cloudMan.CurrentWaterStored;
+            MinuteChangedEvent += _cloudMan.CountDown;
+            MinuteChangedEvent += _cloudMan.DurationCountdown;
+        }
+        else
+        {
+            MinuteChangedEvent -= _cloudMan.CurrentWaterStored;
+            MinuteChangedEvent -= _cloudMan.CountDown;
+            MinuteChangedEvent -= _cloudMan.DurationCountdown;
         }
     }
 
@@ -150,7 +176,7 @@ public class LocalWeatherManager : MonoBehaviour
     }
 
     //NOTE: This funciton is responsible for changing the Ambient tempurature and Humidity values as the day goes on
-    private void TempAndHumdityChange()
+    public void TempAndHumdityChange()
     {
         //NOTE: checks if _timeHour is equal or greater than 'Midnight'
         if (_timeHour >= 0)
@@ -228,7 +254,7 @@ public class LocalWeatherManager : MonoBehaviour
         }
     }
 
-    private void EvapChange()
+    public void EvapChange()
     {
         float tempAvg = (tempMin + tempMax) / 2;
         float humAvg = (humMin + humMax) / 2;
@@ -262,7 +288,7 @@ public class LocalWeatherManager : MonoBehaviour
 
     private void FogManager()
     {
-        if (_cloudColl.HasCloud || _AmbientTemp > 5)
+        if (_cloudColl.HasCloud && _AmbientTemp > 5)
         {
             while (_isFoggy)
             {
@@ -281,7 +307,7 @@ public class LocalWeatherManager : MonoBehaviour
             }
             return;
         }
-        else
+        if(_AmbientTemp <= 5)
         {
             if (_AmbientTemp <= 5 && _AmbientTemp >= -5)
             {

@@ -11,7 +11,7 @@ using UnityEngine;
 public class CloudCollisionManager : MonoBehaviour
 {
     [SerializeField] private bool _hasCloud;
-    [SerializeField] private LocalWeatherManager _localWe;
+    [SerializeField] private LocalWeatherManager _localWeatherMan;
     public bool HasCloud { get => _hasCloud; set => _hasCloud = value; }
 
     private void OnTriggerEnter(Collider other)
@@ -24,7 +24,8 @@ public class CloudCollisionManager : MonoBehaviour
             cloud.WeatherMan = gameObject.GetComponent<LocalWeatherManager>();
             cloud.WindMan = gameObject.GetComponent<WindManager>();
             cloud.Storing = true;
-            _localWe.CloudMan = other.gameObject.GetComponent<CloudManager>();
+            _localWeatherMan.CloudMan = other.gameObject.GetComponent<CloudManager>();
+            _localWeatherMan.SubscribeToEvents();
         }
     }
     private void OnTriggerExit(Collider other)
@@ -37,7 +38,8 @@ public class CloudCollisionManager : MonoBehaviour
             cloud.WeatherMan = null;
             cloud.WindMan = null;
             cloud.Storing = false;
-            _localWe.CloudMan = null;
+            _localWeatherMan.CloudMan = null;
+            _localWeatherMan.SubscribeToEvents();
         }
     }
 }
