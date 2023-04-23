@@ -18,14 +18,14 @@ public class WindManager : MonoBehaviour
     [SerializeField] private float _windSpeed;
     [SerializeField] private float _speedMin;
     [SerializeField] private float _speedMax;
+    [SerializeField] private float _windMultiplier;
 
     [Header("Local Weather References and variables")]
     [SerializeField] private float _currentTemp;
     [SerializeField] private float _newTemp;
     [SerializeField] private LocalWeatherManager _weather;
 
-    [Header("Local Weather references and variables")]
-    [SerializeField] private string _season; 
+    [Header("Climate Manager Reference")]
     [SerializeField] private ClimateManagerClass _climate;
 
     public float Speed { get => _windSpeed; set => _windSpeed = value; }
@@ -34,8 +34,29 @@ public class WindManager : MonoBehaviour
 
     private void Awake()
     {
-        //initialise wind speed, based on tempurature
-        //_windSpeed = _weather.Tempurature / blah blah blah * somthing else; 
+        if (_climate.Winter)
+        {
+            //initialise wind speed, based on tempurature
+            //_windSpeed = _weather.Tempurature / blah blah blah * speed multiplier; 
+            // high speed cos cold
+            _windSpeed = Mathf.Round(Random.Range(_speedMin / 2, _speedMax) * _windMultiplier);
+            _windSpeed = _windSpeed / _weather.Tempurature;
+        }
+        if (_climate.Summer)
+        {
+            //initialise wind speed, based on tempurature
+            //_windSpeed = _weather.Tempurature / blah blah blah * speed multiplier; 
+            // lower speed cos cold
+            _windSpeed = Mathf.Round(Random.Range(_speedMin, _speedMax / 2) * _windMultiplier);
+            _windSpeed = _windSpeed / _weather.Tempurature;
+        }
+        else
+        {
+            //initialise wind speed, based on tempurature
+            //_windSpeed = _weather.Tempurature / blah blah blah * speed multiplier; 
+            _windSpeed = Mathf.Round(Random.Range(_speedMin, _speedMax) * _windMultiplier);
+            _windSpeed = _windSpeed / _weather.Tempurature;
+        }
         _currentTemp = _weather.Tempurature;
     }
     private void Update()
@@ -59,13 +80,35 @@ public class WindManager : MonoBehaviour
 
     private void IncreaseWindSpeed()
     {
-        //_windSpeed = do maths using temp and seaonal multiplier
+        if (_climate.Winter)
+        {
+            //_windSpeed = do maths using temp and seaonal multiplier
+        }
+        if (_climate.Summer)
+        {
+            //_windSpeed = do maths using temp and seaonal multiplier
+        }
+        else
+        {
+            //_windSpeed = do maths using temp and seaonal multiplier
+        }
         _currentTemp = _weather.Tempurature;
     }
 
     private void DecreaseWindSpeed()
     {
-        //_windSpeed =  do maths using temp and seaonal multiplier
+        if (_climate.Winter)
+        {
+            //_windSpeed = do maths using temp and seaonal multiplier
+        }
+        if (_climate.Summer)
+        {
+            //_windSpeed = do maths using temp and seaonal multiplier
+        }
+        else
+        {
+            //_windSpeed = do maths using temp and seaonal multiplier
+        }
         _currentTemp = _weather.Tempurature;
     }
 

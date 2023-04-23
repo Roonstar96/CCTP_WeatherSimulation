@@ -311,7 +311,7 @@ public class LocalWeatherManager : MonoBehaviour
         {
             if (_AmbientTemp <= 5 && _AmbientTemp >= -5)
             {
-                _fogDensity = 100 + ((_Humidity * 10) / (_AmbientTemp + 1));
+                _fogDensity = 100 + ((_Humidity * 10) / (Mathf.Abs(_AmbientTemp + 1)));
                 _fogDensity *= _fogMultiplier;
 
                 float StartLife = 10 * (Mathf.Abs(_AmbientTemp));

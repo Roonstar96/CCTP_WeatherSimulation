@@ -64,8 +64,9 @@ public class ClimateManagerClass : MonoBehaviour
     [SerializeField] private float _climateHumMin;
     [SerializeField] private float _climateHumMax;
 
-    [SerializeField] private WindManager _windMan;
+    [Header("Manager References")]
     [SerializeField] private LocalWeatherManager _localWeather;
+    [SerializeField] private WindManager _windMan;
 
     public float TempMin { get => _climateTempMin; set => _climateHumMin = value; }
     public float TempMax { get => _climateTempMax; set => _climateTempMax = value; }
@@ -91,6 +92,11 @@ public class ClimateManagerClass : MonoBehaviour
                                 {
                                     case (Seasons.Winter):
                                         {
+                                            _isWinter = true;
+                                            _isSpring = false;
+                                            _isSummer = false;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _freezing;
                                             _climateTempMax = _cold;
                                             _climateHumMin = _low;
@@ -99,18 +105,18 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 10;
                                             _windMan.WindMax = 45;
 
-                                            _isWinter = true;
-                                            _isSpring = false;
-                                            _isSummer = false;
-                                            _isAutumn = false;
-
-                                            _localWeather.FogMultiplier = 1.5f; 
+                                            _localWeather.FogMultiplier = 1.5f;
                                             //Add fog multiplier adjustments here, but only for costal, island, Average & tropical.
                                             //They can only be in winter & autumn
                                             break;
                                         }
                                     case (Seasons.Spring):
                                         {
+                                            _isWinter = false;
+                                            _isSpring = true;
+                                            _isSummer = false;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _mild;
                                             _climateTempMax = _warm;
                                             _climateHumMin = _low;
@@ -119,14 +125,16 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 30;
 
-                                            _isWinter = false;
-                                            _isSpring = true;
-                                            _isSummer = false;
-                                            _isAutumn = false;
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
                                         {
+                                            _isWinter = false;
+                                            _isSpring = false;
+                                            _isSummer = true;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _warm;
                                             _climateTempMax = _hot;
                                             _climateHumMin = _average;
@@ -135,14 +143,16 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 15;
 
-                                            _isWinter = false;
-                                            _isSpring = false;
-                                            _isSummer = true;
-                                            _isAutumn = false;
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
                                         {
+                                            _isWinter = false;
+                                            _isSpring = false;
+                                            _isSummer = false;
+                                            _isAutumn = true;
+
                                             _climateTempMin = _mild;
                                             _climateTempMax = _warm;
                                             _climateHumMin = _low;
@@ -151,10 +161,6 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 30;
 
-                                            _isWinter = false;
-                                            _isSpring = false;
-                                            _isSummer = false;
-                                            _isAutumn = true;
                                             _localWeather.FogMultiplier = 1.5f;
                                             break;
                                         }
@@ -167,6 +173,11 @@ public class ClimateManagerClass : MonoBehaviour
                                 {
                                     case (Seasons.Winter):
                                         {
+                                            _isWinter = true;
+                                            _isSpring = false;
+                                            _isSummer = false;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _cold;
                                             _climateTempMax = _mild;
                                             _climateHumMin = _average;
@@ -175,15 +186,16 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 10;
                                             _windMan.WindMax = 50;
 
-                                            _isWinter = true;
-                                            _isSpring = false;
-                                            _isSummer = false;
-                                            _isAutumn = false;
                                             _localWeather.FogMultiplier = 1.5f;
                                             break;
                                         }
                                     case (Seasons.Spring):
                                         {
+                                            _isWinter = false;
+                                            _isSpring = true;
+                                            _isSummer = false;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _mild;
                                             _climateTempMax = _warm;
                                             _climateHumMin = _average;
@@ -191,15 +203,17 @@ public class ClimateManagerClass : MonoBehaviour
 
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 30;
-
-                                            _isWinter = false;
-                                            _isSpring = true;
-                                            _isSummer = false;
-                                            _isAutumn = false;
+                                         
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
                                         {
+                                            _isWinter = false;
+                                            _isSpring = false;
+                                            _isSummer = true;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _warm;
                                             _climateTempMax = _hot;
                                             _climateHumMin = _average;
@@ -208,14 +222,16 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 20;
 
-                                            _isWinter = false;
-                                            _isSpring = false;
-                                            _isSummer = true;
-                                            _isAutumn = false;
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
                                         {
+                                            _isWinter = false;
+                                            _isSpring = false;
+                                            _isSummer = false;
+                                            _isAutumn = true;
+
                                             _climateTempMin = _mild;
                                             _climateTempMax = _warm;
                                             _climateHumMin = _average;
@@ -224,10 +240,6 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 30;
 
-                                            _isWinter = false;
-                                            _isSpring = false;
-                                            _isSummer = false;
-                                            _isAutumn = true;
                                             _localWeather.FogMultiplier = 1.5f;
                                             break;
                                         }
@@ -240,6 +252,11 @@ public class ClimateManagerClass : MonoBehaviour
                                 {
                                     case (Seasons.Winter):
                                         {
+                                            _isWinter = true;
+                                            _isSpring = false;
+                                            _isSummer = false;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _freezing;
                                             _climateTempMax = _mild;
                                             _climateHumMin = _veryLow;
@@ -248,15 +265,16 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 10;
                                             _windMan.WindMax = 50;
 
-                                            _isWinter = true;
-                                            _isSpring = false;
-                                            _isSummer = false;
-                                            _isAutumn = false;
-                                            _localWeather.FogMultiplier = 1.5f;
+                                            _localWeather.FogMultiplier = 1;
                                             break;
                                         }
                                     case (Seasons.Spring):
-                                        {
+                                        {   
+                                            _isWinter = false;
+                                            _isSpring = true;
+                                            _isSummer = false;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _warm;
                                             _climateTempMax = _mild;
                                             _climateHumMin = _low;
@@ -265,14 +283,18 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 10;
                                             _windMan.WindMax = 45;
 
-                                            _isWinter = false;
-                                            _isSpring = true;
-                                            _isSummer = false;
-                                            _isAutumn = false;
+
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
                                         {
+                                            _isWinter = false;
+                                            _isSpring = false;
+                                            _isSummer = true;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _mild;
                                             _climateTempMax = _warm;
                                             _climateHumMin = _low;
@@ -281,14 +303,16 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 10;
                                             _windMan.WindMax = 40;
 
-                                            _isWinter = false;
-                                            _isSpring = false;
-                                            _isSummer = true;
-                                            _isAutumn = false;
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
                                         {
+                                            _isWinter = false;
+                                            _isSpring = false;
+                                            _isSummer = false;
+                                            _isAutumn = true;
+
                                             _climateTempMin = _cold;
                                             _climateTempMax = _mild;
                                             _climateHumMin = _veryLow;
@@ -297,11 +321,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 10;
                                             _windMan.WindMax = 45;
 
-                                            _isWinter = false;
-                                            _isSpring = false;
-                                            _isSummer = false;
-                                            _isAutumn = true;
-                                            _localWeather.FogMultiplier = 1.5f;
+                                            _localWeather.FogMultiplier = 1;
                                             break;
                                         }
                                 }
@@ -313,6 +333,11 @@ public class ClimateManagerClass : MonoBehaviour
                                 {
                                     case (Seasons.Winter):
                                         {
+                                            _isWinter = true;
+                                            _isSpring = false;
+                                            _isSummer = false;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _freezing;
                                             _climateTempMax = _mild;
                                             _climateHumMin = _low;
@@ -321,15 +346,16 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 40;
 
-                                            _isWinter = true;
-                                            _isSpring = false;
-                                            _isSummer = false;
-                                            _isAutumn = false;
-                                            _localWeather.FogMultiplier = 1.5f;
+                                            _localWeather.FogMultiplier = 1.1f;
                                             break;
                                         }
                                     case (Seasons.Spring):
                                         {
+                                            _isWinter = false;
+                                            _isSpring = true;
+                                            _isSummer = false;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _mild;
                                             _climateTempMax = _warm;
                                             _climateHumMin = _low;
@@ -338,14 +364,16 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 0;
                                             _windMan.WindMax = 20;
 
-                                            _isWinter = false;
-                                            _isSpring = true;
-                                            _isSummer = false;
-                                            _isAutumn = false;
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
                                         {
+                                            _isWinter = false;
+                                            _isSpring = false;
+                                            _isSummer = true;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _warm;
                                             _climateTempMax = _hot;
                                             _climateHumMin = _average;
@@ -354,14 +382,16 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 0;
                                             _windMan.WindMax = 10;
 
-                                            _isWinter = false;
-                                            _isSpring = false;
-                                            _isSummer = true;
-                                            _isAutumn = false;
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
                                         {
+                                            _isWinter = false;
+                                            _isSpring = false;
+                                            _isSummer = false;
+                                            _isAutumn = true;
+
                                             _climateTempMin = _cold;
                                             _climateTempMax = _mild;
                                             _climateHumMin = _low;
@@ -370,11 +400,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 20;
 
-                                            _isWinter = false;
-                                            _isSpring = false;
-                                            _isSummer = false;
-                                            _isAutumn = true;
-                                            _localWeather.FogMultiplier = 1.5f;
+                                            _localWeather.FogMultiplier = 1.1f;
                                             break;
                                         }
                                 }
@@ -393,6 +419,11 @@ public class ClimateManagerClass : MonoBehaviour
                                 {
                                     case (Seasons.Winter):
                                         {
+                                            _isWinter = true;
+                                            _isSpring = false;
+                                            _isSummer = false;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _cold;
                                             _climateTempMax = _mild;
                                             _climateHumMin = _low;
@@ -401,15 +432,16 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 10;
                                             _windMan.WindMax = 45;
 
-                                            _isWinter = true;
-                                            _isSpring = false;
-                                            _isSummer = false;
-                                            _isAutumn = false;
                                             _localWeather.FogMultiplier = 1.5f;
                                             break;
                                         }
                                     case (Seasons.Spring):
                                         {
+                                            _isWinter = false;
+                                            _isSpring = true;
+                                            _isSummer = false;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _mild;
                                             _climateTempMax = _warm;
                                             _climateHumMin = _average;
@@ -418,14 +450,16 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 30;
 
-                                            _isWinter = false;
-                                            _isSpring = true;
-                                            _isSummer = false;
-                                            _isAutumn = false;
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
                                         {
+                                            _isWinter = false;
+                                            _isSpring = false;
+                                            _isSummer = true;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _warm;
                                             _climateTempMax = _hot;
                                             _climateHumMin = _average;
@@ -434,14 +468,16 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 15;
 
-                                            _isWinter = false;
-                                            _isSpring = false;
-                                            _isSummer = true;
-                                            _isAutumn = false;
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
                                         {
+                                            _isWinter = false;
+                                            _isSpring = false;
+                                            _isSummer = false;
+                                            _isAutumn = true;
+
                                             _climateTempMin = _mild;
                                             _climateTempMax = _warm;
                                             _climateHumMin = _low;
@@ -450,10 +486,6 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 30;
 
-                                            _isWinter = false;
-                                            _isSpring = false;
-                                            _isSummer = false;
-                                            _isAutumn = true;
                                             _localWeather.FogMultiplier = 1.5f;
                                             break;
                                         }
@@ -466,6 +498,11 @@ public class ClimateManagerClass : MonoBehaviour
                                 {
                                     case (Seasons.Winter):
                                         {
+                                            _isWinter = true;
+                                            _isSpring = false;
+                                            _isSummer = false;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _cold;
                                             _climateTempMax = _mild;
                                             _climateHumMin = _average;
@@ -474,15 +511,16 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 10;
                                             _windMan.WindMax = 45;
 
-                                            _isWinter = true;
-                                            _isSpring = false;
-                                            _isSummer = false;
-                                            _isAutumn = false;
                                             _localWeather.FogMultiplier = 1.5f;
                                             break;
                                         }
                                     case (Seasons.Spring):
                                         {
+                                            _isWinter = false;
+                                            _isSpring = true;
+                                            _isSummer = false;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _mild;
                                             _climateTempMax = _warm;
                                             _climateHumMin = _average;
@@ -491,14 +529,16 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 20;
 
-                                            _isWinter = false;
-                                            _isSpring = true;
-                                            _isSummer = false;
-                                            _isAutumn = false;
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
                                         {
+                                            _isWinter = false;
+                                            _isSpring = false;
+                                            _isSummer = true;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _warm;
                                             _climateTempMax = _hot;
                                             _climateHumMin = _average;
@@ -507,14 +547,16 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 10;
 
-                                            _isWinter = false;
-                                            _isSpring = false;
-                                            _isSummer = true;
-                                            _isAutumn = false;
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
                                         {
+                                            _isWinter = false;
+                                            _isSpring = false;
+                                            _isSummer = false;
+                                            _isAutumn = true;
+
                                             _climateTempMin = _mild;
                                             _climateTempMax = _warm;
                                             _climateHumMin = _average;
@@ -523,10 +565,6 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 20;
 
-                                            _isWinter = false;
-                                            _isSpring = false;
-                                            _isSummer = false;
-                                            _isAutumn = true;
                                             _localWeather.FogMultiplier = 1.5f;
                                             break;
                                         }
@@ -539,6 +577,11 @@ public class ClimateManagerClass : MonoBehaviour
                                 {
                                     case (Seasons.Winter):
                                         {
+                                            _isWinter = true;
+                                            _isSpring = false;
+                                            _isSummer = false;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _freezing;
                                             _climateTempMax = _cold;
                                             _climateHumMin = _veryLow;
@@ -547,15 +590,16 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 15;
                                             _windMan.WindMax = 50;
 
-                                            _isWinter = true;
-                                            _isSpring = false;
-                                            _isSummer = false;
-                                            _isAutumn = false;
-                                            _localWeather.FogMultiplier = 1.5f;
+                                            _localWeather.FogMultiplier = 1;
                                             break;
                                         }
                                     case (Seasons.Spring):
                                         {
+                                            _isWinter = false;
+                                            _isSpring = true;
+                                            _isSummer = false;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _cold;
                                             _climateTempMax = _warm;
                                             _climateHumMin = _low;
@@ -564,14 +608,16 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 15;
                                             _windMan.WindMax = 45;
 
-                                            _isWinter = false;
-                                            _isSpring = true;
-                                            _isSummer = false;
-                                            _isAutumn = false;
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
                                         {
+                                            _isWinter = false;
+                                            _isSpring = false;
+                                            _isSummer = true;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _warm;
                                             _climateTempMax = _hot;
                                             _climateHumMin = _low;
@@ -580,14 +626,16 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 15;
                                             _windMan.WindMax = 40;
 
-                                            _isWinter = false;
-                                            _isSpring = false;
-                                            _isSummer = true;
-                                            _isAutumn = false;
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
                                         {
+                                            _isWinter = false;
+                                            _isSpring = false;
+                                            _isSummer = false;
+                                            _isAutumn = true;
+
                                             _climateTempMin = _cold;
                                             _climateTempMax = _mild;
                                             _climateHumMin = _veryLow;
@@ -596,11 +644,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 15;
                                             _windMan.WindMax = 45;
 
-                                            _isWinter = false;
-                                            _isSpring = false;
-                                            _isSummer = false;
-                                            _isAutumn = true;
-                                            _localWeather.FogMultiplier = 1.5f;
+                                            _localWeather.FogMultiplier = 1;
                                             break;
                                         }
                                 }
@@ -612,6 +656,11 @@ public class ClimateManagerClass : MonoBehaviour
                                 {
                                     case (Seasons.Winter):
                                         {
+                                            _isWinter = true;
+                                            _isSpring = false;
+                                            _isSummer = false;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _freezing;
                                             _climateTempMax = _mild;
                                             _climateHumMin = _low;
@@ -620,15 +669,16 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 0;
                                             _windMan.WindMax = 25;
 
-                                            _isWinter = true;
-                                            _isSpring = false;
-                                            _isSummer = false;
-                                            _isAutumn = false;
                                             _localWeather.FogMultiplier = 1.5f;
                                             break;
                                         }
                                     case (Seasons.Spring):
                                         {
+                                            _isWinter = false;
+                                            _isSpring = true;
+                                            _isSummer = false;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _mild;
                                             _climateTempMax = _warm;
                                             _climateHumMin = _low;
@@ -637,14 +687,16 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 0;
                                             _windMan.WindMax = 15;
 
-                                            _isWinter = false;
-                                            _isSpring = true;
-                                            _isSummer = false;
-                                            _isAutumn = false;
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
                                         {
+                                            _isWinter = false;
+                                            _isSpring = false;
+                                            _isSummer = true;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _warm;
                                             _climateTempMax = _hot;
                                             _climateHumMin = _average;
@@ -653,14 +705,16 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 0;
                                             _windMan.WindMax = 10;
 
-                                            _isWinter = false;
-                                            _isSpring = false;
-                                            _isSummer = true;
-                                            _isAutumn = false;
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
                                         {
+                                            _isWinter = false;
+                                            _isSpring = false;
+                                            _isSummer = false;
+                                            _isAutumn = true;
+
                                             _climateTempMin = _mild;
                                             _climateTempMax = _warm;
                                             _climateHumMin = _low;
@@ -669,10 +723,6 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 0;
                                             _windMan.WindMax = 15;
 
-                                            _isWinter = false;
-                                            _isSpring = false;
-                                            _isSummer = false;
-                                            _isAutumn = true;
                                             _localWeather.FogMultiplier = 1.5f;
                                             break;
                                         }
@@ -692,6 +742,11 @@ public class ClimateManagerClass : MonoBehaviour
                                 {
                                     case (Seasons.Winter):
                                         {
+                                            _isWinter = true;
+                                            _isSpring = false;
+                                            _isSummer = false;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _mild;
                                             _climateTempMax = _warm;
                                             _climateHumMin = _veryLow;
@@ -700,15 +755,16 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 35;
 
-                                            _isWinter = true;
-                                            _isSpring = false;
-                                            _isSummer = false;
-                                            _isAutumn = false;
-                                            _localWeather.FogMultiplier = 1.5f;
+                                            _localWeather.FogMultiplier = 0.75f;
                                             break;
                                         }
                                     case (Seasons.Spring):
                                         {
+                                            _isWinter = false;
+                                            _isSpring = true;
+                                            _isSummer = false;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _warm * 1.1f;
                                             _climateTempMax = _boiling;
                                             _climateHumMin = _veryLow * 1.1f;
@@ -717,14 +773,16 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 25;
 
-                                            _isWinter = false;
-                                            _isSpring = true;
-                                            _isSummer = false;
-                                            _isAutumn = false;
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
                                         {
+                                            _isWinter = false;
+                                            _isSpring = false;
+                                            _isSummer = true;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _hot * 1.1f;
                                             _climateTempMax = _boiling;
                                             _climateHumMin = _low * 1.1f;
@@ -733,14 +791,16 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 20;
 
-                                            _isWinter = false;
-                                            _isSpring = false;
-                                            _isSummer = true;
-                                            _isAutumn = false;
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
                                         {
+                                            _isWinter = false;
+                                            _isSpring = false;
+                                            _isSummer = false;
+                                            _isAutumn = true;
+
                                             _climateTempMin = _mild;
                                             _climateTempMax = _hot;
                                             _climateHumMin = _veryLow;
@@ -749,11 +809,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 25;
 
-                                            _isWinter = false;
-                                            _isSpring = false;
-                                            _isSummer = false;
-                                            _isAutumn = true;
-                                            _localWeather.FogMultiplier = 1.5f;
+                                            _localWeather.FogMultiplier = 0.75f;
                                             break;
                                         }
                                 }
@@ -765,6 +821,11 @@ public class ClimateManagerClass : MonoBehaviour
                                 {
                                     case (Seasons.Winter):
                                         {
+                                            _isWinter = true;
+                                            _isSpring = false;
+                                            _isSummer = false;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _mild;
                                             _climateTempMax = _warm;
                                             _climateHumMin = _veryLow * 1.1f;
@@ -773,15 +834,16 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 35;
 
-                                            _isWinter = true;
-                                            _isSpring = false;
-                                            _isSummer = false;
-                                            _isAutumn = false;
-                                            _localWeather.FogMultiplier = 1.5f;
+                                            _localWeather.FogMultiplier = 0.75f;
                                             break;
                                         }
                                     case (Seasons.Spring):
                                         {
+                                            _isWinter = false;
+                                            _isSpring = true;
+                                            _isSummer = false;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _warm * 1.1f;
                                             _climateTempMax = _boiling;
                                             _climateHumMin = _veryLow * 1.1f;
@@ -790,14 +852,16 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 25;
 
-                                            _isWinter = false;
-                                            _isSpring = true;
-                                            _isSummer = false;
-                                            _isAutumn = false;
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
                                         {
+                                            _isWinter = false;
+                                            _isSpring = false;
+                                            _isSummer = true;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _hot * 1.1f;
                                             _climateTempMax = _boiling * 1.1f;
                                             _climateHumMin = _low * 1.1f;
@@ -806,14 +870,16 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 20;
 
-                                            _isWinter = false;
-                                            _isSpring = false;
-                                            _isSummer = true;
-                                            _isAutumn = false;
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
                                         {
+                                            _isWinter = false;
+                                            _isSpring = false;
+                                            _isSummer = false;
+                                            _isAutumn = true;
+
                                             _climateTempMin = _mild;
                                             _climateTempMax = _hot * 1.1f;
                                             _climateHumMin = _veryLow * 1.1f;
@@ -822,11 +888,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 25;
 
-                                            _isWinter = false;
-                                            _isSpring = false;
-                                            _isSummer = false;
-                                            _isAutumn = true;
-                                            _localWeather.FogMultiplier = 1.5f;
+                                            _localWeather.FogMultiplier = 0.75f;
                                             break;
                                         }
                                 }
@@ -838,6 +900,11 @@ public class ClimateManagerClass : MonoBehaviour
                                 {
                                     case (Seasons.Winter):
                                         {
+                                            _isWinter = true;
+                                            _isSpring = false;
+                                            _isSummer = false;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _mild / 1.1f;
                                             _climateTempMax = _warm;
                                             _climateHumMin = _veryLow / 1.1f;
@@ -846,15 +913,16 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 10;
                                             _windMan.WindMax = 35;
 
-                                            _isWinter = true;
-                                            _isSpring = false;
-                                            _isSummer = false;
-                                            _isAutumn = false;
-                                            _localWeather.FogMultiplier = 1.5f;
+                                            _localWeather.FogMultiplier = 0.5f;
                                             break;
                                         }
                                     case (Seasons.Spring):
                                         {
+                                            _isWinter = false;
+                                            _isSpring = true;
+                                            _isSummer = false;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _mild;
                                             _climateTempMax = _hot;
                                             _climateHumMin = _veryLow;
@@ -863,14 +931,16 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 30;
 
-                                            _isWinter = false;
-                                            _isSpring = true;
-                                            _isSummer = false;
-                                            _isAutumn = false;
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
                                         {
+                                            _isWinter = false;
+                                            _isSpring = false;
+                                            _isSummer = true;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _warm;
                                             _climateTempMax = _hot;
                                             _climateHumMin = _veryLow;
@@ -879,14 +949,16 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 20;
 
-                                            _isWinter = false;
-                                            _isSpring = false;
-                                            _isSummer = true;
-                                            _isAutumn = false;
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
                                         {
+                                            _isWinter = false;
+                                            _isSpring = false;
+                                            _isSummer = false;
+                                            _isAutumn = true;
+
                                             _climateTempMin = _mild / 1.1f;
                                             _climateTempMax = _hot;
                                             _climateHumMin = _veryLow / 1.1f;
@@ -895,11 +967,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 10;
                                             _windMan.WindMax = 25;
 
-                                            _isWinter = false;
-                                            _isSpring = false;
-                                            _isSummer = false;
-                                            _isAutumn = true;
-                                            _localWeather.FogMultiplier = 1.5f;
+                                            _localWeather.FogMultiplier = 0.5f;
                                             break;
                                         }
                                 }
@@ -911,6 +979,11 @@ public class ClimateManagerClass : MonoBehaviour
                                 {
                                     case (Seasons.Winter):
                                         {
+                                            _isWinter = true;
+                                            _isSpring = false;
+                                            _isSummer = false;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _mild * 1.1f;
                                             _climateTempMax = _hot;
                                             _climateHumMin = _veryLow;
@@ -919,15 +992,16 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 15;
 
-                                            _isWinter = true;
-                                            _isSpring = false;
-                                            _isSummer = false;
-                                            _isAutumn = false;
-                                            _localWeather.FogMultiplier = 1.5f;
+                                            _localWeather.FogMultiplier = 0.5f;
                                             break;
                                         }
                                     case (Seasons.Spring):
                                         {
+                                            _isWinter = false;
+                                            _isSpring = true;
+                                            _isSummer = false;
+                                            _isAutumn = false;
+
                                             _climateTempMin = _warm;
                                             _climateTempMax = _boiling * 1.1f;
                                             _climateHumMin = _veryLow;
@@ -936,10 +1010,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 10;
 
-                                            _isWinter = false;
-                                            _isSpring = true;
-                                            _isSummer = false;
-                                            _isAutumn = false;
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -956,6 +1027,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = true;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -972,7 +1045,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = true;
-                                            _localWeather.FogMultiplier = 1.5f;
+
+                                            _localWeather.FogMultiplier = 0.5f;
                                             break;
                                         }
                                 }
@@ -1003,6 +1077,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = false;
+
                                             _localWeather.FogMultiplier = 1.5f;
                                             break;
                                         }
@@ -1020,6 +1095,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = true;
                                             _isSummer = false;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -1036,6 +1113,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = true;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -1052,6 +1131,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = true;
+
                                             _localWeather.FogMultiplier = 1.5f;
                                             break;
                                         }
@@ -1076,6 +1156,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = false;
+
                                             _localWeather.FogMultiplier = 1.5f;
                                             break;
                                         }
@@ -1093,6 +1174,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = true;
                                             _isSummer = false;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -1108,6 +1191,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = true;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -1124,6 +1209,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = true;
+
                                             _localWeather.FogMultiplier = 1.5f;
                                             break;
                                         }
@@ -1148,7 +1234,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = false;
-                                            _localWeather.FogMultiplier = 1.5f;
+
+                                            _localWeather.FogMultiplier = 1.1f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -1165,6 +1252,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = true;
                                             _isSummer = false;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -1181,6 +1270,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = true;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -1197,7 +1288,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = true;
-                                            _localWeather.FogMultiplier = 1.5f;
+
+                                            _localWeather.FogMultiplier = 1.1f;
                                             break;
                                         }
                                 }
@@ -1221,7 +1313,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = false;
-                                            _localWeather.FogMultiplier = 1.5f;
+
+                                            _localWeather.FogMultiplier = 1.1f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -1238,6 +1331,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = true;
                                             _isSummer = false;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -1254,6 +1349,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = true;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -1270,7 +1367,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = true;
-                                            _localWeather.FogMultiplier = 1.5f;
+
+                                            _localWeather.FogMultiplier = 1.1f;
                                             break;
                                         }
                                 }
@@ -1301,7 +1399,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = false;
-                                            _localWeather.FogMultiplier = 1.5f;
+                                            _localWeather.FogMultiplier = 1.25f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -1318,6 +1416,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = true;
                                             _isSummer = false;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -1334,6 +1434,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = true;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -1350,7 +1452,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = true;
-                                            _localWeather.FogMultiplier = 1.5f;
+                                            _localWeather.FogMultiplier = 1.25f;
                                             break;
                                         }
                                 }
@@ -1374,7 +1476,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = false;
-                                            _localWeather.FogMultiplier = 1.5f;
+
+                                            _localWeather.FogMultiplier = 1.25f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -1391,6 +1494,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = true;
                                             _isSummer = false;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -1407,6 +1512,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = true;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -1423,7 +1530,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = true;
-                                            _localWeather.FogMultiplier = 1.5f;
+
+                                            _localWeather.FogMultiplier = 1.25f;
                                             break;
                                         }
                                 }
@@ -1447,7 +1555,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = false;
-                                            _localWeather.FogMultiplier = 1.5f;
+
+                                            _localWeather.FogMultiplier = 1.1f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -1464,6 +1573,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = true;
                                             _isSummer = false;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -1480,6 +1591,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = true;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -1496,7 +1609,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = true;
-                                            _localWeather.FogMultiplier = 1.5f;
+
+                                            _localWeather.FogMultiplier = 1.1f;
                                             break;
                                         }
                                 }
@@ -1520,7 +1634,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = false;
-                                            _localWeather.FogMultiplier = 1.5f;
+
+                                            _localWeather.FogMultiplier = 1.1f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -1537,6 +1652,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = true;
                                             _isSummer = false;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -1553,6 +1670,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = true;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -1569,7 +1688,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = true;
-                                            _localWeather.FogMultiplier = 1.5f;
+
+                                            _localWeather.FogMultiplier = 1.1f;
                                             break;
                                         }
                                 }
@@ -1607,7 +1727,10 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = false;
+
                                             _localWeather.FogMultiplier = 1.5f;
+                                            //Add fog multiplier adjustments here, but only for costal, island, Average & tropical.
+                                            //They can only be in winter & autumn
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -1624,6 +1747,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = true;
                                             _isSummer = false;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -1640,6 +1765,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = true;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -1697,6 +1824,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = true;
                                             _isSummer = false;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -1713,6 +1842,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = true;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -1753,7 +1884,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = false;
-                                            _localWeather.FogMultiplier = 1.5f;
+
+                                            _localWeather.FogMultiplier = 1;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -1770,6 +1902,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = true;
                                             _isSummer = false;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -1786,6 +1920,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = true;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -1802,7 +1938,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = true;
-                                            _localWeather.FogMultiplier = 1.5f;
+
+                                            _localWeather.FogMultiplier = 1;
                                             break;
                                         }
                                 }
@@ -1826,7 +1963,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = false;
-                                            _localWeather.FogMultiplier = 1.5f;
+                                            _localWeather.FogMultiplier = 1.1f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -1843,6 +1980,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = true;
                                             _isSummer = false;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -1859,6 +1998,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = true;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -1875,7 +2016,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = true;
-                                            _localWeather.FogMultiplier = 1.5f;
+                                            _localWeather.FogMultiplier = 1.1f;
                                             break;
                                         }
                                 }
@@ -1923,6 +2064,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = true;
                                             _isSummer = false;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -1939,6 +2082,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = true;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -1996,6 +2141,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = true;
                                             _isSummer = false;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -2012,6 +2159,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = true;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -2052,7 +2201,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = false;
-                                            _localWeather.FogMultiplier = 1.5f;
+                                            _localWeather.FogMultiplier = 1;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -2069,6 +2218,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = true;
                                             _isSummer = false;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -2085,6 +2236,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = true;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -2101,7 +2254,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = true;
-                                            _localWeather.FogMultiplier = 1.5f;
+                                            _localWeather.FogMultiplier = 1;
                                             break;
                                         }
                                 }
@@ -2125,6 +2278,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = false;
+
                                             _localWeather.FogMultiplier = 1.5f;
                                             break;
                                         }
@@ -2142,6 +2296,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = true;
                                             _isSummer = false;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -2158,6 +2314,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = true;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -2174,6 +2332,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = true;
+
                                             _localWeather.FogMultiplier = 1.5f;
                                             break;
                                         }
@@ -2205,7 +2364,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = false;
-                                            _localWeather.FogMultiplier = 1.5f;
+                                            _localWeather.FogMultiplier = 0.75f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -2223,6 +2382,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSummer = false;
                                             _isAutumn = false;
 
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -2239,6 +2399,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = true;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -2255,7 +2417,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = true;
-                                            _localWeather.FogMultiplier = 1.5f;
+
+                                            _localWeather.FogMultiplier = 0.75f;
                                             break;
                                         }
                                 }
@@ -2279,7 +2442,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = false;
-                                            _localWeather.FogMultiplier = 1.5f;
+
+                                            _localWeather.FogMultiplier = 0.75f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -2296,6 +2460,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = true;
                                             _isSummer = false;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -2312,6 +2478,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = true;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -2328,7 +2496,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = true;
-                                            _localWeather.FogMultiplier = 1.5f;
+
+                                            _localWeather.FogMultiplier = 0.75f;
                                             break;
                                         }
                                 }
@@ -2352,7 +2521,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = false;
-                                            _localWeather.FogMultiplier = 1.5f;
+
+                                            _localWeather.FogMultiplier = 0.5f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -2369,6 +2539,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = true;
                                             _isSummer = false;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -2385,6 +2557,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = true;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -2401,7 +2575,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = true;
-                                            _localWeather.FogMultiplier = 1.5f;
+
+                                            _localWeather.FogMultiplier = 0.5f;
                                             break;
                                         }
                                 }
@@ -2425,7 +2600,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = false;
-                                            _localWeather.FogMultiplier = 1.5f;
+
+                                            _localWeather.FogMultiplier = 0.5f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -2442,6 +2618,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = true;
                                             _isSummer = false;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -2458,6 +2636,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = true;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -2474,7 +2654,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = true;
-                                            _localWeather.FogMultiplier = 1.5f;
+
+                                            _localWeather.FogMultiplier = 0.5f;
                                             break;
                                         }
                                 }
@@ -2505,6 +2686,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = false;
+
                                             _localWeather.FogMultiplier = 1.5f;
                                             break;
                                         }
@@ -2522,6 +2704,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = true;
                                             _isSummer = false;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -2538,6 +2722,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = true;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -2554,6 +2740,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = true;
+
                                             _localWeather.FogMultiplier = 1.5f;
                                             break;
                                         }
@@ -2578,6 +2765,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = false;
+
                                             _localWeather.FogMultiplier = 1.5f;
                                             break;
                                         }
@@ -2595,6 +2783,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = true;
                                             _isSummer = false;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -2610,6 +2800,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = true;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -2626,6 +2818,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = true;
+
                                             _localWeather.FogMultiplier = 1.5f;
                                             break;
                                         }
@@ -2650,7 +2843,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = false;
-                                            _localWeather.FogMultiplier = 1.5f;
+
+                                            _localWeather.FogMultiplier = 1.1f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -2667,6 +2861,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = true;
                                             _isSummer = false;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -2683,6 +2879,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = true;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -2699,7 +2897,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = true;
-                                            _localWeather.FogMultiplier = 1.5f;
+
+                                            _localWeather.FogMultiplier = 1.1f;
                                             break;
                                         }
                                 }
@@ -2723,7 +2922,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = false;
-                                            _localWeather.FogMultiplier = 1.5f;
+
+                                            _localWeather.FogMultiplier = 1.1f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -2740,6 +2940,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = true;
                                             _isSummer = false;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -2756,6 +2958,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = true;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -2772,7 +2976,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = true;
-                                            _localWeather.FogMultiplier = 1.5f;
+
+                                            _localWeather.FogMultiplier = 1.1f;
                                             break;
                                         }
                                 }
@@ -2803,7 +3008,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = false;
-                                            _localWeather.FogMultiplier = 1.5f;
+                                            _localWeather.FogMultiplier = 1.25f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -2820,6 +3025,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = true;
                                             _isSummer = false;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -2836,6 +3043,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = true;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -2852,7 +3061,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = true;
-                                            _localWeather.FogMultiplier = 1.5f;
+                                            _localWeather.FogMultiplier = 1.25f;
                                             break;
                                         }
                                 }
@@ -2876,7 +3085,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = false;
-                                            _localWeather.FogMultiplier = 1.5f;
+
+                                            _localWeather.FogMultiplier = 1.25f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -2893,6 +3103,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = true;
                                             _isSummer = false;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -2909,6 +3121,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = true;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -2925,7 +3139,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = true;
-                                            _localWeather.FogMultiplier = 1.5f;
+
+                                            _localWeather.FogMultiplier = 1.25f;
                                             break;
                                         }
                                 }
@@ -2949,7 +3164,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = false;
-                                            _localWeather.FogMultiplier = 1.5f;
+
+                                            _localWeather.FogMultiplier = 1.1f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -2966,6 +3182,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = true;
                                             _isSummer = false;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -2982,6 +3200,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = true;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -2998,7 +3218,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = true;
-                                            _localWeather.FogMultiplier = 1.5f;
+
+                                            _localWeather.FogMultiplier = 1.1f;
                                             break;
                                         }
                                 }
@@ -3022,7 +3243,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = false;
-                                            _localWeather.FogMultiplier = 1.5f;
+
+                                            _localWeather.FogMultiplier = 1.1f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -3039,6 +3261,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = true;
                                             _isSummer = false;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -3055,6 +3279,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = true;
                                             _isAutumn = false;
+
+                                            _localWeather.FogMultiplier = 0;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -3071,14 +3297,15 @@ public class ClimateManagerClass : MonoBehaviour
                                             _isSpring = false;
                                             _isSummer = false;
                                             _isAutumn = true;
-                                            _localWeather.FogMultiplier = 1.5f;
+
+                                            _localWeather.FogMultiplier = 1.1f;
                                             break;
                                         }
                                 }
                                 break;
                             }
                     }
-                    break;
+                    break; 
                 }
         }
     }
