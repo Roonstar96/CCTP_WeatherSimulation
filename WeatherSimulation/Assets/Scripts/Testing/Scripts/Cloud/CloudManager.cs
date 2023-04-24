@@ -35,6 +35,7 @@ public class CloudManager : MonoBehaviour
     [SerializeField] private bool _isCounting;
 
     [Header("Manager and System references")]
+    [SerializeField] private Rigidbody _rigidBody;
     [SerializeField] private LocalWeatherManager _weather;
     [SerializeField] private WindManager _wind;
     [SerializeField] private ParticleSystem _cloud;
@@ -136,6 +137,7 @@ public class CloudManager : MonoBehaviour
         }
         else
         {
+            CloudIsMoving();
 
             if (_cloudSize == 1 && _waterStored <= 0)
             {
@@ -162,6 +164,13 @@ public class CloudManager : MonoBehaviour
                 CloudIsSnowing();
             }
         }
+    }
+
+    private void CloudIsMoving()
+    {
+        float breeze = _wind.Speed;
+        
+
     }
 
     public void CurrentWaterStored()

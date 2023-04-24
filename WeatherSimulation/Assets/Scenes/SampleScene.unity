@@ -193,7 +193,7 @@ MonoBehaviour:
   _cloudColl: {fileID: 8280425}
   _climateMan: {fileID: 8280419}
   _windMan: {fileID: 8280424}
-  _fogMultiplier: 1.5
+  _fogMultiplier: 0
   _fogDensity: 0
   _fogDispersal: 0
   _fogDuration: 0
@@ -229,8 +229,8 @@ MonoBehaviour:
   _climateTempMax: 0
   _climateHumMin: 60.5
   _climateHumMax: 70
-  _windMan: {fileID: 8280424}
   _localWeather: {fileID: 8280418}
+  _windMan: {fileID: 8280424}
 --- !u!65 &8280420
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -325,11 +325,11 @@ MonoBehaviour:
   _windSpeed: 0
   _speedMin: 10
   _speedMax: 20
+  _climateAdjustment: 0
   _currentTemp: 0
   _newTemp: 0
   _weather: {fileID: 8280418}
-  _season: 
-  _climate: {fileID: 0}
+  _climate: {fileID: 8280419}
 --- !u!114 &8280425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5238,7 +5238,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 58721897}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 0.1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -5313,7 +5313,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5366,7 +5366,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 0
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5482,7 +5482,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -14811,11 +14811,11 @@ MonoBehaviour:
   _windSpeed: 0
   _speedMin: 10
   _speedMax: 30
+  _climateAdjustment: 0
   _currentTemp: 0
   _newTemp: 0
   _weather: {fileID: 213425427}
-  _season: 
-  _climate: {fileID: 0}
+  _climate: {fileID: 213425428}
 --- !u!114 &213425427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14845,7 +14845,7 @@ MonoBehaviour:
   _cloudColl: {fileID: 213425429}
   _climateMan: {fileID: 213425428}
   _windMan: {fileID: 213425426}
-  _fogMultiplier: 1.5
+  _fogMultiplier: 1.1
   _fogDensity: 0
   _fogDispersal: 0
   _fogDuration: 0
@@ -14881,8 +14881,8 @@ MonoBehaviour:
   _climateTempMax: 13.636363
   _climateHumMin: 50
   _climateHumMax: 77.27273
-  _windMan: {fileID: 213425426}
   _localWeather: {fileID: 213425427}
+  _windMan: {fileID: 213425426}
 --- !u!114 &213425429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15041,6 +15041,10 @@ PrefabInstance:
       propertyPath: _lightning
       value: 
       objectReference: {fileID: 58721900}
+    - target: {fileID: 9033187583648051675, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: _rigidBody
+      value: 
+      objectReference: {fileID: 235019178}
     - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
       propertyPath: lengthInSec
       value: 1
@@ -15075,6 +15079,11 @@ PrefabInstance:
 --- !u!4 &235019177 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9033187583648051672, guid: 6349869254b4497438d2850c1989271d, type: 3}
+  m_PrefabInstance: {fileID: 235019176}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &235019178 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 5870984072867082374, guid: 6349869254b4497438d2850c1989271d, type: 3}
   m_PrefabInstance: {fileID: 235019176}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &649014895
