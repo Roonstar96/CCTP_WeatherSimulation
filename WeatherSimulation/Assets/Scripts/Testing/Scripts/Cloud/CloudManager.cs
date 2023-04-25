@@ -34,15 +34,17 @@ public class CloudManager : MonoBehaviour
     [SerializeField] private bool _isRaining;
     [SerializeField] private bool _isSnowing;
 
-    [Header("Manager and System references")]
+    [Header("Cloud Object components")]
     [SerializeField] private Rigidbody _rigidBody;
-    [SerializeField] private LocalWeatherManager _weather;
-    [SerializeField] private WindManager _wind;
     [SerializeField] private ParticleSystem _cloud;
-    [SerializeField] private ParticleSystem _lightning;
     [SerializeField] private ParticleSystemRenderer _render;
     [SerializeField] private Material _rainMat;
     [SerializeField] private Material _snowMat;
+
+    [Header("Other Manager and System references")]
+    [SerializeField] private LocalWeatherManager _weather;
+    [SerializeField] private WindManager _wind;
+    [SerializeField] private ThunderStormManager _lightning;
 
     private ParticleSystem.MainModule _main;
     private ParticleSystem.EmissionModule _eMod;
@@ -126,12 +128,14 @@ public class CloudManager : MonoBehaviour
     {
         if (_weather == null)
         {
+            _lightning.WindManRef = null;
+
             _duration = 0;
             _intensity = 0;
 
+            _isCounting = false;
             _isRaining = false;
             _isSnowing = false;
-            _isCounting = false;
 
             _cloud.Stop();
             return;
@@ -139,6 +143,8 @@ public class CloudManager : MonoBehaviour
         else
         {
             CloudIsMoving();
+
+            _lightning.WinManRef = _wind;
 
             if (_cloudSize == 1 && _waterStored <= 0)
             {
@@ -170,8 +176,6 @@ public class CloudManager : MonoBehaviour
     private void CloudIsMoving()
     {
         float breeze = _cloudSize / _wind.Speed;
-        
-
     }
 
     public void CurrentWaterStored()

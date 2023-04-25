@@ -1,4 +1,4 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,21 +13,32 @@ public class ThunderStormManager : MonoBehaviour
     [SerializeField] private CloudManager _cloud;
     [SerializeField] private WindManager _windMan;
 
+    public WindManager WindManRef { get => _windMan; set => _windMan = value; }
+
     private void Awake()
     {
         _main = _lightning.main;
         _eMod = _lightning.emission;
+
+        if (!_cloud.WindMan == null)
+        {
+            _windMan = _cloud.WindMan;
+        }
+        else
+        {
+            _windMan = null;
+        }
     }
 
     private void Update()
     {
         if (_cloud.Raining)
         {
-            CheckConditions();
+            //CheckConditions();
         }
     }
 
-    private void CheckConditions()
+    /*private void CheckConditions()
     {
         if ()
         {
@@ -38,5 +49,5 @@ public class ThunderStormManager : MonoBehaviour
     private void LightingFunction()
     {
 
-    }
-}*/
+    }*/
+}
