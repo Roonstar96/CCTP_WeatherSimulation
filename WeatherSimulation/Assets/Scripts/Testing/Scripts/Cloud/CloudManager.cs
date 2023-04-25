@@ -29,10 +29,10 @@ public class CloudManager : MonoBehaviour
     [SerializeField] private float _rateMulti;
 
     [Header("Cloud status booleans")]
-    [SerializeField] private bool _isRaining;
-    [SerializeField] private bool _isSnowing;
     [SerializeField] private bool _isStoring;
     [SerializeField] private bool _isCounting;
+    [SerializeField] private bool _isRaining;
+    [SerializeField] private bool _isSnowing;
 
     [Header("Manager and System references")]
     [SerializeField] private Rigidbody _rigidBody;
@@ -53,8 +53,10 @@ public class CloudManager : MonoBehaviour
     public LocalWeatherManager WeatherMan { get => _weather; set => _weather = value; }
     public WindManager WindMan { get => _wind; set => _wind = value; }
     public bool Storing { get => _isStoring; set => _isStoring = value; }
+    public bool Raining { get => _isRaining; set => _isRaining = value; }
+    public float Size { get => _cloudSize; set => _cloudSize = value; }
 
-    void Awake()
+    private void Awake()
     {
         tinyMin = 1;
         tinyMax = 20;
@@ -74,7 +76,6 @@ public class CloudManager : MonoBehaviour
         _intensity = 0;
         _rateMulti = 100 + _cloudSize;
 
-        _cloud = gameObject.GetComponent<ParticleSystem>();
         _main = _cloud.main;
         _eMod = _cloud.emission;
         _pShape = _cloud.shape;
@@ -168,7 +169,7 @@ public class CloudManager : MonoBehaviour
 
     private void CloudIsMoving()
     {
-        float breeze = _wind.Speed;
+        float breeze = _cloudSize / _wind.Speed;
         
 
     }

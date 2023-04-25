@@ -54,6 +54,10 @@ public class LocalWeatherManager : MonoBehaviour
     public delegate void MinuteChanged();
     public event HourChanged HourChangedEvent;
     public delegate void HourChanged();
+    public event FogCreation FogCreationEvent;
+    public delegate void FogCreation();
+    public event FogDisserpation FogDisserpationEvent;
+    public delegate void FogDisserpation();
 
     void Awake()
     {
@@ -97,8 +101,8 @@ public class LocalWeatherManager : MonoBehaviour
             MinuteChangedEvent += _cloudMan.CountDown;
             MinuteChangedEvent += _cloudMan.DurationCountdown;
         }
-
-        MinuteChangedEvent += FogManager;
+        FogCreationEvent += FogCreationFunction;
+        FogDisserpationEvent += FogDisserpationFunction;
         HourChangedEvent += TempAndHumdityChange;
         HourChangedEvent += _windMan.CheckTemperature;
 
@@ -109,19 +113,6 @@ public class LocalWeatherManager : MonoBehaviour
     {
         TimeChange();
         EvapChange();
-
-        if (_climateMan.Winter || _climateMan.Autumn)
-        {
-            if (_timeHour > _sunSet || _timeHour < _sunRise)
-            {
-                Debug.Log("Can't see for the fog!");
-                FogManager();
-            }
-            else
-            {
-                return;
-            }
-        }
     }
 
     public void SubscribeToEvents()
@@ -154,12 +145,28 @@ public class LocalWeatherManager : MonoBehaviour
             _timeMinute += 1;
             _timeSeconds = 0f;
             MinuteChangedEvent.Invoke();
+
+            if (_cloudColl.HasCloud && _AmbientTemp > 5)
+            {
+                if (_fogDensity > 0)
+                {
+                    FogDisserpationEvent.Invoke();
+                }
+            }
         }
         if (_timeMinute >= 60.0)
         {
             _timeHour += 1;
             _timeMinute = 0;
             HourChangedEvent.Invoke();
+
+            if (_climateMan.Winter || _climateMan.Autumn)
+            {
+                if (_timeHour > _sunSet || _timeHour < _sunRise)
+                {
+                    FogCreationEvent.Invoke();
+                }
+            }
         }
         if (_timeHour >= 24.0)
         {
@@ -178,12 +185,10 @@ public class LocalWeatherManager : MonoBehaviour
     //NOTE: This funciton is responsible for changing the Ambient tempurature and Humidity values as the day goes on
     public void TempAndHumdityChange()
     {
-        //NOTE: checks if _timeHour is equal or greater than 'Midnight'
         if (_timeHour >= 0)
         {
             if (_timeHour >= _sunRise)
             {
-                //NOTE: randomly increase AT by 0% - 20% & H by 0% - 10% of current value untill midday
                 if (_timeHour < 12)
                 {
                     Mathf.Round(_AmbientTemp = _AmbientTemp + Random.Range(0, (_AmbientTemp / 5)));
@@ -194,11 +199,10 @@ public class LocalWeatherManager : MonoBehaviour
                     AfterMidday();
                 }
             }
-            //NOTE: randomly increase/decrease AT by 0% - 20% & H by 0% - 10% of current value untill sunrise
             else
             {
-                int r2 = Random.Range(0, 1);
-                if (r2 != 0)
+                int ran = Random.Range(0, 1);
+                if (ran != 0)
                 {
                     Mathf.Round(_AmbientTemp = _AmbientTemp + Random.Range(0, (_AmbientTemp / 5)));
                     Mathf.Round(_Humidity = _Humidity + (Random.Range(0, (_Humidity / 10)) + (_AmbientTemp / 10)));
@@ -230,18 +234,16 @@ public class LocalWeatherManager : MonoBehaviour
 
     private void AfterMidday()
     {
-        //NOTE: randomly decrease AT by 0% - 20% & H by 0% - 10% of current value from sunset untill midnight
         if (_timeHour >= _sunSet)
         {
             Mathf.Round(_AmbientTemp = _AmbientTemp - Random.Range(0, (_AmbientTemp / 5)));
             Mathf.Round(_Humidity = _Humidity - (Random.Range(0, (_Humidity / 10)) + (_AmbientTemp / 10)));
         }
-        //NOTE: randomly increase/decrease AT by 0% - 20% & H by 0% - 10% of current value from midday untill sunset 
         else
         {
-            int r1 = Random.Range(0, 1);
+            int ran = Random.Range(0, 1);
 
-            if (r1 != 0)
+            if (ran != 0)
             {
                 Mathf.Round(_AmbientTemp = _AmbientTemp + Random.Range(0, (_AmbientTemp / 5)));
                 Mathf.Round(_Humidity = _Humidity + (Random.Range(0, (_Humidity / 10)) + (_AmbientTemp / 10)));
@@ -286,47 +288,44 @@ public class LocalWeatherManager : MonoBehaviour
         }
     }
 
-    private void FogManager()
+    private void FogCreationFunction()
     {
-        if (_cloudColl.HasCloud && _AmbientTemp > 5)
+        if(_AmbientTemp <= 5 || _AmbientTemp >= -5)
         {
-            while (_isFoggy)
-            {
-                _fogDensity -= (_AmbientTemp / 10);
+            _fogDensity = 100 + ((_Humidity * 10) / (Mathf.Abs(_AmbientTemp + 1)));
+            _fogDensity *= _fogMultiplier;
 
-                if (_fogDensity <= 0)
-                {
-                    _main.startLifetime = 0;
-                    _eMod.rateOverTime = 0;
-                    _pShape.scale = new Vector3(0, 0, 0);
-                    _pNoise.strengthX = 0;
-                    _isFoggy = false;
+            float StartLife = 10 * (Mathf.Abs(_AmbientTemp));
+            StartLife /= (_fogMultiplier - _windMan.Speed);
+            float WindSpeedMulti = _windMan.Speed / 100;
 
-                    _fogSystem.Stop();
-                }
-            }
-            return;
+            _main.startLifetime = StartLife;
+            _eMod.rateOverTime = _fogDensity;
+            _pShape.scale = new Vector3(1 * _fogMultiplier, 0.2f * _fogMultiplier, 1 * _fogMultiplier);
+            _pNoise.strengthX = WindSpeedMulti;
+            _isFoggy = true;
+
+            _fogSystem.Play();
         }
-        if(_AmbientTemp <= 5)
+    }
+
+    private void FogDisserpationFunction()
+    {
+        while (_isFoggy)
         {
-            if (_AmbientTemp <= 5 && _AmbientTemp >= -5)
+            _fogDensity -= (_AmbientTemp / 10) + (_windMan.Speed / 10);
+
+            if (_fogDensity <= 0)
             {
-                _fogDensity = 100 + ((_Humidity * 10) / (Mathf.Abs(_AmbientTemp + 1)));
-                _fogDensity *= _fogMultiplier;
+                _main.startLifetime = 0;
+                _eMod.rateOverTime = 0;
+                _pShape.scale = new Vector3(0, 0, 0);
+                _pNoise.strengthX = 0;
+                _isFoggy = false;
 
-                float StartLife = 10 * (Mathf.Abs(_AmbientTemp));
-                StartLife /= (_fogMultiplier - _windMan.Speed);
-                float WindSpeedMulti = _windMan.Speed / 100;
-
-                _main.startLifetime = StartLife;
-                _eMod.rateOverTime = _fogDensity;
-                _pShape.scale = new Vector3(1 * _fogMultiplier, 0.2f * _fogMultiplier, 1 * _fogMultiplier);
-                _pNoise.strengthX = WindSpeedMulti;
-                //_pNoise.strengthZ = WindSpeedMulti;
-                _isFoggy = true;
-
-                _fogSystem.Play();
+                _fogSystem.Stop();
             }
         }
     }
+
 }

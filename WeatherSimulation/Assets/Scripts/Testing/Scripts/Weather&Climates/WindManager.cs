@@ -12,8 +12,6 @@ using UnityEngine;
 
 public class WindManager : MonoBehaviour
 {
-    //[SerializeField] private ClimateManagerClass _climateMan;
-
     [Header("Wind Variables")]
     [SerializeField] private float _windSpeed;
     [SerializeField] private float _speedMin;
@@ -62,11 +60,6 @@ public class WindManager : MonoBehaviour
 
         _currentTemp = _weather.Tempurature;
     }
-
-    private void Update()
-    {
-        
-    }
     
     public void CheckTemperature()
     {
@@ -96,6 +89,7 @@ public class WindManager : MonoBehaviour
         {
             _windSpeed = _windSpeed + Random.Range(0, _windSpeed / _climateAdjustment);
         }
+
         _currentTemp = _weather.Tempurature;
     }
 
@@ -113,6 +107,7 @@ public class WindManager : MonoBehaviour
         {
             _windSpeed = _windSpeed - Random.Range(0, _windSpeed / _climateAdjustment);
         }
+
         _currentTemp = _weather.Tempurature;
     }
 
