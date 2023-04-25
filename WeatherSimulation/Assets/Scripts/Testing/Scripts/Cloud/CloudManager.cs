@@ -144,7 +144,7 @@ public class CloudManager : MonoBehaviour
         {
             CloudIsMoving();
 
-            _lightning.WinManRef = _wind;
+            _lightning.WindManRef = _wind;
 
             if (_cloudSize == 1 && _waterStored <= 0)
             {

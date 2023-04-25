@@ -20,14 +20,6 @@ public class ThunderStormManager : MonoBehaviour
         _main = _lightning.main;
         _eMod = _lightning.emission;
 
-        if (!_cloud.WindMan == null)
-        {
-            _windMan = _cloud.WindMan;
-        }
-        else
-        {
-            _windMan = null;
-        }
     }
 
     private void Update()
