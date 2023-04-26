@@ -35,6 +35,7 @@ public class CloudManager : MonoBehaviour
     [SerializeField] private bool _isSnowing;
 
     [Header("Cloud Object components")]
+    [SerializeField] private Vector3 _breezeForce;
     [SerializeField] private Rigidbody _rigidBody;
     [SerializeField] private ParticleSystem _cloud;
     [SerializeField] private ParticleSystemRenderer _render;
@@ -176,6 +177,8 @@ public class CloudManager : MonoBehaviour
     private void CloudIsMoving()
     {
         float breeze = _cloudSize / _wind.Speed;
+        _breezeForce = new Vector3(breeze, 0, 0);
+        _rigidBody.AddForce(_breezeForce, ForceMode.Impulse);
     }
 
     public void CurrentWaterStored()
