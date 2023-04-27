@@ -124,7 +124,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 30;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1.1f;
                                             break;
                                         }
@@ -143,7 +143,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 15;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1;
                                             break;
                                         }
@@ -207,7 +207,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 30;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1.1f;
                                             break;
                                         }
@@ -226,7 +226,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 20;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1;
                                             break;
                                         }
@@ -290,7 +290,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 10;
                                             _windMan.WindMax = 45;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1.15f;
                                             break;
                                         }
@@ -309,7 +309,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 10;
                                             _windMan.WindMax = 40;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1.1f;
                                             break;
                                         }
@@ -373,7 +373,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 0;
                                             _windMan.WindMax = 20;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1.1f;
                                             break;
                                         }
@@ -392,7 +392,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 0;
                                             _windMan.WindMax = 10;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1;
                                             break;
                                         }
@@ -463,7 +463,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 30;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1.1f;
                                             break;
                                         }
@@ -482,7 +482,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 15;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1;
                                             break;
                                         }
@@ -546,7 +546,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 20;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1.1f;
                                             break;
                                         }
@@ -565,7 +565,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 10;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1;
                                             break;
                                         }
@@ -629,7 +629,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 15;
                                             _windMan.WindMax = 45;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1.15f;
                                             break;
                                         }
@@ -648,7 +648,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 15;
                                             _windMan.WindMax = 40;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1.1f;
                                             break;
                                         }
@@ -712,7 +712,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 0;
                                             _windMan.WindMax = 15;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1.1f;
                                             break;
                                         }
@@ -731,7 +731,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 0;
                                             _windMan.WindMax = 10;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1;
                                             break;
                                         }
@@ -802,7 +802,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 25;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1.05f;
                                             break;
                                         }
@@ -821,7 +821,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 20;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1;
                                             break;
                                         }
@@ -885,7 +885,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 25;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1.05f;
                                             break;
                                         }
@@ -904,7 +904,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 20;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1;
                                             break;
                                         }
@@ -968,7 +968,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 30;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1.1f;
                                             break;
                                         }
@@ -987,7 +987,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 20;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1.05f;
                                             break;
                                         }
@@ -1051,7 +1051,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 10;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 0.5f;
                                             break;
                                         }
@@ -1070,7 +1070,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 0;
                                             _windMan.WindMax = 10;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1;
                                             break;
                                         }
@@ -1141,7 +1141,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 15;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1.2f;
                                             break;
                                         }
@@ -1160,7 +1160,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 10;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1.1f;
                                             break;
                                         }
@@ -1224,7 +1224,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 20;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1.15f;
                                             break;
                                         }
@@ -1243,7 +1243,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 15;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1.1f;
                                             break;
                                         }
@@ -1289,6 +1289,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 30;
 
                                             _localWeather.FogMultiplier = 1.3f;
+                                            _windMan.WindAdjustment = 1.3f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -1306,7 +1307,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 10;
                                             _windMan.WindMax = 25;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1.2f;
                                             break;
                                         }
@@ -1325,7 +1326,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 10;
                                             _windMan.WindMax = 20;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1.1f;
                                             break;
                                         }
@@ -1389,7 +1390,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 0;
                                             _windMan.WindMax = 10;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1.05f;
                                             break;
                                         }
@@ -1408,7 +1409,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 0;
                                             _windMan.WindMax = 10;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1;
                                             break;
                                         }
@@ -1479,7 +1480,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 10;
                                             _windMan.WindMax = 20;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1.3f;
                                             break;
                                         }
@@ -1498,7 +1499,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 20;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1.15f;
                                             break;
                                         }
@@ -1562,7 +1563,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 10;
                                             _windMan.WindMax = 20;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1.3f;
                                             break;
                                         }
@@ -1581,7 +1582,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 20;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1.15f;
                                             break;
                                         }
@@ -1645,7 +1646,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 10;
                                             _windMan.WindMax = 40;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1.4f;
                                             break;
                                         }
@@ -1664,7 +1665,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 10;
                                             _windMan.WindMax = 35;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1.3f;
                                             break;
                                         }
@@ -1727,7 +1728,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 20;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1.1f;
                                             break;
                                         }
@@ -1746,7 +1747,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 10;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
                                             _windMan.WindAdjustment = 1;
                                             break;
                                         }
@@ -1806,8 +1807,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 45;
 
                                             _localWeather.FogMultiplier = 1.5f;
-                                            //Add fog multiplier adjustments here, but only for costal, island, Average & tropical.
-                                            //They can only be in winter & autumn
+                                            _windMan.WindAdjustment = 1.5f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -1825,7 +1825,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 30;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1.1f;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -1843,7 +1844,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 15;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -1862,6 +1864,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 30;
 
                                             _localWeather.FogMultiplier = 1.5f;
+                                            _windMan.WindAdjustment = 1.25f;
                                             break;
                                         }
                                 }
@@ -1887,6 +1890,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 50;
 
                                             _localWeather.FogMultiplier = 1.5f;
+                                            _windMan.WindAdjustment = 1.5f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -1904,7 +1908,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 30;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1.1f;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -1922,7 +1927,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 20;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -1941,6 +1947,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 30;
 
                                             _localWeather.FogMultiplier = 1.5f;
+                                            _windMan.WindAdjustment = 1.25f;
                                             break;
                                         }
                                 }
@@ -1966,6 +1973,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 50;
 
                                             _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1.55f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -1983,9 +1991,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 10;
                                             _windMan.WindMax = 45;
 
-
-
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1.15f;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -2003,7 +2010,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 10;
                                             _windMan.WindMax = 40;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1.1f;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -2022,6 +2030,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 45;
 
                                             _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1.3f;
                                             break;
                                         }
                                 }
@@ -2047,6 +2056,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 40;
 
                                             _localWeather.FogMultiplier = 1.1f;
+                                            _windMan.WindAdjustment = 1.3f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -2064,7 +2074,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 0;
                                             _windMan.WindMax = 20;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1.1f;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -2082,7 +2093,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 0;
                                             _windMan.WindMax = 10;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -2101,6 +2113,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 20;
 
                                             _localWeather.FogMultiplier = 1.1f;
+                                            _windMan.WindAdjustment = 1.05f;
                                             break;
                                         }
                                 }
@@ -2133,6 +2146,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 45;
 
                                             _localWeather.FogMultiplier = 1.5f;
+                                            _windMan.WindAdjustment = 1.5f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -2150,7 +2164,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 30;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1.1f;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -2168,7 +2183,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 15;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -2187,6 +2203,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 30;
 
                                             _localWeather.FogMultiplier = 1.5f;
+                                            _windMan.WindAdjustment = 1.25f;
                                             break;
                                         }
                                 }
@@ -2212,6 +2229,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 45;
 
                                             _localWeather.FogMultiplier = 1.5f;
+                                            _windMan.WindAdjustment = 1.5f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -2229,7 +2247,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 20;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1.1f;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -2247,7 +2266,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 10;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -2266,6 +2286,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 20;
 
                                             _localWeather.FogMultiplier = 1.5f;
+                                            _windMan.WindAdjustment = 1.25f;
                                             break;
                                         }
                                 }
@@ -2290,7 +2311,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 15;
                                             _windMan.WindMax = 50;
 
-                                            _localWeather.FogMultiplier = 1;
+                                            _localWeather.FogMultiplier = 1.5f;
+                                            _windMan.WindAdjustment = 1.55f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -2308,7 +2330,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 15;
                                             _windMan.WindMax = 45;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1.15f;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -2326,7 +2349,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 15;
                                             _windMan.WindMax = 40;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1.1f;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -2344,7 +2368,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 15;
                                             _windMan.WindMax = 45;
 
-                                            _localWeather.FogMultiplier = 1;
+                                            _localWeather.FogMultiplier = 1.5f;
+                                            _windMan.WindAdjustment = 1.3f;
                                             break;
                                         }
                                 }
@@ -2370,6 +2395,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 25;
 
                                             _localWeather.FogMultiplier = 1.5f;
+                                            _windMan.WindAdjustment = 1.3f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -2387,7 +2413,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 0;
                                             _windMan.WindMax = 15;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1.1f;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -2405,7 +2432,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 0;
                                             _windMan.WindMax = 10;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -2424,6 +2452,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 15;
 
                                             _localWeather.FogMultiplier = 1.5f;
+                                            _windMan.WindAdjustment = 1.05f;
                                             break;
                                         }
                                 }
@@ -2456,6 +2485,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 35;
 
                                             _localWeather.FogMultiplier = 0.75f;
+                                            _windMan.WindAdjustment = 1.25f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -2473,7 +2503,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 25;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1.05f;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -2491,7 +2522,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 20;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -2510,6 +2542,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 25;
 
                                             _localWeather.FogMultiplier = 0.75f;
+                                            _windMan.WindAdjustment = 1.15f;
                                             break;
                                         }
                                 }
@@ -2535,6 +2568,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 35;
 
                                             _localWeather.FogMultiplier = 0.75f;
+                                            _windMan.WindAdjustment = 1.25f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -2552,7 +2586,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 25;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1.05f;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -2570,7 +2605,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 20;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -2589,6 +2625,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 25;
 
                                             _localWeather.FogMultiplier = 0.75f;
+                                            _windMan.WindAdjustment = 1.15f;
                                             break;
                                         }
                                 }
@@ -2614,6 +2651,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 35;
 
                                             _localWeather.FogMultiplier = 0.5f;
+                                            _windMan.WindAdjustment = 1.3f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -2631,7 +2669,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 30;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1.1f;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -2649,7 +2688,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 20;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1.05f;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -2668,6 +2708,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 25;
 
                                             _localWeather.FogMultiplier = 0.5f;
+                                            _windMan.WindAdjustment = 1.2f;
                                             break;
                                         }
                                 }
@@ -2693,6 +2734,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 15;
 
                                             _localWeather.FogMultiplier = 0.5f;
+                                            _windMan.WindAdjustment = 1.1f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -2710,7 +2752,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 10;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 0.5f;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -2728,7 +2771,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 0;
                                             _windMan.WindMax = 10;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -2747,6 +2791,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 10;
 
                                             _localWeather.FogMultiplier = 0.5f;
+                                            _windMan.WindAdjustment = 0.75f;
                                             break;
                                         }
                                 }
@@ -2779,6 +2824,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 20;
 
                                             _localWeather.FogMultiplier = 1.5f;
+                                            _windMan.WindAdjustment = 1.3f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -2796,7 +2842,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 15;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1.2f;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -2814,7 +2861,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 10;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1.1f;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -2833,6 +2881,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 15;
 
                                             _localWeather.FogMultiplier = 1.5f;
+                                            _windMan.WindAdjustment = 1.2f;
                                             break;
                                         }
                                 }
@@ -2858,6 +2907,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 25;
 
                                             _localWeather.FogMultiplier = 1.5f;
+                                            _windMan.WindAdjustment = 1.25f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -2875,7 +2925,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 20;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1.15f;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -2893,7 +2944,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 15;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1.1f;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -2912,6 +2964,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 25;
 
                                             _localWeather.FogMultiplier = 1.5f;
+                                            _windMan.WindAdjustment = 1.15f;
                                             break;
                                         }
                                 }
@@ -2936,7 +2989,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 10;
                                             _windMan.WindMax = 30;
 
-                                            _localWeather.FogMultiplier = 1.1f;
+                                            _localWeather.FogMultiplier = 1.3f;
+                                            _windMan.WindAdjustment = 1.3f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -2954,7 +3008,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 10;
                                             _windMan.WindMax = 25;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1.2f;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -2972,7 +3027,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 10;
                                             _windMan.WindMax = 20;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1.1f;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -2991,6 +3047,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 25;
 
                                             _localWeather.FogMultiplier = 1.1f;
+                                            _windMan.WindAdjustment = 1.25f;
                                             break;
                                         }
                                 }
@@ -3016,6 +3073,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 20;
 
                                             _localWeather.FogMultiplier = 1.1f;
+                                            _windMan.WindAdjustment = 1.15f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -3033,7 +3091,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 0;
                                             _windMan.WindMax = 10;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1.05f;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -3051,7 +3110,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 0;
                                             _windMan.WindMax = 10;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -3070,6 +3130,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 15;
 
                                             _localWeather.FogMultiplier = 1.1f;
+                                            _windMan.WindAdjustment = 1.1f;
                                             break;
                                         }
                                 }
@@ -3102,6 +3163,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 35;
 
                                             _localWeather.FogMultiplier = 1.25f;
+                                            _windMan.WindAdjustment = 1.5f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -3119,7 +3181,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 10;
                                             _windMan.WindMax = 20;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1.3f;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -3137,7 +3200,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 20;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1.15f;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -3156,6 +3220,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 30;
 
                                             _localWeather.FogMultiplier = 1.25f;
+                                            _windMan.WindAdjustment = 1.4f;
                                             break;
                                         }
                                 }
@@ -3181,6 +3246,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 35;
 
                                             _localWeather.FogMultiplier = 1.25f;
+                                            _windMan.WindAdjustment = 1.5f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -3198,7 +3264,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 10;
                                             _windMan.WindMax = 20;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1.3f;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -3216,7 +3283,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 20;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1.15f;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -3235,6 +3303,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 30;
 
                                             _localWeather.FogMultiplier = 1.25f;
+                                            _windMan.WindAdjustment = 1.4f;
                                             break;
                                         }
                                 }
@@ -3260,6 +3329,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 50;
 
                                             _localWeather.FogMultiplier = 1.1f;
+                                            _windMan.WindAdjustment = 1.6f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -3277,7 +3347,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 10;
                                             _windMan.WindMax = 40;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1.4f;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -3295,7 +3366,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 10;
                                             _windMan.WindMax = 35;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1.3f;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -3314,6 +3386,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 40;
 
                                             _localWeather.FogMultiplier = 1.1f;
+                                            _windMan.WindAdjustment = 1.5f;
                                             break;
                                         }
                                 }
@@ -3338,7 +3411,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 30;
 
-                                            _localWeather.FogMultiplier = 1.1f;
+                                            _localWeather.FogMultiplier = 1.3f;
                                             break;
                                         }
                                     case (Seasons.Spring):
@@ -3356,7 +3429,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 5;
                                             _windMan.WindMax = 20;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1.1f;
                                             break;
                                         }
                                     case (Seasons.Summer):
@@ -3374,7 +3448,8 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMin = 1;
                                             _windMan.WindMax = 10;
 
-                                            _localWeather.FogMultiplier = 0;
+                                            _localWeather.FogMultiplier = 1;
+                                            _windMan.WindAdjustment = 1;
                                             break;
                                         }
                                     case (Seasons.Autumn):
@@ -3393,6 +3468,7 @@ public class ClimateManagerClass : MonoBehaviour
                                             _windMan.WindMax = 20;
 
                                             _localWeather.FogMultiplier = 1.1f;
+                                            _windMan.WindAdjustment = 1.2f;
                                             break;
                                         }
                                 }

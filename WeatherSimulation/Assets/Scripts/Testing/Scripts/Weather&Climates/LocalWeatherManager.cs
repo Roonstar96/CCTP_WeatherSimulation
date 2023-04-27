@@ -35,8 +35,8 @@ public class LocalWeatherManager : MonoBehaviour
     [Header("Fog Variables")]
     [SerializeField] private float _fogMultiplier;
     [SerializeField] private float _fogDensity;
-    [SerializeField] private float _fogDispersal;
-    [SerializeField] private float _fogDuration;
+    //[SerializeField] private float _fogDispersal;
+    //[SerializeField] private float _fogDuration;
     [SerializeField] private bool _isFoggy;
     [SerializeField] ParticleSystem _fogSystem;
 
@@ -109,6 +109,11 @@ public class LocalWeatherManager : MonoBehaviour
         _isFoggy = false;
     }
 
+    private void Start()
+    {
+        FogCreationFunction();
+    }
+
     private void Update()
     {
         TimeChange();
@@ -142,10 +147,10 @@ public class LocalWeatherManager : MonoBehaviour
         }
         if (_timeSeconds >= 60.0)
         {
-            _timeMinute += 1;
-            _timeSeconds = 0f;
-            MinuteChangedEvent.Invoke();
-
+            if (_cloudColl.HasCloud)
+            {
+                MinuteChangedEvent.Invoke();
+            }
             if (_cloudColl.HasCloud && _AmbientTemp > 5)
             {
                 if (_fogDensity > 0)
@@ -153,11 +158,11 @@ public class LocalWeatherManager : MonoBehaviour
                     FogDisserpationEvent.Invoke();
                 }
             }
+            _timeMinute += 1;
+            _timeSeconds = 0f;
         }
         if (_timeMinute >= 60.0)
         {
-            _timeHour += 1;
-            _timeMinute = 0;
             HourChangedEvent.Invoke();
 
             if (_climateMan.Winter || _climateMan.Autumn)
@@ -167,6 +172,8 @@ public class LocalWeatherManager : MonoBehaviour
                     FogCreationEvent.Invoke();
                 }
             }
+            _timeHour += 1;
+            _timeMinute = 0;
         }
         if (_timeHour >= 24.0)
         {
@@ -292,18 +299,24 @@ public class LocalWeatherManager : MonoBehaviour
     {
         if(_AmbientTemp <= 5 || _AmbientTemp >= -5)
         {
+            Debug.Log("It's foggy");
             _fogDensity = 100 + ((_Humidity * 10) / (Mathf.Abs(_AmbientTemp + 1)));
-            _fogDensity *= _fogMultiplier;
+            _fogDensity = _fogDensity * _fogMultiplier;
+            Debug.Log("It's still foggy");
 
             float StartLife = 10 * (Mathf.Abs(_AmbientTemp));
-            StartLife /= (_fogMultiplier - _windMan.Speed);
-            float WindSpeedMulti = _windMan.Speed / 100;
+            Debug.Log("StartLife: " + StartLife);
+            StartLife = StartLife / (_fogMultiplier - _windMan.Speed);
+            Debug.Log("StartLife: " + StartLife);
+            float WindSpeedMulti = _windMan.Speed / 50;
+            Debug.Log("Windy boy: " + WindSpeedMulti);
 
-            _main.startLifetime = StartLife;
+            _main.startLifetime = Mathf.Abs(StartLife);
             _eMod.rateOverTime = _fogDensity;
             _pShape.scale = new Vector3(1 * _fogMultiplier, 0.2f * _fogMultiplier, 1 * _fogMultiplier);
             _pNoise.strengthX = WindSpeedMulti;
             _isFoggy = true;
+            Debug.Log("_isFoggy is:" + _isFoggy);
 
             _fogSystem.Play();
         }

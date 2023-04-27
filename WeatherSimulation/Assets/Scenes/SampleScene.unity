@@ -193,10 +193,8 @@ MonoBehaviour:
   _cloudColl: {fileID: 8280425}
   _climateMan: {fileID: 8280419}
   _windMan: {fileID: 8280424}
-  _fogMultiplier: 0
+  _fogMultiplier: 1
   _fogDensity: 0
-  _fogDispersal: 0
-  _fogDuration: 0
   _isFoggy: 0
   _fogSystem: {fileID: 8280427}
 --- !u!114 &8280419
@@ -325,7 +323,7 @@ MonoBehaviour:
   _windSpeed: 0
   _speedMin: 10
   _speedMax: 20
-  _climateAdjustment: 0
+  _climateAdjustment: 1.3
   _currentTemp: 0
   _newTemp: 0
   _weather: {fileID: 8280418}
@@ -344,6 +342,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hasCloud: 0
   _localWeatherMan: {fileID: 8280418}
+  _windMan: {fileID: 8280424}
 --- !u!199 &8280426
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -5143,7 +5142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &58721898
 Transform:
   m_ObjectHideFlags: 0
@@ -5151,7 +5150,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 58721897}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5868,7 +5867,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 10, y: 10, z: 1}
+    m_Scale: {x: 10, y: 1, z: 10}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -14827,7 +14826,7 @@ MonoBehaviour:
   _windSpeed: 0
   _speedMin: 10
   _speedMax: 30
-  _climateAdjustment: 0
+  _climateAdjustment: 1.3
   _currentTemp: 0
   _newTemp: 0
   _weather: {fileID: 213425427}
@@ -14861,10 +14860,8 @@ MonoBehaviour:
   _cloudColl: {fileID: 213425429}
   _climateMan: {fileID: 213425428}
   _windMan: {fileID: 213425426}
-  _fogMultiplier: 1.1
+  _fogMultiplier: 1.3
   _fogDensity: 0
-  _fogDispersal: 0
-  _fogDuration: 0
   _isFoggy: 0
   _fogSystem: {fileID: 213425423}
 --- !u!114 &213425428
@@ -14913,6 +14910,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hasCloud: 0
   _localWeatherMan: {fileID: 213425427}
+  _windMan: {fileID: 213425426}
 --- !u!54 &213425430
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15003,11 +15001,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9033187583648051672, guid: 6349869254b4497438d2850c1989271d, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9033187583648051672, guid: 6349869254b4497438d2850c1989271d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9033187583648051672, guid: 6349869254b4497438d2850c1989271d, type: 3}
       propertyPath: m_LocalRotation.y
@@ -15019,7 +15017,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9033187583648051672, guid: 6349869254b4497438d2850c1989271d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9033187583648051672, guid: 6349869254b4497438d2850c1989271d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -15054,9 +15052,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: c5a189676dc9413449d8e967cb3dcc9b, type: 2}
     - target: {fileID: 9033187583648051675, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: _cloudObj
+      value: 
+      objectReference: {fileID: 235019180}
+    - target: {fileID: 9033187583648051675, guid: 6349869254b4497438d2850c1989271d, type: 3}
       propertyPath: _lightning
       value: 
-      objectReference: {fileID: 58721900}
+      objectReference: {fileID: 58721901}
     - target: {fileID: 9033187583648051675, guid: 6349869254b4497438d2850c1989271d, type: 3}
       propertyPath: _rigidBody
       value: 
@@ -15068,6 +15070,14 @@ PrefabInstance:
     - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
       propertyPath: NoiseModule.enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: ShapeModule.m_Scale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
+      propertyPath: ShapeModule.m_Scale.z
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 9033187583648051686, guid: 6349869254b4497438d2850c1989271d, type: 3}
       propertyPath: CollisionModule.enabled
@@ -15107,12 +15117,17 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9033187583648051675, guid: 6349869254b4497438d2850c1989271d, type: 3}
   m_PrefabInstance: {fileID: 235019176}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 235019180}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6618bb3a7d4acd489455da72676aea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &235019180 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9033187583648051674, guid: 6349869254b4497438d2850c1989271d, type: 3}
+  m_PrefabInstance: {fileID: 235019176}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &649014895
 GameObject:
   m_ObjectHideFlags: 0

@@ -35,7 +35,8 @@ public class CloudManager : MonoBehaviour
     [SerializeField] private bool _isSnowing;
 
     [Header("Cloud Object components")]
-    [SerializeField] private Vector3 _breezeForce;
+    [SerializeField] private float _currentWindSpeed;
+    [SerializeField] private GameObject _cloudObj;
     [SerializeField] private Rigidbody _rigidBody;
     [SerializeField] private ParticleSystem _cloud;
     [SerializeField] private ParticleSystemRenderer _render;
@@ -53,11 +54,17 @@ public class CloudManager : MonoBehaviour
     private ParticleSystem.NoiseModule _noise;
     private float _pScaler;
 
+    public float CurrentWind { get => _currentWindSpeed; set => _currentWindSpeed = value; }
     public LocalWeatherManager WeatherMan { get => _weather; set => _weather = value; }
     public WindManager WindMan { get => _wind; set => _wind = value; }
     public bool Storing { get => _isStoring; set => _isStoring = value; }
     public bool Raining { get => _isRaining; set => _isRaining = value; }
     public float Size { get => _cloudSize; set => _cloudSize = value; }
+
+    public event SnowingEvent SnowingEventCall;
+    public delegate void SnowingEvent();
+    public event RainingEvent RainingEventCall;
+    public delegate void RainingEvent();
 
     private void Awake()
     {
@@ -143,7 +150,7 @@ public class CloudManager : MonoBehaviour
         }
         else
         {
-            CloudIsMoving();
+            //CloudIsMoving();
 
             _lightning.WindManRef = _wind;
 
@@ -151,15 +158,6 @@ public class CloudManager : MonoBehaviour
             {
                 Debug.Log("No more water, no more cloud!");
                 Destroy(gameObject);
-            }
-            if (_isStoring)
-            {
-                CurrentWaterStored();
-            }
-            if (_isCounting)
-            {
-                Debug.Log("Coiunting down!");
-                CountDown();
             }
             if (_isRaining)
             {
@@ -174,12 +172,13 @@ public class CloudManager : MonoBehaviour
         }
     }
 
-    private void CloudIsMoving()
+    /*private void CloudIsMoving()
     {
-        float breeze = _cloudSize / _wind.Speed;
-        _breezeForce = new Vector3(breeze, 0, 0);
-        _rigidBody.AddForce(_breezeForce, ForceMode.Impulse);
-    }
+        float breeze = _cloudSize / _currentWindSpeed;
+        Vector3 _breezeForce = new Vector3(breeze, 0, 0);
+        //_rigidBody.AddForce(_breezeForce * Time.deltaTime);
+        _cloudObj.transform.position = _breezeForce * Time.deltaTime;
+    }*/
 
     public void CurrentWaterStored()
     {
@@ -228,15 +227,17 @@ public class CloudManager : MonoBehaviour
 
             return;
         }
-        else if (_weather.Tempurature <= 2 || _weather.Tempurature >= -5)
+        else if (_weather.Tempurature <= 0 && _weather.Tempurature >= -5)
         {
             float snowMultiplier = (Mathf.Abs(_weather.Tempurature) / 100) + 1;
 
             Mathf.Round(_intensity = ((_waterStored / _cloudSize) / Mathf.Abs(_weather.Tempurature) / 5));
             Mathf.Round(_duration = ((_waterStored / Mathf.Abs(_weather.Tempurature)) * _cloudSize));
             Mathf.Round(_duration = _duration * snowMultiplier);
-            _isSnowing = true;
             _isStoring = false;
+            _isSnowing = true;
+
+            SnowingEventCall.Invoke();
         }
         else
         {
@@ -244,8 +245,10 @@ public class CloudManager : MonoBehaviour
             {
                 Mathf.Round(_intensity = ((_waterStored / _cloudSize) / Mathf.Abs(_weather.Tempurature) / 10));
                 Mathf.Round(_duration = ((_waterStored / Mathf.Abs(_weather.Tempurature)) * _cloudSize));
-                _isRaining = true;
                 _isStoring = false;
+                _isRaining = true;
+
+                RainingEventCall.Invoke();
             }
             else
             {
@@ -260,7 +263,11 @@ public class CloudManager : MonoBehaviour
 
     public void CountDown()
     { 
-        if (_weather.Tempurature < 2 && _weather.Tempurature > -5)
+        if (!_isCounting)
+        {
+            return;
+        }
+        if (_weather.Tempurature <= 2 && _weather.Tempurature > 0)
         {
             _timeTillRain -= 0.5F;
 
@@ -268,9 +275,12 @@ public class CloudManager : MonoBehaviour
             {
                 _timeTillRain = 0;
                 _isRaining = false;
-                _isSnowing = true;
                 _isStoring = false;
                 _isCounting = false;
+
+                _isSnowing = true;
+
+                SnowingEventCall.Invoke();
             }
         }
         else if (_weather.Tempurature > 2)
@@ -280,10 +290,13 @@ public class CloudManager : MonoBehaviour
             if (_timeTillRain <= 0)
             {
                 _timeTillRain = 0;
-                _isRaining = true;
                 _isSnowing = false;
                 _isStoring = false;
                 _isCounting = false;
+
+                _isRaining = true;
+
+                RainingEventCall.Invoke();
             }
         }
     }
@@ -336,7 +349,11 @@ public class CloudManager : MonoBehaviour
         _noise.scrollSpeed = 1;
         _noise.octaveCount = 10;
 
-        if(_weather.Tempurature <= 2 && _weather.Tempurature >= 0)
+        _main.startSpeed = 1;
+        _main.startLifetime = 25;
+
+        //Below code causing issues. snow does't appear at all 
+        /*if (_weather.Tempurature <= 2 && _weather.Tempurature >= 0)
         {
             _main.startSpeed = 1;
             _main.startLifetime = 25;
@@ -344,9 +361,10 @@ public class CloudManager : MonoBehaviour
         else
         {
             _main.startLifetime = 20 - Mathf.Abs(_weather.Tempurature);
-        }
+        }*/
 
         _cloud.Play();
+        Debug.Log("Still snowing");
 
         if (_duration <= 0)
         {

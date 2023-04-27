@@ -12,6 +12,8 @@ public class CloudCollisionManager : MonoBehaviour
 {
     [SerializeField] private bool _hasCloud;
     [SerializeField] private LocalWeatherManager _localWeatherMan;
+    [SerializeField] private WindManager _windMan;
+    
     public bool HasCloud { get => _hasCloud; set => _hasCloud = value; }
 
     private void OnTriggerEnter(Collider other)
@@ -21,8 +23,9 @@ public class CloudCollisionManager : MonoBehaviour
             _hasCloud = true;
             Debug.Log("New Cloud");
             var cloud = other.GetComponent<CloudManager>();
-            cloud.WeatherMan = gameObject.GetComponent<LocalWeatherManager>();
-            cloud.WindMan = gameObject.GetComponent<WindManager>();
+            cloud.WeatherMan = _localWeatherMan;
+            cloud.WindMan = _windMan;
+            cloud.CurrentWind = _windMan.Speed;
             cloud.Storing = true;
             _localWeatherMan.CloudMan = other.gameObject.GetComponent<CloudManager>();
             _localWeatherMan.SubscribeToEvents();

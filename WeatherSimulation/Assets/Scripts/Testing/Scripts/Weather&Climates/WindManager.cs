@@ -35,17 +35,17 @@ public class WindManager : MonoBehaviour
     {
         if (_climate.Winter)
         {
-            _windSpeed = Mathf.Round(Random.Range(_speedMax / 2, _speedMax) * _climateAdjustment);
+            _windSpeed = Random.Range(_speedMax / 2, _speedMax) * _climateAdjustment;
             _windSpeed = _windSpeed / Mathf.Abs(_weather.Tempurature);
         }
         if (_climate.Summer)
         {
-            _windSpeed = Mathf.Round(Random.Range(_speedMin, _speedMax / 2) * _climateAdjustment);
+            _windSpeed = Random.Range(_speedMin, _speedMax / 2) * _climateAdjustment;
             _windSpeed = _windSpeed / Mathf.Abs(_weather.Tempurature);
         }
         else
         {
-            _windSpeed = Mathf.Round(Random.Range(_speedMin, _speedMax - (_speedMax / 4)) * _climateAdjustment);
+            _windSpeed = Random.Range(_speedMin, _speedMax - (_speedMax / 4)) * _climateAdjustment;
             _windSpeed = _windSpeed / Mathf.Abs(_weather.Tempurature);
         }
 
@@ -73,6 +73,10 @@ public class WindManager : MonoBehaviour
         {
             IncreaseWindSpeed();
         }
+        else
+        {
+            return;
+        }
     }
 
     private void IncreaseWindSpeed()
@@ -88,6 +92,11 @@ public class WindManager : MonoBehaviour
         else
         {
             _windSpeed = _windSpeed + Random.Range(0, _windSpeed / _climateAdjustment);
+        }
+
+        if (_windSpeed > _speedMax)
+        {
+            _windSpeed = _speedMax;
         }
 
         _currentTemp = _weather.Tempurature;
@@ -106,6 +115,11 @@ public class WindManager : MonoBehaviour
         else
         {
             _windSpeed = _windSpeed - Random.Range(0, _windSpeed / _climateAdjustment);
+        }
+
+        if (_windSpeed < _speedMin)
+        {
+            _windSpeed = _speedMax;
         }
 
         _currentTemp = _weather.Tempurature;
