@@ -57,6 +57,7 @@ public class CloudManager : MonoBehaviour
     public float CurrentWind { get => _currentWindSpeed; set => _currentWindSpeed = value; }
     public LocalWeatherManager WeatherMan { get => _weather; set => _weather = value; }
     public WindManager WindMan { get => _wind; set => _wind = value; }
+    public float Intensity { get => _intensity; set => _intensity = value; }
     public bool Storing { get => _isStoring; set => _isStoring = value; }
     public bool Raining { get => _isRaining; set => _isRaining = value; }
     public float Size { get => _cloudSize; set => _cloudSize = value; }
@@ -137,6 +138,7 @@ public class CloudManager : MonoBehaviour
         if (_weather == null)
         {
             _lightning.WindManRef = null;
+            _lightning.LocalWeatherRef = null;
 
             _duration = 0;
             _intensity = 0;
@@ -151,8 +153,8 @@ public class CloudManager : MonoBehaviour
         else
         {
             //CloudIsMoving();
-
             _lightning.WindManRef = _wind;
+            _lightning.LocalWeatherRef = _weather;
 
             if (_cloudSize == 1 && _waterStored <= 0)
             {

@@ -46,6 +46,7 @@ public class LocalWeatherManager : MonoBehaviour
     private ParticleSystem.NoiseModule _pNoise;
 
     public float Tempurature { get => _AmbientTemp; set => _AmbientTemp = value; }
+    public float Humidity { get => _Humidity; set => _Humidity = value; }
     public float Evaporation { get => _EvaporationRate; set => _EvaporationRate = value; }
     public float FogMultiplier { get => _fogMultiplier; set => _fogMultiplier = value; }
     public CloudManager CloudMan { get => _cloudMan; set => _cloudMan = value; }
@@ -299,24 +300,18 @@ public class LocalWeatherManager : MonoBehaviour
     {
         if(_AmbientTemp <= 5 || _AmbientTemp >= -5)
         {
-            Debug.Log("It's foggy");
             _fogDensity = 100 + ((_Humidity * 10) / (Mathf.Abs(_AmbientTemp + 1)));
             _fogDensity = _fogDensity * _fogMultiplier;
-            Debug.Log("It's still foggy");
 
             float StartLife = 10 * (Mathf.Abs(_AmbientTemp));
-            Debug.Log("StartLife: " + StartLife);
             StartLife = StartLife / (_fogMultiplier - _windMan.Speed);
-            Debug.Log("StartLife: " + StartLife);
             float WindSpeedMulti = _windMan.Speed / 50;
-            Debug.Log("Windy boy: " + WindSpeedMulti);
 
             _main.startLifetime = Mathf.Abs(StartLife);
             _eMod.rateOverTime = _fogDensity;
             _pShape.scale = new Vector3(1 * _fogMultiplier, 0.2f * _fogMultiplier, 1 * _fogMultiplier);
             _pNoise.strengthX = WindSpeedMulti;
             _isFoggy = true;
-            Debug.Log("_isFoggy is:" + _isFoggy);
 
             _fogSystem.Play();
         }
